@@ -1,1 +1,1 @@
-# project-3
+# NHL Scores - A React App
