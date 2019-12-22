@@ -5,6 +5,8 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+const db = require("./models");
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -42,10 +44,9 @@ if (process.env.NODE_ENV === "test") {
 //   });
 // });
 
-// db.sequelize.sync(syncOptions).then(() => {
+db.sequelize.sync(syncOptions).then(() => {
 
-//   // all scrape files have been tested except for delete future
-//   require("./scrape/newCompleted")(db);
-//   require("./scrape/deleteFuture")(db);
+  require("./scrape/newCompleted")(db);
+  require("./scrape/deleteFuture")(db);
 
-// });
+});

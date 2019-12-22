@@ -1,7 +1,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const moment = require("moment");
-import { teamInfo } from "./teamInfo";
+const teamInfo = require("./teamInfo");
 
 module.exports = function scrapeAllFuture(db) {
 

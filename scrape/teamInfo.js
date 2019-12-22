@@ -1,5 +1,5 @@
 
-export const teamInfo = {
+module.exports = {
     
     teamsArray: ["bruins", "sabres", "red wings", "panthers", "canadiens", "senators", "lightning", "maple leafs", "hurricanes", "blue jackets", "devils", "islanders", "rangers", "flyers", "penguins", "capitals", "blackhawks", "avalanche", "stars", "wild", "predators", "blues", "jets", "ducks", "coyotes", "flames", "oilers", "golden knights", "kings", "sharks", "canucks"],
 
@@ -27,3 +27,4 @@ export const teamInfo = {
         else return "Western";
     },
 }
+

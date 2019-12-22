@@ -15,16 +15,19 @@ module.exports = function deleteFuture(db) {
         closestDate = moment(data[0].dataValues.date, "YYYYMMDD").format("YYYYMMDD");
 
         if (closestDate <= today) {
-            daysToDelete = moment(today).diff(moment(closestDate), "days");
-            console.log(chalk.green(daysToDelete));
+            daysToDelete = moment(today).diff(moment(closestDate), "days") + 1;
+            console.log("days to delete", chalk.green(daysToDelete));
         } else {
             daysToDelete = 0;
         }
 
         for (let dayNum = 0; dayNum < daysToDelete; dayNum++) {
+
+            const deleteDate = moment(closestDate).add(dayNum, 'days').format("YYYYMMDD");
+
             db.Future.destroy({
                 where: {
-                    date: closestDate
+                    date: deleteDate
                 }
             })
             .catch(error => console.log(error.message));

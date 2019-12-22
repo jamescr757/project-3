@@ -1,6 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
-import { teamInfo } from "./teamInfo";
+const teamInfo = require("./teamInfo");
 
 module.exports = function scrape(db, seasonDate) {
 
@@ -72,7 +72,7 @@ module.exports = function scrape(db, seasonDate) {
                     awayTeamScore: awayScore
 
                 })
-                    .catch((error) => console.log(error));
+                    .catch((error) => console.log(error.message));
 
             }
 
