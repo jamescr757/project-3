@@ -51,18 +51,22 @@ const ScoreCard = props => {
                     <img 
                         className={classes.teamLogo}
                         src={`./images/${teamNameConverter(props.game.awayTeam)}.png`}
+                        alt={props.game.awayTeam}
                         />
                     {props.game.awayTeam}
-                    {props.game.awayTeamScore} 
+                    {props.game.awayTeamRecord}
+                    {props.game.awayTeamScore || ""} 
                 </Typography>
 
                 <Typography className={classes.teams} gutterBottom variant="h5" component="h2">
                     <img 
                         className={classes.teamLogo}
                         src={`./images/${teamNameConverter(props.game.homeTeam)}.png`}
+                        alt={props.game.homeTeam}
                         />
                     {props.game.homeTeam}
-                    {props.game.homeTeamScore}
+                    {props.game.homeTeamRecord}
+                    {props.game.homeTeamScore || ""}
                 </Typography>
 
             </CardContent>

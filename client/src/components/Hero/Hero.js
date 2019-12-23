@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 
   }));
 
-const Hero = () => {
+const Hero = (props) => {
     const classes = useStyles();
 
     return (
@@ -22,7 +22,7 @@ const Hero = () => {
             <Container maxWidth="sm">
                 <Title />
                 <SubHeading />
-                <HeroButtons />
+                <HeroButtons {...props}/>
             </Container>
         </div>
     );

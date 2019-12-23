@@ -1,47 +1,34 @@
-import React, { Component } from "react";
+import React, { Fragment } from "react";
 import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import ScoresDate from "./pages/ScoresDate";
 import NavBar from "./components/NavBar";
-import Hero from "./components/Hero";
-import ScoreBoard from "./components/ScoreBoard";
-import Footer from "./components/Footer";
-// import API from "./utils/API";
 import { CssBaseline } from "@material-ui/core";
+import Footer from "./components/Footer";
 
+const App = () => {
 
-class App extends Component {
-
-  // state = {
-  //   gameInfo: [],
-  //   gameHighlights: []
-  // }
-
-  // componentDidMount() {
-  //   API.getYesterdayScores()
-  //     .then(response => {
-  //       this.setState({
-  //         gameInfo: response.data
-  //       })
-  //     })
-  //     .catch(error => {
-  //       console.log("error in component did mount, get yesterday scores");
-  //       console.log(error.message);
-  //     })
-  // }
-
-  render() {
-    return (
-      <React.Fragment>
+  return (
+    <Fragment>
         <CssBaseline />
         <NavBar />
-        <Hero />
-        <ScoreBoard />
+
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/date/:scoresDate" component={ScoresDate} />
+          </Switch>
+        </Router>
+
         <Footer />
-      </React.Fragment>
-    );
-  }
+    </Fragment>
+  );
 }
 
 export default App;
+
+// TODO: get equal sized team logos
 
 
 // componentDidMount() {

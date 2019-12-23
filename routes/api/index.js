@@ -1,10 +1,13 @@
 const router = require("express").Router();
 const completedScoreRoutes = require("./completed");
+const futureScoreRoutes = require("./future");
 const highlightRoutes = require("./highlight");
 
-// Book routes
+
 router.use("/completed", completedScoreRoutes);
 
-router.use("/highlight", highlightRoutes)
+router.use("/future", futureScoreRoutes);
+
+router.use("/highlight", highlightRoutes);
 
 module.exports = router;
