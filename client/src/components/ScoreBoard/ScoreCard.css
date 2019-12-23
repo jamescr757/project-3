@@ -1,0 +1,29 @@
+.iFrameInitial {
+    display: none;
+}
+
+.iFrameFinal {
+    display: block;
+}
+
+.loadingFinal {
+    display: none !important;
+}
+
+.loser {
+    color: gray;
+    text-transform: capitalize;
+}
+
+.winner {
+    /* font-weight: bold; */
+    text-transform: capitalize;
+}
+
+.future {
+    text-transform: capitalize;
+}
+
+.loading-container {
+    height: 180px;
+}

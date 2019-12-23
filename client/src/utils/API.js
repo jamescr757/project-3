@@ -19,8 +19,8 @@ export default {
     }
   },
 
-  getHighlightYesterday: function(teams) {
-
-    return axios.get(`/api/highlight/${teams}/date/${this.yesterday}`);
+  getHighlight: function(teams, date) {
+    
+    return axios.get(`/api/highlight/${teams}/date/${date}`);
   }
 };

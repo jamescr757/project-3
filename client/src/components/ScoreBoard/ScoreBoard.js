@@ -25,7 +25,6 @@ const ScoreBoard = (props) => {
     const classes = useStyles();
 
     const [gameInfo, setGameInfo] = useState([]);
-    // const [gameHighlights, setGameHighlights] = useState();
 
     useEffect(() => {
         API.getScoresByDate(props.date)
@@ -55,7 +54,7 @@ const ScoreBoard = (props) => {
     }
 
     return (
-        <Container className={classes.cardGrid} maxWidth="xl">
+        <Container className={classes.cardGrid} maxWidth="lg">
             <Grid container spacing={4}>
                 {gameInfo.map((game, index) => (
                 <Grid 
@@ -64,7 +63,7 @@ const ScoreBoard = (props) => {
                     xs={12} 
                     sm={6} 
                     md={4}
-                    lg={3}
+                    lg={4}
                 >
                     <ScoreCard game={{...game}}/>
                 </Grid>

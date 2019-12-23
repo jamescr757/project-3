@@ -1,5 +1,5 @@
 
-module.exports = {
+export default {
     
     teamsArray: ["bruins", "sabres", "red wings", "panthers", "canadiens", "senators", "lightning", "maple leafs", "hurricanes", "blue jackets", "devils", "islanders", "rangers", "flyers", "penguins", "capitals", "blackhawks", "avalanche", "stars", "wild", "predators", "blues", "jets", "ducks", "coyotes", "flames", "oilers", "golden knights", "kings", "sharks", "canucks"],
 
@@ -28,7 +28,7 @@ module.exports = {
     },
 
     teamNameConverter(teamName) {
-        return teamName.replace(/s/g, "-")
+        return teamName.replace(/\s/g, "-")
     },
 
     teamNameJoiner (team1, team2) {

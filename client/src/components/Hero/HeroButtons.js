@@ -39,7 +39,7 @@ const HeroButtons = (props) => {
                 </Grid>
                 <Grid item>
                     <Typography className={classes.date} variant="h4" color="textPrimary">
-                        {moment(props.date).format("ddd MM/DD")}
+                        {moment(props.date).format("ddd M/DD")}
                     </Typography>
                 </Grid>
                 <Grid item>

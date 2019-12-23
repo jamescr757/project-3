@@ -7,7 +7,7 @@ const baseQuery = `https://www.googleapis.com/youtube/v3/search?part=snippet&key
 module.exports = {
     findHighlight: function(req, res) {
 
-        const date = moment(req.params.date).format("MM/DD/YY");
+        const date = moment(req.params.date).format("MM-DD-YY");
 
         const query = baseQuery + req.params.teams + "%20" + date;
 
@@ -20,4 +20,4 @@ module.exports = {
                 res.status(400)
             });
     }
-  };
+};
