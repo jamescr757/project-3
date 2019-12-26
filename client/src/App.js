@@ -29,6 +29,7 @@ const App = () => {
 export default App;
 
 // TODO: get equal sized team logos
+// TODO: set min height of scoreboard so footer doesn't float up if no games
 
 
 // componentDidMount() {

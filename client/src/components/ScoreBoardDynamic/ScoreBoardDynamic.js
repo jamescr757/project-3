@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import ScoreCard from "../ScoreBoard/ScoreCard";
+import ScoreCard from "../ScoreBoard/ScoreCard/ScoreCard";
 import Container from "@material-ui/core/Container";
 import API from "../../utils/API";
 import { makeStyles } from "@material-ui/core/styles";
