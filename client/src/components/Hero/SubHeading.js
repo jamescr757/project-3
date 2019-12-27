@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 
 
-const SubHeading = () => {
+const SubHeading = (props) => {
 
     return (
         <Typography
@@ -11,7 +11,7 @@ const SubHeading = () => {
             color="textSecondary"
             paragragh="true"
         >
-            Scores and highlights from any game this season! Filter however you want by using the buttons below.
+            {props.children}
         </Typography>
     );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 
 
-const Title = () => {
+const Title = (props) => {
 
     return (
         <Typography
@@ -12,7 +12,7 @@ const Title = () => {
             color="textPrimary"
             gutterBottom
         >
-            NHL Scores
+            {props.children}
         </Typography>
     );
 }

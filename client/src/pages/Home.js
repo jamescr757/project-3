@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Hero from "../components/Hero";
+import NavBar from "../components/NavBar";
+import { DateHero } from "../components/Hero";
 import ScoreBoard from "../components/ScoreBoard";
 import moment from "moment";
 
@@ -20,12 +21,16 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <Hero 
+      <NavBar />
+      <DateHero 
         date={date} 
         onBackClick={handleBackClick} 
         onForwardClick={handleForwardClick} 
-        />
-      <ScoreBoard date={date} />
+      />
+      <ScoreBoard 
+        date={date} 
+        displayDate={moment(date).format("dddd, MMMM Do")}
+      />
     </React.Fragment>
   );
 }

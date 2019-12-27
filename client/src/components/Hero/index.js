@@ -1,1 +1,3 @@
-export { default } from "./Hero";
+export { DateHero } from "./DateHero";
+
+export { MultiHero } from "./MultiHero";

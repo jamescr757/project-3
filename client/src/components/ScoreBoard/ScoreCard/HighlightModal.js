@@ -88,7 +88,6 @@ const HighlightModal = ({ gameHighlight, open, onClose, awayTeam, homeTeam }) =>
                     >
                     <CircularProgress
                         className={loadingClass}
-                        item={true}
                         />
                 </Grid>
             </div>

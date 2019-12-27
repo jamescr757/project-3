@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import moment from "moment";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
 
@@ -29,13 +28,10 @@ const HeroButtons = (props) => {
             <Grid container spacing={2} justify="center">
                 <Grid item>
 
-                    {/* <Link 
-                        to={`/date/${moment().subtract(2, "days").format("YYYYMMDD")}`}
-                    > */}
                     <div onClick={props.onBackClick}>
                         <ArrowBackIosIcon className={classes.arrow} />
                     </div>
-                    {/* </Link> */}
+
                 </Grid>
                 <Grid item>
                     <Typography className={classes.date} variant="h4" color="textPrimary">
@@ -44,13 +40,10 @@ const HeroButtons = (props) => {
                 </Grid>
                 <Grid item>
 
-                    {/* <Link 
-                        to={`/date/${moment().format("YYYYMMDD")}`}
-                    > */}
                     <div onClick={props.onForwardClick}>
                         <ArrowForwardIosIcon className={classes.arrow} />
                     </div>
-                    {/* </Link> */}
+
                 </Grid>
             </Grid>
         </div>

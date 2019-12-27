@@ -18,9 +18,9 @@ function TeamLogo({ team }) {
     return (
         <Grid item>
             <img
-            className={classes.teamLogo}
-            src={`./images/${teamInfo.teamNameConverter(team)}.png`}
-            alt={team}
+                className={classes.teamLogo}
+                src={`${process.env.PUBLIC_URL}/images/${teamInfo.teamNameConverter(team)}.png`}
+                alt={team}
             />
         </Grid>
     );

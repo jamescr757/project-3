@@ -21,14 +21,14 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const ScoreBoard = (props) => {
+const MultiScoreBoard = (props) => {
     
     const classes = useStyles();
 
     const [gameInfo, setGameInfo] = useState([]);
 
     useEffect(() => {
-        API.getScoresByDate(props.date)
+        API.getScoresByTeam(props.match.params.team)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -36,7 +36,7 @@ const ScoreBoard = (props) => {
                 console.log("error getting scores");
                 console.log(error.message);
             })
-    }, [props.date]) 
+    }, [props.match.params.team]) 
 
     const renderNoGames = () => {
         if (gameInfo.length === 0) {
@@ -47,7 +47,7 @@ const ScoreBoard = (props) => {
                         color="textPrimary"
                         className={classes.noGames}
                     >
-                        No games on {props.displayDate}
+                        Please Select Filter Method Above
                     </Typography>
                 </Box>
             );
@@ -75,4 +75,6 @@ const ScoreBoard = (props) => {
     );
 }
 
-export default ScoreBoard;
+export default MultiScoreBoard;
+
+// TODO: add date to score card for past and future multiple 

@@ -126,8 +126,3 @@ const ScoreCard = (props) => {
 }
 
 export default ScoreCard;
-
-
-// TODO: refactor this file into multiple components
-
-// TODO: need full name for tickets and/or need to figure out the best query for seatgeek

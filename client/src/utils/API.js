@@ -19,6 +19,11 @@ export default {
     }
   },
 
+  getScoresByTeam: function(team) {
+
+    return axios.get(`/api/completed/team/${team}`);
+  },
+
   getHighlight: function(teams, date) {
     
     return axios.get(`/api/highlight/${teams}/date/${date}`);
