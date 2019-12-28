@@ -1,4 +1,5 @@
 const db = require("../models");
+const Op = db.Sequelize.Op;
 const teamInfo = require("../scrape/teamInfo");
 
 // Defining methods for the booksController
@@ -22,7 +23,7 @@ module.exports = {
       .findAll({
           limit: 5,
           where: {
-              winner: team
+              [Op.or]: [{ winner: team }, { loser: team }]
           },
           order: [[ "date", "DESC" ]]
       })

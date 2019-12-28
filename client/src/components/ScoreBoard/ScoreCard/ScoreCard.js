@@ -7,8 +7,10 @@ import Grid from "@material-ui/core/Grid";
 import API from "../../../utils/API";
 import GameAction from "./GameAction";
 import TeamRow from "./TeamRow";
+import GameDate from "./GameDate";
 import HighlightModal from "./HighlightModal";
 import "./ScoreCard.css"
+import moment from "moment";
 
 
 const useStyles = makeStyles(theme => ({
@@ -20,6 +22,8 @@ const useStyles = makeStyles(theme => ({
     },
     cardContent: {
       flexGrow: 1,
+      paddingTop: 12,
+      paddingBottom: 12
     },
 
 }));
@@ -51,6 +55,7 @@ const ScoreCard = (props) => {
     return (
         <React.Fragment>
             <Card className={classes.card}>
+            { props.date && <GameDate>{moment(date).format("ddd M/D")}</GameDate>}
                 <CardContent className={classes.cardContent}>
                     <Grid 
                         container 

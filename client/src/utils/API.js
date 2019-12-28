@@ -24,6 +24,11 @@ export default {
     return axios.get(`/api/completed/team/${team}`);
   },
 
+  getFutureGamesByTeam: function(team) {
+
+    return axios.get(`/api/future/team/${team}`);
+  },
+
   getHighlight: function(teams, date) {
     
     return axios.get(`/api/highlight/${teams}/date/${date}`);

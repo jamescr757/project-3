@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import ConferenceBtns from "./Filters/ConferenceBtns";
 import DivisionBtns from "./Filters/DivisionBtns";
 import TeamBtns from "./Filters/TeamBtns";
-import "./Filters/Filters.css";
+// import "./Filters/Filters.css";
 
 const useStyles = makeStyles(theme => ({
   
@@ -78,9 +78,13 @@ const HeroFilters = props => {
           </Button>
         </Grid>
       </Grid>
-      {hideConference ? <div className="hide-div"></div> : <ConferenceBtns handleBtnClick={()=>renderFilter("")} />}
-      {hideDivision ? <div className="hide-div"></div> : <DivisionBtns handleBtnClick={()=>renderFilter("")} />}
-      {hideTeams ? <div className="hide-div"></div> : <TeamBtns handleBtnClick={()=>renderFilter("")} />}
+      <div onMouseLeave={()=>renderFilter("")}>
+
+        {!hideConference && <ConferenceBtns handleBtnClick={()=>renderFilter("")} />}
+        {!hideDivision && <DivisionBtns handleBtnClick={()=>renderFilter("")} />}
+        {!hideTeams && <TeamBtns handleBtnClick={()=>renderFilter("")} />}
+
+      </div>
     </React.Fragment>
   );
 };

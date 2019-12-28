@@ -28,7 +28,7 @@ const MultiScoreBoard = (props) => {
     const [gameInfo, setGameInfo] = useState([]);
 
     useEffect(() => {
-        API.getScoresByTeam(props.match.params.team)
+        API.getFutureGamesByTeam(props.match.params.team)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -66,7 +66,10 @@ const MultiScoreBoard = (props) => {
                     md={4}
                     lg={4}
                 >
-                    <ScoreCard game={{...game}}/>
+                    <ScoreCard 
+                        date={true}
+                        game={{...game}}
+                    />
                 </Grid>
                 ))}
                 {renderNoGames()}
@@ -76,5 +79,3 @@ const MultiScoreBoard = (props) => {
 }
 
 export default MultiScoreBoard;
-
-// TODO: add date to score card for past and future multiple 
