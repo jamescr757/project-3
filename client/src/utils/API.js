@@ -19,6 +19,26 @@ export default {
     }
   },
 
+  getScoresByConference: function(conference) {
+
+    return axios.get(`/api/completed/conference/${conference}`);
+  },
+
+  getFutureScoresByConference: function(conference) {
+
+    return axios.get(`/api/future/conference/${conference}`);
+  },
+  
+  getScoresByDivision: function(division) {
+    
+    return axios.get(`/api/completed/division/${division}`);
+  },
+  
+  getFutureScoresByDivision: function(division) {
+
+    return axios.get(`/api/future/division/${division}`);
+  },
+
   getScoresByTeam: function(team) {
 
     return axios.get(`/api/completed/team/${team}`);

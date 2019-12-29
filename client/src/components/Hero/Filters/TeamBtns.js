@@ -36,7 +36,7 @@ const DivisionBtns = (props) => {
                                 alt={team}  
                             />
                             <Link 
-                              to={`/multiple/team/${teamInfo.teamNameConverter(team)}`}
+                              to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}`}
                             >
                                 <Button
                                     onClick={()=>props.handleBtnClick()}
@@ -60,7 +60,7 @@ const DivisionBtns = (props) => {
                                 alt={team}  
                             />
                             <Link 
-                            to={`/multiple/team/${teamInfo.teamNameConverter(team)}`}
+                            to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}`}
                             >
                                 <Button
                                     onClick={()=>props.handleBtnClick()}
@@ -84,7 +84,7 @@ const DivisionBtns = (props) => {
                                 alt={team}  
                             />
                             <Link 
-                            to={`/multiple/team/${teamInfo.teamNameConverter(team)}`}
+                            to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}`}
                             >
                                 <Button
                                     onClick={()=>props.handleBtnClick()}
@@ -108,7 +108,7 @@ const DivisionBtns = (props) => {
                                 alt={team}  
                             />
                             <Link 
-                            to={`/multiple/team/${teamInfo.teamNameConverter(team)}`}
+                            to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}`}
                             >
                                 <Button
                                     onClick={()=>props.handleBtnClick()}

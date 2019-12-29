@@ -8,26 +8,25 @@ import { Link } from "react-router-dom";
 
 const ConferenceBtns = (props) => {
 
+    const conferences = ["Western", "Eastern"];
+
     return (
-        <Grid container spacing={3} justify="center">
-            <Grid item>
-                <Link to="/multiple/conference/Western">
-                    <Button
-                        onClick={()=>props.handleBtnClick()}
-                    >
-                        Western
-                    </Button>
-                </Link>
-            </Grid>
-            <Grid item>
-                <Link to="/mutiple/conference/Eastern">
-                    <Button
-                        onClick={()=>props.handleBtnClick()}
-                    >
-                        Eastern
-                    </Button>
-                </Link>
-            </Grid>
+        <Grid container spacing={2} justify="center">
+            
+            {conferences.map((conference, index) => {
+                return (
+                    <Grid item key={index}>
+                        <Link to={`/multiple/conference/completed/${conference}`}>
+                            <Button
+                                onClick={()=>props.handleBtnClick()}
+                            >
+                                {conference}
+                            </Button>
+                        </Link>
+                    </Grid>
+                );
+            })}
+            
         </Grid>
     );
 }

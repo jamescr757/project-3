@@ -31,6 +31,10 @@ export default {
         return teamName.replace(/\s/g, "-")
     },
 
+    teamNameDehyphenator(teamName) {
+        return teamName.replace(/-/g, " ")
+    },
+
     teamNameJoiner (team1, team2) {
         const team1Modified = team1.replace(/\s/g, "+");
         const team2Modified = team2.replace(/\s/g, "+");

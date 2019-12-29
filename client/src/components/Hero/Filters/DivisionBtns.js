@@ -15,45 +15,25 @@ import { Link } from "react-router-dom";
 
 const DivisionBtns = (props) => {
     // const classes = useStyles();
+    const divisions = ["Atlantic", "Metropolitan", "Central", "Pacific"]
 
     return (
         <Grid container spacing={2} justify="center">
-            <Grid item>
-                <Link to="/multiple/division/Atlantic">
-                    <Button
-                        onClick={()=>props.handleBtnClick()}
-                    >
-                        Atlantic
-                    </Button>
-                </Link>
-            </Grid>
-            <Grid item>
-                <Link to="/mutiple/division/Metropolitan">
-                    <Button
-                        onClick={()=>props.handleBtnClick()}
-                    >
-                        Metro
-                    </Button>
-                </Link>
-            </Grid>
-            <Grid item>
-                <Link to="/mutiple/division/Central">
-                    <Button
-                        onClick={()=>props.handleBtnClick()}
-                    >
-                        Central
-                    </Button>
-                </Link>
-            </Grid>
-            <Grid item>
-                <Link to="/mutiple/division/Pacific">
-                    <Button
-                        onClick={()=>props.handleBtnClick()}
-                    >
-                        Pacific
-                    </Button>
-                </Link>
-            </Grid>
+            
+            {divisions.map((division, index) => {
+                return (
+                    <Grid item key={index}>
+                        <Link to={`/multiple/division/completed/${division}`}>
+                            <Button
+                                onClick={()=>props.handleBtnClick()}
+                            >
+                                {division}
+                            </Button>
+                        </Link>
+                    </Grid>
+                );
+            })}
+            
         </Grid>
     );
 }

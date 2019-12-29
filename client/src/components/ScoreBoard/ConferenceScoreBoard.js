@@ -21,11 +21,36 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const MultiScoreBoard = (props) => {
+const ConferenceScoreBoard = (props) => {
     
     const classes = useStyles();
 
-    const [gameInfo, setGameInfo] = useState([]); 
+    const [gameInfo, setGameInfo] = useState([]);
+
+    useEffect(() => {
+
+        if (props.match.params.table === "completed") {
+            API.getScoresByConference(props.match.params.conference)
+            .then(response => {
+                setGameInfo(response.data);
+            })
+            .catch(error => {
+                console.log("error getting scores");
+                console.log(error.message);
+            })
+        }
+        else {
+            API.getFutureScoresByConference(props.match.params.conference)
+            .then(response => {
+                setGameInfo(response.data);
+            })
+            .catch(error => {
+                console.log("error getting scores");
+                console.log(error.message);
+            })
+        }
+        
+    }, [props.match.params.conference, props.match.params.table]) 
 
     const renderNoGames = () => {
         if (gameInfo.length === 0) {
@@ -67,4 +92,4 @@ const MultiScoreBoard = (props) => {
     );
 }
 
-export default MultiScoreBoard;
+export default ConferenceScoreBoard;

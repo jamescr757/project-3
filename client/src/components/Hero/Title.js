@@ -11,6 +11,7 @@ const Title = (props) => {
             align="center"
             color="textPrimary"
             gutterBottom
+            style={{ textTransform: "capitalize" }}
         >
             {props.children}
         </Typography>
