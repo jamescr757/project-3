@@ -19,34 +19,34 @@ export default {
     }
   },
 
-  getScoresByConference: function(conference) {
+  getScoresByConference: function(conference, days) {
 
-    return axios.get(`/api/completed/conference/${conference}`);
+    return axios.get(`/api/completed/conference/${conference}/${days}`);
   },
 
-  getFutureScoresByConference: function(conference) {
+  getFutureGamesByConference: function(conference, days) {
 
-    return axios.get(`/api/future/conference/${conference}`);
+    return axios.get(`/api/future/conference/${conference}/${days}`);
   },
   
-  getScoresByDivision: function(division) {
+  getScoresByDivision: function(division, days) {
     
-    return axios.get(`/api/completed/division/${division}`);
+    return axios.get(`/api/completed/division/${division}/${days}`);
   },
   
-  getFutureScoresByDivision: function(division) {
+  getFutureGamesByDivision: function(division, days) {
 
-    return axios.get(`/api/future/division/${division}`);
+    return axios.get(`/api/future/division/${division}/${days}`);
   },
 
-  getScoresByTeam: function(team) {
+  getScoresByTeam: function(team, days) {
 
-    return axios.get(`/api/completed/team/${team}`);
+    return axios.get(`/api/completed/team/${team}/${days}`);
   },
 
-  getFutureGamesByTeam: function(team) {
+  getFutureGamesByTeam: function(team, days) {
 
-    return axios.get(`/api/future/team/${team}`);
+    return axios.get(`/api/future/team/${team}/${days}`);
   },
 
   getHighlight: function(teams, date) {

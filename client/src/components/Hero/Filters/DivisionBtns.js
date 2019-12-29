@@ -23,7 +23,7 @@ const DivisionBtns = (props) => {
             {divisions.map((division, index) => {
                 return (
                     <Grid item key={index}>
-                        <Link to={`/multiple/division/completed/${division}`}>
+                        <Link to={`/multiple/division/completed/${division}/3`}>
                             <Button
                                 onClick={()=>props.handleBtnClick()}
                             >

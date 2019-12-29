@@ -16,15 +16,22 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  findLastFiveByTeam: function(req, res) {
+  findScoresByTeam: function(req, res) {
 
     const team = teamInfo.teamNameDehyphenator(req.params.team);
+    const endDate = moment().subtract(1, "days").format("YYYYMMDD");
+    const startDate = moment().subtract(req.params.days, "days").format("YYYYMMDD");
 
     db.Completed
       .findAll({
-          limit: 5,
           where: {
-              [Op.or]: [{ winner: team }, { loser: team }]
+              
+            [Op.or]: [{winner: team}, {loser: team}],
+
+            date: {
+              [Op.between]: [startDate, endDate]
+            }
+
           },
           order: [[ "date", "DESC" ]]
       })
@@ -32,10 +39,10 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  findLastThreeDaysByDivision: function(req, res) {
+  findScoresByDivision: function(req, res) {
 
     const endDate = moment().subtract(1, "days").format("YYYYMMDD");
-    const startDate = moment(endDate).subtract(3, "days").format("YYYYMMDD");
+    const startDate = moment().subtract(req.params.days, "days").format("YYYYMMDD");
 
     db.Completed
       .findAll({
@@ -57,10 +64,10 @@ module.exports = {
       });
   },
 
-  findLastThreeDaysByConference: function(req, res) {
+  findScoresByConference: function(req, res) {
 
     const endDate = moment().subtract(1, "days").format("YYYYMMDD");
-    const startDate = moment(endDate).subtract(3, "days").format("YYYYMMDD");
+    const startDate = moment().subtract(req.params.days, "days").format("YYYYMMDD");
 
     db.Completed
       .findAll({

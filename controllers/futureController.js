@@ -16,15 +16,22 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  findNextFiveByTeam: function(req, res) {
+  findGamesByTeam: function(req, res) {
 
     const team = teamInfo.teamNameDehyphenator(req.params.team);
+    const startDate = moment().format("YYYYMMDD");
+    const endDate = moment().add(req.params.days, "days").format("YYYYMMDD");
 
     db.Future
       .findAll({
-          limit: 5,
           where: {
-              [Op.or]: [{ homeTeam: team }, { awayTeam: team }]
+              
+            [Op.or]: [{homeTeam: team}, {awayTeam: team}],
+
+            date: {
+              [Op.between]: [startDate, endDate]
+            }
+
           },
           order: [[ "date", "ASC" ]]
       })
@@ -32,10 +39,10 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  findNextThreeDaysByDivision: function(req, res) {
+  findGamesByDivision: function(req, res) {
 
     const startDate = moment().format("YYYYMMDD");
-    const endDate = moment().add(3, "days").format("YYYYMMDD");
+    const endDate = moment().add(req.params.days, "days").format("YYYYMMDD");
 
     db.Future
       .findAll({
@@ -57,10 +64,10 @@ module.exports = {
       });
   },
 
-  findNextThreeDaysByConference: function(req, res) {
+  findGamesByConference: function(req, res) {
 
     const startDate = moment().format("YYYYMMDD");
-    const endDate = moment().add(3, "days").format("YYYYMMDD");
+    const endDate = moment().add(req.params.days, "days").format("YYYYMMDD");
 
     db.Future
       .findAll({

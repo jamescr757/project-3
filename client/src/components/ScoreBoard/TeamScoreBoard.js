@@ -30,7 +30,7 @@ const TeamScoreBoard = (props) => {
     useEffect(() => {
 
         if (props.match.params.table === "completed") {
-            API.getScoresByTeam(props.match.params.team)
+            API.getScoresByTeam(props.match.params.team, props.match.params.days)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -40,7 +40,7 @@ const TeamScoreBoard = (props) => {
             })
         }
         else {
-            API.getFutureGamesByTeam(props.match.params.team)
+            API.getFutureGamesByTeam(props.match.params.team, props.match.params.days)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -50,7 +50,7 @@ const TeamScoreBoard = (props) => {
             })
         }
         
-    }, [props.match.params.team, props.match.params.table]) 
+    }, [props.match.params.team, props.match.params.table, props.match.params.days]) 
 
     const renderNoGames = () => {
         if (gameInfo.length === 0) {

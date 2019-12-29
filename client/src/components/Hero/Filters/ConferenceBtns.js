@@ -16,7 +16,7 @@ const ConferenceBtns = (props) => {
             {conferences.map((conference, index) => {
                 return (
                     <Grid item key={index}>
-                        <Link to={`/multiple/conference/completed/${conference}`}>
+                        <Link to={`/multiple/conference/completed/${conference}/3`}>
                             <Button
                                 onClick={()=>props.handleBtnClick()}
                             >

@@ -7,6 +7,7 @@ import HeroFilters from "./HeroFilters";
 import Button from "@material-ui/core/Button";
 import ChangePage from "./ChangePage";
 import PastFutureBtns from "./Filters/PastFutureBtns";
+import DayRadio from "./Filters/DayRadio";
 
 const useStyles = makeStyles(theme => ({
 
@@ -25,6 +26,12 @@ export const DivisionHero = (props) => {
             <Container maxWidth="lg">
                 <Title>{props.match.params.division} Division</Title>
                 <PastFutureBtns 
+                    category="division"
+                    identifier={props.match.params.division}
+                    table={props.match.params.table}
+                    days={props.match.params.days}
+                />
+                <DayRadio 
                     category="division"
                     identifier={props.match.params.division}
                     table={props.match.params.table}

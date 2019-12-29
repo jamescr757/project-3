@@ -30,7 +30,7 @@ const ConferenceScoreBoard = (props) => {
     useEffect(() => {
 
         if (props.match.params.table === "completed") {
-            API.getScoresByConference(props.match.params.conference)
+            API.getScoresByConference(props.match.params.conference, props.match.params.days)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -40,7 +40,7 @@ const ConferenceScoreBoard = (props) => {
             })
         }
         else {
-            API.getFutureScoresByConference(props.match.params.conference)
+            API.getFutureGamesByConference(props.match.params.conference, props.match.params.days)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -50,7 +50,7 @@ const ConferenceScoreBoard = (props) => {
             })
         }
         
-    }, [props.match.params.conference, props.match.params.table]) 
+    }, [props.match.params.conference, props.match.params.table, props.match.params.days]) 
 
     const renderNoGames = () => {
         if (gameInfo.length === 0) {

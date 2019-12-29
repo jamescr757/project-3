@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import ChangePage from "./ChangePage";
 import teamInfo from "../../utils/teamInfo";
 import PastFutureBtns from "./Filters/PastFutureBtns";
+import DayRadio from "./Filters/DayRadio";
 
 const useStyles = makeStyles(theme => ({
 
@@ -28,6 +29,12 @@ export const TeamHero = (props) => {
             <Container maxWidth="lg">
                 <Title>{fullTeamName}</Title>
                 <PastFutureBtns
+                    category="team"
+                    identifier={props.match.params.team}
+                    table={props.match.params.table}
+                    days={props.match.params.days}
+                />
+                <DayRadio 
                     category="team"
                     identifier={props.match.params.team}
                     table={props.match.params.table}

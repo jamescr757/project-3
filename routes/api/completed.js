@@ -4,13 +4,13 @@ const completedController = require("../../controllers/completedController");
 router.route("/date/:date")
     .get(completedController.findByDateAnyTeam)
 
-router.route("/conference/:conference")
-    .get(completedController.findLastThreeDaysByConference)
+router.route("/conference/:conference/:days")
+    .get(completedController.findScoresByConference)
 
-router.route("/division/:division")
-    .get(completedController.findLastThreeDaysByDivision)
+router.route("/division/:division/:days")
+    .get(completedController.findScoresByDivision)
 
-router.route("/team/:team")
-    .get(completedController.findLastFiveByTeam)
+router.route("/team/:team/:days")
+    .get(completedController.findScoresByTeam)
 
 module.exports = router;

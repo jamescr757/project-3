@@ -30,7 +30,7 @@ const DivisionScoreBoard = (props) => {
     useEffect(() => {
 
         if (props.match.params.table === "completed") {
-            API.getScoresByDivision(props.match.params.division)
+            API.getScoresByDivision(props.match.params.division, props.match.params.days)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -40,7 +40,7 @@ const DivisionScoreBoard = (props) => {
             })
         }
         else {
-            API.getFutureScoresByDivision(props.match.params.division)
+            API.getFutureGamesByDivision(props.match.params.division, props.match.params.days)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -50,7 +50,7 @@ const DivisionScoreBoard = (props) => {
             })
         }
         
-    }, [props.match.params.division, props.match.params.table])  
+    }, [props.match.params.division, props.match.params.table, props.match.params.days])  
 
     const renderNoGames = () => {
         if (gameInfo.length === 0) {
