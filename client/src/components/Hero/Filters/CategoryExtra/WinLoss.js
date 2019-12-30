@@ -17,7 +17,7 @@ export default function WinLoss(props) {
                 <Link 
                     to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${props.location}/${btnValues[index]}/${props.rival}/${props.ot}`}
                 >
-                    <Button className={[props.outcome === btnValues[index] && `btn-border-outcome-${btnValues[index]}`, props.table === "future" && "team-extra-btn-hide"].join(" ")}>
+                    <Button className={[props.outcome === btnValues[index] && `btn-border-outcome-${btnValues[index]}`, props.table === "future" && "team-extra-btn-hide", props.category !== "team" && "team-extra-btn-hide"].join(" ")}>
                         {label}
                     </Button>
                 </Link>

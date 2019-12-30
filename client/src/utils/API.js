@@ -19,24 +19,14 @@ export default {
     }
   },
 
-  getScoresByConference: function(conference, days, ot) {
+  getScoresByCategory: function({ category, days, identifier, location, outcome, rival, ot }) {
 
-    return axios.get(`/api/completed/conference/${conference}/${days}/${ot}`);
+    return axios.get(`/api/completed/${category}/${identifier}/${days}/${location}/${outcome}/${rival}/${ot}`);
   },
 
-  getFutureGamesByConference: function(conference, days) {
+  getFutureGamesByCategory: function({ category, days, identifier, location, rival }) {
 
-    return axios.get(`/api/future/conference/${conference}/${days}`);
-  },
-  
-  getScoresByDivision: function(division, days, rival, ot) {
-    
-    return axios.get(`/api/completed/division/${division}/${days}/${rival}/${ot}`);
-  },
-  
-  getFutureGamesByDivision: function(division, days, rival) {
-
-    return axios.get(`/api/future/division/${division}/${days}/${rival}`);
+    return axios.get(`/api/future/${category}/${identifier}/${days}/${location}/${rival}`);
   },
 
   getScoresByTeam: function(team, days, location, outcome, rival, ot) {

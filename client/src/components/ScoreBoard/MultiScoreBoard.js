@@ -36,7 +36,7 @@ const MultiScoreBoard = (props) => {
                         color="textPrimary"
                         className={classes.noGames}
                     >
-                        Please select filter method above.
+                        Please select main category above.
                     </Typography>
                 </Box>
             );

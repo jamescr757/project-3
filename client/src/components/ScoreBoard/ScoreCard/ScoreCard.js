@@ -8,6 +8,7 @@ import API from "../../../utils/API";
 import GameAction from "./GameAction";
 import TeamRow from "./TeamRow";
 import GameDate from "./GameDate";
+import GameFinal from "./GameFinal";
 import HighlightModal from "./HighlightModal";
 import "./ScoreCard.css"
 import moment from "moment";
@@ -50,12 +51,22 @@ const ScoreCard = (props) => {
         setOpen(false);
     }
 
-    const { awayTeam, homeTeam, loser, winner, homeTeamScore, awayTeamScore, homeTeamRecord, awayTeamRecord, date } = props.game;
+    const { awayTeam, homeTeam, loser, winner, overtime, homeTeamScore, awayTeamScore, homeTeamRecord, awayTeamRecord, date } = props.game;
 
     return (
         <React.Fragment>
             <Card className={classes.card}>
-            { props.date && <GameDate>{moment(date).format("ddd M/D")}</GameDate>}
+            {homeTeamScore >= 0 && !props.date && <GameFinal overtime={overtime} />}
+            
+            {props.date && overtime && 
+            <GameDate>{moment(date).format("ddd M/D")} - Final/OT</GameDate>}
+
+            {/* {!loser && !overtime && 
+            <GameDate>{moment(date).format("ddd M/D")}</GameDate>} */}
+
+            {props.date && !overtime && 
+            <GameDate>{moment(date).format("ddd M/D")} - Final</GameDate>}
+            
                 <CardContent className={classes.cardContent}>
                     <Grid 
                         container 

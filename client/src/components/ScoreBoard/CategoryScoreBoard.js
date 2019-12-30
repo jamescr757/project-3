@@ -21,18 +21,26 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const ConferenceScoreBoard = (props) => {
+const APIcall = (table, inputObj) => {
+
+    if (table === "completed") {
+        return API.getScoresByCategory(inputObj)
+    } else {
+        return API.getFutureGamesByCategory(inputObj)
+    }
+}
+
+const CategoryScoreBoard = (props) => {
     
     const classes = useStyles();
 
     const [gameInfo, setGameInfo] = useState([]);
 
-    const { conference, table, days, ot } = props.match.params
+    const { category, table, identifier, days, location, outcome, rival, ot } = props.match.params
 
     useEffect(() => {
 
-        if (table === "completed") {
-            API.getScoresByConference(conference, days, ot)
+        APIcall(props.match.params.table, props.match.params)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -40,19 +48,8 @@ const ConferenceScoreBoard = (props) => {
                 console.log("error getting scores");
                 console.log(error.message);
             })
-        }
-        else {
-            API.getFutureGamesByConference(conference, days)
-            .then(response => {
-                setGameInfo(response.data);
-            })
-            .catch(error => {
-                console.log("error getting scores");
-                console.log(error.message);
-            })
-        }
         
-    }, [conference, table, days, ot]) 
+    }, [category, table, identifier, days, location, outcome, rival, ot]) 
 
     const renderNoGames = () => {
         if (gameInfo.length === 0) {
@@ -94,4 +91,4 @@ const ConferenceScoreBoard = (props) => {
     );
 }
 
-export default ConferenceScoreBoard;
+export default CategoryScoreBoard;

@@ -10,13 +10,15 @@ export default {
     teamDivisionGenerator(teamName) {
         const teamIndex = this.teamIDGenerator(teamName);
 
-        if (teamIndex <= 7) return "Atlantic";
+        if (teamIndex <= 7 && teamIndex > 0) return "Atlantic";
 
         else if (teamIndex <= 15) return "Metropolitan";
 
         else if (teamIndex <= 22) return "Central";
 
-        else return "Pacific";
+        else if (teamIndex > 0) return "Pacific";
+
+        else return false;
     },
 
     teamConferenceGenerator(teamName) {

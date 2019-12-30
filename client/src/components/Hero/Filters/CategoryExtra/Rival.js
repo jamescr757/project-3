@@ -5,18 +5,18 @@ import { Button } from '@material-ui/core';
 import "../Filters.css"
 
 
-export default function Overtime(props) {
+export default function Rival(props) {
 
-  const btnArray = ["Regulation", "Overtime", "All"];
+  const btnArray = ["Division", "All"];
 
   return (
     btnArray.map((label, index) => {
         return (
             <Grid item key={index}>
                 <Link 
-                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/all/all/all/${label.toLowerCase()}`}
+                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/all/all/${label.toLowerCase()}/${props.ot}`}
                 >
-                    <Button className={[props.ot === label.toLowerCase() && `btn-border-ot-${label.toLowerCase()}`, props.table === "future" && "team-extra-btn-hide"].join(" ")}>
+                    <Button className={[props.rival === label.toLowerCase() && `btn-border-rival-${label.toLowerCase()}`, props.category === "conference" && "team-extra-btn-hide"].join(" ")}>
                         {label}
                     </Button>
                 </Link>

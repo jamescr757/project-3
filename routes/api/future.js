@@ -4,13 +4,7 @@ const futureController = require("../../controllers/futureController");
 router.route("/date/:date")
     .get(futureController.findByDateAnyTeam)
 
-router.route("/conference/:conference/:days")
-    .get(futureController.findGamesByConference)
-
-router.route("/division/:division/:days/:rival")
-    .get(futureController.findGamesByDivision)
-
-router.route("/team/:team/:days/:location/:rival")
-    .get(futureController.findGamesByTeam)
+router.route("/:category/:identifier/:days/:location/:rival")
+    .get(futureController.findGamesByCategory)
 
 module.exports = router;

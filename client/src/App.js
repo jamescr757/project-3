@@ -2,10 +2,8 @@ import React, { Fragment } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import Team from "./pages/Team";
 import Multiple from "./pages/Multiple";
-import Division from "./pages/Division";
-import Conference from "./pages/Conference";
+import Category from "./pages/Category";
 import { CssBaseline } from "@material-ui/core";
 import Footer from "./components/Footer";
 
@@ -19,9 +17,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/multiple" component={Multiple} />
-            <Route exact path="/multiple/conference/:table/:conference/:days/:location/:outcome/:rival/:ot" component={Conference} />
-            <Route exact path="/multiple/division/:table/:division/:days/:location/:outcome/:rival/:ot" component={Division} />
-            <Route exact path="/multiple/team/:table/:team/:days/:location/:outcome/:rival/:ot" component={Team} />
+            <Route exact path="/multiple/:category/:table/:identifier/:days/:location/:outcome/:rival/:ot" component={Category} />
           </Switch>
         </Router>
 
@@ -31,6 +27,3 @@ const App = () => {
 }
 
 export default App;
-
-
-// TODO: integrate overtime db boolean into score card display

@@ -17,7 +17,7 @@ export default function HomeAway(props) {
                 <Link 
                     to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${label.toLowerCase()}/${props.outcome}/${props.rival}/${props.ot}`}
                 >
-                    <Button className={props.location === label.toLowerCase() && `btn-border-location-${label.toLowerCase()}`}>
+                    <Button className={[props.location === label.toLowerCase() && `btn-border-location-${label.toLowerCase()}`, props.category !== "team" && "team-extra-btn-hide"].join(" ")}>
                         {label}
                     </Button>
                 </Link>

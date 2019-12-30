@@ -2,7 +2,7 @@ export { DateHero } from "./DateHero";
 
 export { TeamHero } from "./TeamHero";
 
-export { ConferenceHero } from "./ConferenceHero";
+export { CategoryHero } from "./CategoryHero";
 
 export { DivisionHero } from "./DivisionHero";
 
