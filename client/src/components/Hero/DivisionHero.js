@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import ChangePage from "./ChangePage";
 import PastFutureBtns from "./Filters/PastFutureBtns";
 import DayRadio from "./Filters/DayRadio";
+import DivisionExtra from "./Filters/DivisionExtra/DivisionExtra";
 
 const useStyles = makeStyles(theme => ({
 
@@ -21,21 +22,22 @@ const useStyles = makeStyles(theme => ({
 export const DivisionHero = (props) => {
     const classes = useStyles();
 
+    const { division, table, days, rival, ot } = props.match.params;
+    const propsObj = {
+        category: "division",
+        identifier: division,
+        
+        table, days, rival, ot
+    }
+
     return (
         <div className={classes.heroContent}>
             <Container maxWidth="lg">
                 <Title>{props.match.params.division} Division</Title>
-                <PastFutureBtns 
-                    category="division"
-                    identifier={props.match.params.division}
-                    table={props.match.params.table}
-                    days={props.match.params.days}
-                />
-                <DayRadio 
-                    category="division"
-                    identifier={props.match.params.division}
-                    table={props.match.params.table}
-                />
+
+                <PastFutureBtns {...propsObj} />
+                <DayRadio {...propsObj} />
+                <DivisionExtra {...propsObj} />
             </Container>
             <ChangePage
                 path="/"

@@ -19,9 +19,9 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/multiple" component={Multiple} />
-            <Route exact path="/multiple/conference/:table/:conference/:days" component={Conference} />
-            <Route exact path="/multiple/division/:table/:division/:days" component={Division} />
-            <Route exact path="/multiple/team/:table/:team/:days" component={Team} />
+            <Route exact path="/multiple/conference/:table/:conference/:days/:location/:outcome/:rival/:ot" component={Conference} />
+            <Route exact path="/multiple/division/:table/:division/:days/:location/:outcome/:rival/:ot" component={Division} />
+            <Route exact path="/multiple/team/:table/:team/:days/:location/:outcome/:rival/:ot" component={Team} />
           </Switch>
         </Router>
 

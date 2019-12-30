@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const ConferenceBtns = (props) => {
 
-    const conferences = ["Western", "Eastern"];
+    const conferences = ["Western", "Eastern", "All Teams"];
 
     return (
         <Grid container spacing={2} justify="center">
@@ -16,7 +16,7 @@ const ConferenceBtns = (props) => {
             {conferences.map((conference, index) => {
                 return (
                     <Grid item key={index}>
-                        <Link to={`/multiple/conference/completed/${conference}/3`}>
+                        <Link to={`/multiple/conference/completed/${conference}/3/all/all/all/all`}>
                             <Button
                                 onClick={()=>props.handleBtnClick()}
                             >

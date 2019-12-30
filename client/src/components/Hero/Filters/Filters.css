@@ -5,3 +5,79 @@
 .future-btn-border {
     border: solid 1px black !important;
 }
+
+.btn-border-1 {
+    border: solid 1px black !important;
+}
+
+.btn-border-3 {
+    border: solid 1px black !important;
+}
+
+.btn-border-7 {
+    border: solid 1px black !important;
+}
+
+.btn-border-10 {
+    border: solid 1px black !important;
+}
+
+.btn-border-14 {
+    border: solid 1px black !important;
+}
+
+.btn-border-30 {
+    border: solid 1px black !important;
+}
+
+.btn-border-300 {
+    border: solid 1px black !important;
+}
+
+.btn-border-location-home {
+    border: solid 1px black !important;
+}
+
+.btn-border-location-away {
+    border: solid 1px black !important;
+}
+
+.btn-border-location-all {
+    border: solid 1px black !important;
+}
+
+.btn-border-outcome-win {
+    border: solid 1px black !important;
+}
+
+.btn-border-outcome-loss {
+    border: solid 1px black !important;
+}
+
+.btn-border-outcome-all {
+    border: solid 1px black !important;
+}
+
+.btn-border-rival-division {
+    border: solid 1px black !important;
+}
+
+.btn-border-rival-all {
+    border: solid 1px black !important;
+}
+
+.btn-border-ot-regulation {
+    border: solid 1px black !important;
+}
+
+.btn-border-ot-overtime {
+    border: solid 1px black !important;
+}
+
+.btn-border-ot-all {
+    border: solid 1px black !important;
+}
+
+.team-extra-btn-hide {
+    display: none !important;
+}

@@ -18,21 +18,37 @@ module.exports = {
 
   findGamesByTeam: function(req, res) {
 
-    const team = teamInfo.teamNameDehyphenator(req.params.team);
+    const { team, days, location, rival } = req.params;
+
+    const searchTeam = teamInfo.teamNameDehyphenator(team);
     const startDate = moment().format("YYYYMMDD");
-    const endDate = moment().add(req.params.days, "days").format("YYYYMMDD");
+    const endDate = moment().add(days, "days").format("YYYYMMDD");
+
+    const whereObj = { date: { [Op.between]: [startDate, endDate] } };
+    switch (location) {
+      case "home":
+        whereObj.homeTeam = searchTeam;
+        break;
+      case "away":
+        whereObj.awayTeam = searchTeam;
+        break;
+      default: 
+        whereObj[Op.or] =  [{homeTeam: searchTeam}, {awayTeam: searchTeam}];
+        break;
+    }
+
+    switch (rival) {
+      case "division":
+        whereObj.homeTeamDivision = teamInfo.teamDivisionGenerator(searchTeam);
+        whereObj.awayTeamDivision = teamInfo.teamDivisionGenerator(searchTeam);
+        break;
+      default: 
+        break;
+    }
 
     db.Future
       .findAll({
-          where: {
-              
-            [Op.or]: [{homeTeam: team}, {awayTeam: team}],
-
-            date: {
-              [Op.between]: [startDate, endDate]
-            }
-
-          },
+          where: whereObj,
           order: [[ "date", "ASC" ]]
       })
       .then(games => res.json(games))
@@ -41,20 +57,25 @@ module.exports = {
 
   findGamesByDivision: function(req, res) {
 
+    const { division, days, rival } = req.params;
+
     const startDate = moment().format("YYYYMMDD");
-    const endDate = moment().add(req.params.days, "days").format("YYYYMMDD");
+    const endDate = moment().add(days, "days").format("YYYYMMDD");
+
+    const whereObj = { date: { [Op.between]: [startDate, endDate] } };
+    switch (rival) {
+      case "division":
+        whereObj.homeTeamDivision = division;
+        whereObj.awayTeamDivision = division;
+        break;
+      default: 
+        whereObj[Op.or] = [{homeTeamDivision: division}, {awayTeamDivision: division}]
+        break;
+    }
 
     db.Future
       .findAll({
-          where: {
-            
-            [Op.or]: [{homeTeamDivision: req.params.division}, {awayTeamDivision: req.params.division}],
-
-            date: {
-              [Op.between]: [startDate, endDate]
-            }
-
-          },
+          where: whereObj,
           order: [[ "date", "ASC" ]]
       })
       .then(scores => res.json(scores))
@@ -66,20 +87,24 @@ module.exports = {
 
   findGamesByConference: function(req, res) {
 
+    const { conference, days } = req.params;
+
     const startDate = moment().format("YYYYMMDD");
-    const endDate = moment().add(req.params.days, "days").format("YYYYMMDD");
+    const endDate = moment().add(days, "days").format("YYYYMMDD");
+
+    const whereObj = { date: { [Op.between]: [startDate, endDate] } };
+
+    switch (conference) {
+      case "All Teams":
+        break;
+      default: 
+        whereObj[Op.or] = [{homeTeamConference: conference}, {awayTeamConference: conference}];
+        break;
+    }
 
     db.Future
       .findAll({
-          where: {
-            
-            [Op.or]: [{homeTeamConference: req.params.conference}, {awayTeamConference: req.params.conference}],
-
-            date: {
-              [Op.between]: [startDate, endDate]
-            }
-
-          },
+          where: whereObj,
           order: [[ "date", "ASC" ]]
       })
       .then(scores => res.json(scores))

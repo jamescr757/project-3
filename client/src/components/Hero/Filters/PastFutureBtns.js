@@ -22,13 +22,13 @@ const PastFutureBtns = (props) => {
         <Grid container spacing={2} justify="center">
             
             <Grid item>
-                <Link to={`/multiple/${props.category}/completed/${props.identifier}/${props.days}`}>
+                <Link to={`/multiple/${props.category}/completed/${props.identifier}/${props.days}/${props.location}/${props.outcome}/${props.rival}/${props.ot}`}>
                     <Button className={pastBtnBorder}>Past</Button>
                 </Link>
             </Grid>
 
             <Grid item>
-                <Link to={`/multiple/${props.category}/future/${props.identifier}/${props.days}`}>
+                <Link to={`/multiple/${props.category}/future/${props.identifier}/${props.days}/${props.location}/${props.outcome}/${props.rival}/${props.ot}`}>
                     <Button className={futureBtnBorder}>Future</Button>
                 </Link>
             </Grid>

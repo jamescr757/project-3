@@ -27,10 +27,12 @@ const TeamScoreBoard = (props) => {
 
     const [gameInfo, setGameInfo] = useState([]);
 
+    const { team, table, days, location, outcome, rival, ot } = props.match.params
+
     useEffect(() => {
 
-        if (props.match.params.table === "completed") {
-            API.getScoresByTeam(props.match.params.team, props.match.params.days)
+        if (table === "completed") {
+            API.getScoresByTeam(team, days, location, outcome, rival, ot)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -40,7 +42,7 @@ const TeamScoreBoard = (props) => {
             })
         }
         else {
-            API.getFutureGamesByTeam(props.match.params.team, props.match.params.days)
+            API.getFutureGamesByTeam(team, days, location, rival)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -50,7 +52,7 @@ const TeamScoreBoard = (props) => {
             })
         }
         
-    }, [props.match.params.team, props.match.params.table, props.match.params.days]) 
+    }, [team, table, days, location, outcome, rival, ot]) 
 
     const renderNoGames = () => {
         if (gameInfo.length === 0) {
@@ -61,7 +63,7 @@ const TeamScoreBoard = (props) => {
                         color="textPrimary"
                         className={classes.noGames}
                     >
-                        Please select filter method above.
+                        There are no games that match the specified filters.
                     </Typography>
                 </Box>
             );

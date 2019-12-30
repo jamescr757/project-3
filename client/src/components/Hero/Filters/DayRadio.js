@@ -7,93 +7,42 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
+import { Button } from '@material-ui/core';
+import "./Filters.css"
+
+const classNames = require("classnames");
 
 const useStyles = makeStyles(theme => ({
 
     radioRow: {
-        marginTop: 16
+        marginTop: 8
     }
 
 }));
 
-export default function DayRadio(props) {
+export default function DayLinks(props) {
   const classes = useStyles();
 
-  const [value, setValue] = React.useState(3);
-
-  const handleChange = event => {
-    setValue(event.target.value);
-  };
+  const dayArr = ["1 day", "3 days", "7 days", "10 days", "2 weeks", "1 month", "All"];
+  const dayValues = [1, 3, 7, 10, 14, 30, 300]
 
   return (
-    <Grid className={classes.radioRow} container spacing={2} justify="center">
-        <FormControl component="fieldset">
-        {/* <FormLabel component="legend">labelPlacement</FormLabel> */}
-            <RadioGroup aria-label="position" name="position" value={value} onChange={handleChange} row>
-                <FormControlLabel
-                value={1}
-                control=
-                {<Link to={`/multiple/${props.category}/${props.table}/${props.identifier}/1`}>
-                    <Radio color="primary" />
-                </Link>}
-                label="1 day"
-                labelPlacement="end"
-                />
-                <FormControlLabel
-                value="3 days"
-                control=
-                {<Link to={`/multiple/${props.category}/${props.table}/${props.identifier}/3`}>
-                    <Radio color="primary" />
-                </Link>}
-                label="3 days"
-                labelPlacement="end"
-                />
-                <FormControlLabel
-                value="7 days"
-                control=
-                {<Link to={`/multiple/${props.category}/${props.table}/${props.identifier}/7`}>
-                    <Radio color="primary" />
-                </Link>}
-                label="7 days"
-                labelPlacement="end"
-                />
-                <FormControlLabel
-                value={10}
-                control=
-                {<Link to={`/multiple/${props.category}/${props.table}/${props.identifier}/10`}>
-                    <Radio color="primary" />
-                </Link>}
-                label="10 days"
-                labelPlacement="end"
-                />
-                <FormControlLabel
-                value="2 weeks"
-                control=
-                {<Link to={`/multiple/${props.category}/${props.table}/${props.identifier}/14`}>
-                    <Radio color="primary" />
-                </Link>}
-                label="2 weeks"
-                labelPlacement="end"
-                />
-                <FormControlLabel
-                value="1 month"
-                control={<Link to={`/multiple/${props.category}/${props.table}/${props.identifier}/30`}>
-                <Radio color="primary" />
-            </Link>}
-                label="1 month"
-                labelPlacement="end"
-                />
-                <FormControlLabel
-                value="All"
-                control=
-                {<Link to={`/multiple/${props.category}/${props.table}/${props.identifier}/300`}>
-                    <Radio color="primary" />
-                </Link>}
-                label="All"
-                labelPlacement="end"
-                />
-            </RadioGroup>
-        </FormControl>
+    <Grid className={classes.radioRow} container spacing={1} justify="center">   
+
+        {dayArr.map((label, index) => {
+            return (
+                <Grid item key={index}>
+                    <Link 
+                        to={`/multiple/${props.category}/${props.table}/${props.identifier}/${dayValues[index]}/${props.location}/${props.outcome}/${props.rival}/${props.ot}`}
+                    >
+                        <Button className={props.days == dayValues[index] && `btn-border-${dayValues[index]}`}>
+                            {label}
+                        </Button>
+                    </Link>
+                </Grid>
+            );
+        })}
+
     </Grid>
   );
 }

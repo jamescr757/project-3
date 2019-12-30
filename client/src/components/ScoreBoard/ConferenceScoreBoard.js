@@ -27,10 +27,12 @@ const ConferenceScoreBoard = (props) => {
 
     const [gameInfo, setGameInfo] = useState([]);
 
+    const { conference, table, days, ot } = props.match.params
+
     useEffect(() => {
 
-        if (props.match.params.table === "completed") {
-            API.getScoresByConference(props.match.params.conference, props.match.params.days)
+        if (table === "completed") {
+            API.getScoresByConference(conference, days, ot)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -40,7 +42,7 @@ const ConferenceScoreBoard = (props) => {
             })
         }
         else {
-            API.getFutureGamesByConference(props.match.params.conference, props.match.params.days)
+            API.getFutureGamesByConference(conference, days)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -50,7 +52,7 @@ const ConferenceScoreBoard = (props) => {
             })
         }
         
-    }, [props.match.params.conference, props.match.params.table, props.match.params.days]) 
+    }, [conference, table, days, ot]) 
 
     const renderNoGames = () => {
         if (gameInfo.length === 0) {
@@ -61,7 +63,7 @@ const ConferenceScoreBoard = (props) => {
                         color="textPrimary"
                         className={classes.noGames}
                     >
-                        Please select filter method above.
+                        There are no games that match the specified filters.
                     </Typography>
                 </Box>
             );

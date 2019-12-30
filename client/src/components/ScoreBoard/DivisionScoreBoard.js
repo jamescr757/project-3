@@ -27,10 +27,12 @@ const DivisionScoreBoard = (props) => {
 
     const [gameInfo, setGameInfo] = useState([]);
 
+    const { division, table, days, rival, ot } = props.match.params
+
     useEffect(() => {
 
-        if (props.match.params.table === "completed") {
-            API.getScoresByDivision(props.match.params.division, props.match.params.days)
+        if (table === "completed") {
+            API.getScoresByDivision(division, days, rival, ot)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -40,7 +42,7 @@ const DivisionScoreBoard = (props) => {
             })
         }
         else {
-            API.getFutureGamesByDivision(props.match.params.division, props.match.params.days)
+            API.getFutureGamesByDivision(division, days, rival)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -50,7 +52,7 @@ const DivisionScoreBoard = (props) => {
             })
         }
         
-    }, [props.match.params.division, props.match.params.table, props.match.params.days])  
+    }, [division, table, days, rival, ot])  
 
     const renderNoGames = () => {
         if (gameInfo.length === 0) {
@@ -61,7 +63,7 @@ const DivisionScoreBoard = (props) => {
                         color="textPrimary"
                         className={classes.noGames}
                     >
-                        Please select filter method above.
+                        There are no games that match the specified filters.
                     </Typography>
                 </Box>
             );

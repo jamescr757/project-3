@@ -9,12 +9,19 @@ import ChangePage from "./ChangePage";
 import teamInfo from "../../utils/teamInfo";
 import PastFutureBtns from "./Filters/PastFutureBtns";
 import DayRadio from "./Filters/DayRadio";
+import TeamExtra from "./Filters/TeamExtra/TeamExtra";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
 
     heroContent: {
       backgroundColor: theme.palette.background.paper,
       padding: theme.spacing(6, 0, 1),
+    },
+    teamLogo: {
+        height: 68,
+        width: "auto",
+        marginTop: 4
     }
 
 }));
@@ -22,23 +29,44 @@ const useStyles = makeStyles(theme => ({
 export const TeamHero = (props) => {
     const classes = useStyles();
 
-    const fullTeamName = teamInfo.teamFullName(teamInfo.teamNameDehyphenator(props.match.params.team));
+    const { team, table, days, location, outcome, rival, ot } = props.match.params;
+    const propsObj = {
+        category: "team",
+        identifier: team,
+
+        table, days, location, outcome, rival, ot
+    }
+
+    const fullTeamName = teamInfo.teamFullName(teamInfo.teamNameDehyphenator(team));
 
     return (
         <div className={classes.heroContent}>
             <Container maxWidth="lg">
-                <Title>{fullTeamName}</Title>
-                <PastFutureBtns
-                    category="team"
-                    identifier={props.match.params.team}
-                    table={props.match.params.table}
-                    days={props.match.params.days}
-                />
-                <DayRadio 
-                    category="team"
-                    identifier={props.match.params.team}
-                    table={props.match.params.table}
-                />
+                <Grid container justify="center" spacing={3}>
+                    <Grid item>
+                        <img 
+                            className={classes.teamLogo}
+                            src={`${process.env.PUBLIC_URL}/images/${team}.png`}
+                            alt={fullTeamName}  
+                        />
+                    </Grid>
+
+                    <Grid item>
+                        <Title>{fullTeamName}</Title>
+                    </Grid>
+
+                    <Grid item>
+                        <img 
+                            className={classes.teamLogo}
+                            src={`${process.env.PUBLIC_URL}/images/${team}.png`}
+                            alt={fullTeamName}  
+                        />
+                    </Grid>
+                </Grid>
+
+                <PastFutureBtns {...propsObj} />
+                <DayRadio {...propsObj} />
+                <TeamExtra {...propsObj} />
             </Container>
             <ChangePage
                 path="/"

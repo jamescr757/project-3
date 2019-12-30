@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from '@material-ui/core/styles';
 import Title from "./Title";
-import SubHeading from "./SubHeading";
-import HeroFilters from "./HeroFilters";
 import Button from "@material-ui/core/Button";
 import ChangePage from "./ChangePage";
 import PastFutureBtns from "./Filters/PastFutureBtns";
 import DayRadio from "./Filters/DayRadio";
+import ConferenceExtra from "./Filters/ConferenceExtra/ConferenceExtra";
 
 const useStyles = makeStyles(theme => ({
 
@@ -21,21 +20,24 @@ const useStyles = makeStyles(theme => ({
 export const ConferenceHero = (props) => {
     const classes = useStyles();
 
+    const { conference, table, days, ot } = props.match.params;
+    const propsObj = {
+        category: "conference",
+        identifier: conference,
+        
+        table, days, ot
+    }
+
     return (
         <div className={classes.heroContent}>
             <Container maxWidth="lg">
-                <Title>{props.match.params.conference} Conference</Title>
-                <PastFutureBtns
-                    category="conference"
-                    identifier={props.match.params.conference}
-                    table={props.match.params.table}
-                    days={props.match.params.days}
-                />
-                <DayRadio
-                    category="conference"
-                    identifier={props.match.params.conference}
-                    table={props.match.params.table}
-                />
+                <Title>
+                    {conference} {conference !== "All Teams" && "Conference"}
+                </Title>
+
+                <PastFutureBtns {...propsObj} />
+                <DayRadio {...propsObj} />
+                <ConferenceExtra {...propsObj} />
             </Container>
             <ChangePage
                 path="/"

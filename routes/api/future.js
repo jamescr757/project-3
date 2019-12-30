@@ -7,10 +7,10 @@ router.route("/date/:date")
 router.route("/conference/:conference/:days")
     .get(futureController.findGamesByConference)
 
-router.route("/division/:division/:days")
+router.route("/division/:division/:days/:rival")
     .get(futureController.findGamesByDivision)
 
-router.route("/team/:team/:days")
+router.route("/team/:team/:days/:location/:rival")
     .get(futureController.findGamesByTeam)
 
 module.exports = router;
