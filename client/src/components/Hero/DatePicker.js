@@ -4,16 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./MainDate.css"
  
-// CSS Modules, react-datepicker-cssmodules.css
-// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
- 
 export default function DatePick(props) {
-  
-//   const [date, setDate] = useState(props.date)
-
-//   const handleChange = date => {
-//     setDate(date);
-//   };
  
     return (
         <DatePicker
