@@ -19,13 +19,18 @@ const Home = () => {
     setDate(newDate);
   }
 
+  const handleChange = date => {
+    setDate(moment(date).format("YYYYMMDD"));
+  };
+
   return (
     <React.Fragment>
       <NavBar />
       <DateHero 
-        date={date} 
+        date={moment(date).format("MM/DD/YYYY")} 
         onBackClick={handleBackClick} 
         onForwardClick={handleForwardClick} 
+        handleChange={handleChange}
       />
       <ScoreBoard 
         date={date} 

@@ -3,13 +3,13 @@ import GameFinal from "./GameFinal";
 import GameDate from "./GameDate";
 
 
-const CardTitle = ({ date, overtime, winner, momentDate}) => {
+const CardTitle = ({ date, overtime, winner, momentDate }) => {
 
     if (!date && winner) {
         return <GameFinal overtime={overtime} />
     }
     else if (!winner) {
-        return <GameDate>{momentDate}</GameDate>
+        return null
     }
     else if (!overtime) {
         return <GameDate>{momentDate} - Final</GameDate>

@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import moment from "moment";
+import DatePick from "./DatePicker";
 
 const useStyles = makeStyles(theme => ({
 
@@ -35,7 +35,8 @@ const HeroButtons = (props) => {
                 </Grid>
                 <Grid item>
                     <Typography className={classes.date} variant="h4" color="textPrimary">
-                        {moment(props.date).format("ddd M/D")}
+                        {/* {moment(props.date).format("ddd M/D")} */}
+                        <DatePick {...props} />
                     </Typography>
                 </Grid>
                 <Grid item>

@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import teamInfo from "../../../utils/teamInfo";
 
 
-function GameAction({ teamScore, homeTeam, awayTeam, date, handleModalOpen }) {
+function GameAction({ teamScore, homeTeam, awayTeam, date, ticketDate, handleModalOpen }) {
 
     return (
         <React.Fragment>
@@ -33,3 +33,5 @@ function GameAction({ teamScore, homeTeam, awayTeam, date, handleModalOpen }) {
 }
 
 export default GameAction;
+
+// /home-at-road-tickets/month(m)-day(d)-year(yyyy)-vancouver-canada-rogers-arena/nhl
