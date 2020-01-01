@@ -1,9 +1,9 @@
 import React from 'react';
-import Grid from "@material-ui/core/Grid";
-import { Link } from "react-router-dom";
-import { Button } from '@material-ui/core';
 import "../Filters.css"
+import { DropdownItem } from 'reactstrap';
+import { Link } from "react-router-dom";
 
+const classNames = require("classnames");
 
 export default function WinLoss(props) {
 
@@ -11,18 +11,21 @@ export default function WinLoss(props) {
   const btnValues = ["win", "loss", "all"];
 
   return (
-    btnArray.map((label, index) => {
-        return (
-            <Grid item key={index}>
-                <Link 
+    <React.Fragment>
+        {btnArray.map((label, index) => {
+            return (
+                <Link
+                    key={index}
                     to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${props.location}/${btnValues[index]}/${props.rival}/${props.ot}`}
                 >
-                    <Button className={[props.outcome === btnValues[index] && `btn-border-outcome-${btnValues[index]}`, props.table === "future" && "team-extra-btn-hide", props.category !== "team" && "team-extra-btn-hide"].join(" ")}>
+                    <DropdownItem
+                        className={classNames({ "active": props.outcome === btnValues[index] })}
+                    >
                         {label}
-                    </Button>
+                    </DropdownItem>
                 </Link>
-            </Grid>
-        );
-    })
+            );
+        })}
+    </React.Fragment>
   );
 }

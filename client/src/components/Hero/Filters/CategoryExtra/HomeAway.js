@@ -1,28 +1,29 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from "@material-ui/core/Grid";
-import { Link } from "react-router-dom";
-import { Button } from '@material-ui/core';
 import "../Filters.css"
+import { DropdownItem } from 'reactstrap';
+import { Link } from "react-router-dom";
 
+const classNames = require("classnames");
 
 export default function HomeAway(props) {
 
   const btnArray = ["Home", "Away", "All"];
 
   return (
-    btnArray.map((label, index) => {
-        return (
-            <Grid item key={index}>
+    <React.Fragment>
+        {btnArray.map((label, index) => {
+            return (
                 <Link 
-                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${label.toLowerCase()}/${props.outcome}/${props.rival}/${props.ot}`}
-                >
-                    <Button className={[props.location === label.toLowerCase() && `btn-border-location-${label.toLowerCase()}`, props.category !== "team" && "team-extra-btn-hide"].join(" ")}>
+                    key={index}
+                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${label.toLowerCase()}/${props.outcome}/${props.rival}/${props.ot}`}>
+                    <DropdownItem 
+                        className={classNames({ "active": props.location === label.toLowerCase() })}
+                    >
                         {label}
-                    </Button>
+                    </DropdownItem>
                 </Link>
-            </Grid>
-        );
-    })
+            );
+        })}
+    </React.Fragment>
   );
 }

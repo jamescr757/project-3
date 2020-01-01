@@ -30,12 +30,6 @@ export const DateHero = (props) => {
                 </SubHeading>
                 <HeroButtons {...props}/>
             </Container>
-            <ChangePage
-                path="/multiple"
-                justify="flex-start"
-            >
-                <Button>View Games Across Multiple Dates</Button>
-            </ChangePage>
         </div>
     );
 }

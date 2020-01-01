@@ -1,48 +1,49 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from "react-router-dom";
 import teamInfo from "../../../utils/teamInfo";
+import { DropdownItem } from "reactstrap";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
 
     teamLogo: {
-      height: 28,
+      height: 24,
       width: "auto",
-      marginTop: 6
+      marginBottom: 4,
+      marginRight: 4
     }
 
 }));
 
-const DivisionBtns = (props) => {
+const TeamBtns = (props) => {
     const classes = useStyles();
 
-    const atlanticTeams = teamInfo.teamsArray.slice(0, 7);
-    const metroTeams = teamInfo.teamsArray.slice(8, 15);
-    const centralTeams = teamInfo.teamsArray.slice(16, 22);
+    const atlanticTeams = teamInfo.teamsArray.slice(0, 8);
+    const metroTeams = teamInfo.teamsArray.slice(8, 16);
+    const centralTeams = teamInfo.teamsArray.slice(16, 23);
     const pacificTeams = teamInfo.teamsArray.slice(23);
 
     return (
-        <Grid container spacing={2} justify="space-evenly">
-            <Grid item container xs={3} direction="column" justify="flex-start" spacing={2}>
+        <Grid container spacing={1} justify="space-evenly">
+            <Grid item container xs={3} direction="column" justify="flex-start" spacing={1}>
 
                 {atlanticTeams.map((team, index) => {
                     return (
-                        <Grid item key={index} container spacing={1}>
-                            <img 
-                                className={classes.teamLogo}
-                                src={`${process.env.PUBLIC_URL}/images/${teamInfo.teamNameConverter(team)}.png`}
-                                alt={team}  
-                            />
-                            <Link 
-                              to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/3/all/all/all/all`}
+                        <Grid item key={index}>
+                            <Link
+                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/all/all`}
                             >
-                                <Button
-                                    onClick={()=>props.handleBtnClick()}
+                                <DropdownItem 
+                                    className="team-dropdown-item"
                                 >
+                                    <img 
+                                        className={classes.teamLogo}
+                                        src={`${process.env.PUBLIC_URL}/images/${teamInfo.teamNameConverter(team)}.png`}
+                                        alt={team}  
+                                    />
                                     {teamInfo.teamFullName(team)}
-                                </Button>
+                                </DropdownItem>
                             </Link>
                         </Grid>
                     );
@@ -54,19 +55,19 @@ const DivisionBtns = (props) => {
                 {metroTeams.map((team, index) => {
                     return (
                         <Grid item key={index} container spacing={1}>
-                            <img 
-                                className={classes.teamLogo}
-                                src={`${process.env.PUBLIC_URL}/images/${teamInfo.teamNameConverter(team)}.png`}
-                                alt={team}  
-                            />
-                            <Link 
-                            to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/3/all/all/all/all`}
+                            <Link
+                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/all/all`}
                             >
-                                <Button
-                                    onClick={()=>props.handleBtnClick()}
+                                <DropdownItem 
+                                    className="team-dropdown-item"
                                 >
+                                    <img 
+                                        className={classes.teamLogo}
+                                        src={`${process.env.PUBLIC_URL}/images/${teamInfo.teamNameConverter(team)}.png`}
+                                        alt={team}  
+                                    />
                                     {teamInfo.teamFullName(team)}
-                                </Button>
+                                </DropdownItem>
                             </Link>
                         </Grid>
                     );
@@ -78,19 +79,19 @@ const DivisionBtns = (props) => {
                 {centralTeams.map((team, index) => {
                     return (
                         <Grid item key={index} container spacing={1}>
-                            <img 
-                                className={classes.teamLogo}
-                                src={`${process.env.PUBLIC_URL}/images/${teamInfo.teamNameConverter(team)}.png`}
-                                alt={team}  
-                            />
-                            <Link 
-                            to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/3/all/all/all/all`}
+                            <Link
+                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/all/all`}
                             >
-                                <Button
-                                    onClick={()=>props.handleBtnClick()}
+                                <DropdownItem 
+                                    className="team-dropdown-item"
                                 >
+                                    <img 
+                                        className={classes.teamLogo}
+                                        src={`${process.env.PUBLIC_URL}/images/${teamInfo.teamNameConverter(team)}.png`}
+                                        alt={team}  
+                                    />
                                     {teamInfo.teamFullName(team)}
-                                </Button>
+                                </DropdownItem>
                             </Link>
                         </Grid>
                     );
@@ -102,19 +103,19 @@ const DivisionBtns = (props) => {
                 {pacificTeams.map((team, index) => {
                     return (
                         <Grid item key={index} container spacing={1}>
-                            <img 
-                                className={classes.teamLogo}
-                                src={`${process.env.PUBLIC_URL}/images/${teamInfo.teamNameConverter(team)}.png`}
-                                alt={team}  
-                            />
-                            <Link 
-                            to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/3/all/all/all/all`}
+                            <Link
+                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/all/all`}
                             >
-                                <Button
-                                    onClick={()=>props.handleBtnClick()}
+                                <DropdownItem 
+                                    className="team-dropdown-item"
                                 >
+                                    <img 
+                                        className={classes.teamLogo}
+                                        src={`${process.env.PUBLIC_URL}/images/${teamInfo.teamNameConverter(team)}.png`}
+                                        alt={team}  
+                                    />
                                     {teamInfo.teamFullName(team)}
-                                </Button>
+                                </DropdownItem>
                             </Link>
                         </Grid>
                     );
@@ -125,4 +126,4 @@ const DivisionBtns = (props) => {
     );
 }
 
-export default DivisionBtns;
+export default TeamBtns;

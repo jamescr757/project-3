@@ -16,7 +16,7 @@ function TeamName({ team, loser, winner, teamScore }) {
 
     return (
         <Link
-            to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/3/all/all/all/all`}
+            to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/all/all`}
         >
             <Typography 
                 className={teamClass} 

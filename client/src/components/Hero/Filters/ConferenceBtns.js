@@ -1,33 +1,27 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from '@material-ui/core/styles';
-import ChangePage from "../ChangePage";
+import { DropdownItem } from "reactstrap";
 import { Link } from "react-router-dom";
 
 
-const ConferenceBtns = (props) => {
+const ConferenceBtns = () => {
 
-    const conferences = ["Western", "Eastern", "All Teams"];
+    const conferences = ["Eastern", "Western", "All Teams"];
 
     return (
-        <Grid container spacing={2} justify="center">
-            
+        <React.Fragment>
             {conferences.map((conference, index) => {
                 return (
-                    <Grid item key={index}>
-                        <Link to={`/multiple/conference/completed/${conference}/3/all/all/all/all`}>
-                            <Button
-                                onClick={()=>props.handleBtnClick()}
-                            >
-                                {conference}
-                            </Button>
-                        </Link>
-                    </Grid>
+                    <Link
+                        key={index}
+                        to={`/multiple/conference/completed/${conference}/3/all/all/all/all`}
+                    >
+                        <DropdownItem>
+                            {conference} {conference !== "All Teams" && "Conference"}
+                        </DropdownItem>
+                    </Link>
                 );
             })}
-            
-        </Grid>
+        </React.Fragment>
     );
 }
 
