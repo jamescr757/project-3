@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from '@material-ui/core/styles';
-import Title from "./Title";
+import Title from "./Title/Title";
 import SubHeading from "./SubHeading";
 import HeroButtons from "./HeroButtons";
 import ChangePage from "./ChangePage";

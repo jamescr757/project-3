@@ -7,8 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import API from "../../../utils/API";
 import GameAction from "./GameAction";
 import TeamRow from "./TeamRow";
-import GameDate from "./GameDate";
-import GameFinal from "./GameFinal";
+import CardTitle from "./CardTitle/CardTitle";
 import HighlightModal from "./HighlightModal";
 import "./ScoreCard.css"
 import moment from "moment";
@@ -56,16 +55,22 @@ const ScoreCard = (props) => {
     return (
         <React.Fragment>
             <Card className={classes.card}>
-            {homeTeamScore >= 0 && !props.date && <GameFinal overtime={overtime} />}
+            {/* {homeTeamScore >= 0 && !props.date && <GameFinal overtime={overtime} />}
             
             {props.date && overtime && 
-            <GameDate>{moment(date).format("ddd M/D")} - Final/OT</GameDate>}
+            <GameDate>{moment(date).format("ddd M/D")} - Final/OT</GameDate>} */}
 
             {/* {!loser && !overtime && 
             <GameDate>{moment(date).format("ddd M/D")}</GameDate>} */}
 
-            {props.date && !overtime && 
-            <GameDate>{moment(date).format("ddd M/D")} - Final</GameDate>}
+            {/* {props.date && !overtime && 
+            <GameDate>{moment(date).format("ddd M/D")} - Final</GameDate>} */}
+                <CardTitle 
+                    date={props.date}
+                    overtime={overtime}
+                    winner={winner}
+                    momentDate={moment(date).format("ddd M/D")}
+                />
             
                 <CardContent className={classes.cardContent}>
                     <Grid 

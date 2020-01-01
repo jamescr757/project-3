@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { CategoryHero } from "../components/Hero";
 import CategoryScoreBoard from "../components/ScoreBoard/CategoryScoreBoard";
 import NavBar from "../components/NavBar";

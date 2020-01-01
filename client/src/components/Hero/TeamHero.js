@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from '@material-ui/core/styles';
-import Title from "./Title";
+import Title from "./Title/Title";
 import SubHeading from "./SubHeading";
 import HeroFilters from "./HeroFilters";
 import Button from "@material-ui/core/Button";
