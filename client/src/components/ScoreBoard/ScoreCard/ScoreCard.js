@@ -55,16 +55,7 @@ const ScoreCard = (props) => {
     return (
         <React.Fragment>
             <Card className={classes.card}>
-            {/* {homeTeamScore >= 0 && !props.date && <GameFinal overtime={overtime} />}
             
-            {props.date && overtime && 
-            <GameDate>{moment(date).format("ddd M/D")} - Final/OT</GameDate>} */}
-
-            {/* {!loser && !overtime && 
-            <GameDate>{moment(date).format("ddd M/D")}</GameDate>} */}
-
-            {/* {props.date && !overtime && 
-            <GameDate>{moment(date).format("ddd M/D")} - Final</GameDate>} */}
                 <CardTitle 
                     date={props.date}
                     overtime={overtime}
