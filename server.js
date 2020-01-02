@@ -36,21 +36,12 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-// Starting the server, syncing our models ------------------------------------/
-// db.sequelize.sync(syncOptions).then(function() {
-//   app.listen(PORT, function() {
-//     console.log(
-//       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-//       PORT,
-//       PORT
-//     );
-//   });
-// });
-
 db.sequelize.sync(syncOptions).then(() => {
 
-  require("./scrape/newCompleted")(db);
-  require("./scrape/deleteFuture")(db);
+  // require("./scrape/newCompleted")(db);
+  // require("./scrape/deleteFuture")(db);
+  require("./scrape/allCompleted")(db);
+  require("./scrape/allFuture")(db);
   app.listen(PORT, function() {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });

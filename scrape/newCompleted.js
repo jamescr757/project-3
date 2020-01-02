@@ -1,5 +1,4 @@
 const moment = require("moment");
-const chalk = require("chalk");
 
 module.exports = function scrapeNewCompleted(db) {
 
@@ -18,7 +17,6 @@ module.exports = function scrapeNewCompleted(db) {
 
         if (lastScrapeDate < yesterday) {
             pastDaysToScrape = moment(yesterday).diff(moment(lastScrapeDate), "days");
-            console.log("past days to scrape", chalk.green(pastDaysToScrape));
         } else {
             pastDaysToScrape = 0;
         }
@@ -26,7 +24,6 @@ module.exports = function scrapeNewCompleted(db) {
         for (let dayNum = 0; dayNum < pastDaysToScrape; dayNum++) {
 
             const seasonDate = moment(lastScrapeDate).add(dayNum + 1, 'days').format("YYYYMMDD");
-            console.log(chalk.green("season date"), seasonDate);
     
             require("./axiosScrape")(db, seasonDate);
         }

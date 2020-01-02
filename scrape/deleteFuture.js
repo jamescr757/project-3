@@ -1,5 +1,4 @@
 const moment = require("moment");
-const chalk = require("chalk");
 
 module.exports = function deleteFuture(db) {
 
@@ -16,7 +15,6 @@ module.exports = function deleteFuture(db) {
 
         if (closestDate <= today) {
             daysToDelete = moment(today).diff(moment(closestDate), "days") + 1;
-            console.log("days to delete", chalk.green(daysToDelete));
         } else {
             daysToDelete = 0;
         }
