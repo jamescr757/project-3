@@ -11,3 +11,7 @@ If the user wants to look at a certain team/division/conference games, they can 
 The highlights are from the official NHL channel, so they are the extended ~9 minute highlights. These videos are delivered from a YouTube API. 
 
 Games that haven't been played yet have a link to look at tickets for that game. The external link leads to the major ticket broker Seat Geek. 
+
+If a user wants to, they can sign up for a email newsletter. The newsletter contains scores and highlights from a user-specified team(s)/division/conference. The newsletter is sent out based on a frequency set by the user. 
+
+External libraries include: Material-UI, reactstrap, classnames, react-datepicker, nodemailer, and mjml

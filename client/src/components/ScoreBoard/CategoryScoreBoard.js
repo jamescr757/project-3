@@ -40,7 +40,7 @@ const CategoryScoreBoard = (props) => {
 
     useEffect(() => {
 
-        APIcall(props.match.params.table, props.match.params)
+        APIcall(table, props.match.params)
             .then(response => {
                 setGameInfo(response.data);
             })
@@ -82,6 +82,7 @@ const CategoryScoreBoard = (props) => {
                     <ScoreCard 
                         date={true}
                         game={{...game}}
+                        table={table}
                     />
                 </Grid>
                 ))}

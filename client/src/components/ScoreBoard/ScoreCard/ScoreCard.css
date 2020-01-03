@@ -16,10 +16,12 @@
 }
 
 .winner {
+    color: black;
     text-transform: capitalize;
 }
 
 .future {
+    color: black;
     text-transform: capitalize;
 }
 

@@ -32,7 +32,7 @@ const TeamBtns = (props) => {
                     return (
                         <Grid item key={index}>
                             <Link
-                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/all/all`}
+                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false`}
                             >
                                 <DropdownItem 
                                     className="team-dropdown-item"
@@ -56,7 +56,7 @@ const TeamBtns = (props) => {
                     return (
                         <Grid item key={index} container spacing={1}>
                             <Link
-                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/all/all`}
+                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false`}
                             >
                                 <DropdownItem 
                                     className="team-dropdown-item"
@@ -80,7 +80,7 @@ const TeamBtns = (props) => {
                     return (
                         <Grid item key={index} container spacing={1}>
                             <Link
-                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/all/all`}
+                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false`}
                             >
                                 <DropdownItem 
                                     className="team-dropdown-item"
@@ -104,7 +104,7 @@ const TeamBtns = (props) => {
                     return (
                         <Grid item key={index} container spacing={1}>
                             <Link
-                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/all/all`}
+                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false`}
                             >
                                 <DropdownItem 
                                     className="team-dropdown-item"

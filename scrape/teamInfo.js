@@ -12,9 +12,9 @@ module.exports = {
 
         if (teamIndex <= 7 && teamIndex > -1) return "Atlantic";
 
-        else if (teamIndex <= 15) return "Metropolitan";
+        else if (teamIndex <= 15 && teamIndex > -1) return "Metropolitan";
 
-        else if (teamIndex <= 22) return "Central";
+        else if (teamIndex <= 22 && teamIndex > -1) return "Central";
 
         else if (teamIndex > 0) return "Pacific";
 
@@ -32,7 +32,7 @@ module.exports = {
     },
 
     teamNameConverter(teamName) {
-        return teamName.replace(/s/g, "-")
+        return teamName.replace(/\s/g, "-")
     },
 
     teamNameDehyphenator(teamName) {

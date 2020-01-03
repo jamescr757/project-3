@@ -39,9 +39,9 @@ const HeroNav = (props) => {
 
             {props.category === "team" && props.table === "completed" && <ResultDropdown {...props} />}
 
-            {props.category === "conference" || <RivalDropdown {...props} />}
-
             {props.table === "completed" && <OvertimeDropdown {...props} />}
+
+            {props.category === "conference" || <RivalDropdown {...props} />}
 
           </Nav>
           {/* <NavbarText>Simple Text</NavbarText> */}

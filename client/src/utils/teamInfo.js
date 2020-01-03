@@ -12,9 +12,9 @@ export default {
 
         if (teamIndex <= 7 && teamIndex > 0) return "Atlantic";
 
-        else if (teamIndex <= 15) return "Metropolitan";
+        else if (teamIndex <= 15 && teamIndex > 0) return "Metropolitan";
 
-        else if (teamIndex <= 22) return "Central";
+        else if (teamIndex <= 22 && teamIndex > 0) return "Central";
 
         else if (teamIndex > 0) return "Pacific";
 

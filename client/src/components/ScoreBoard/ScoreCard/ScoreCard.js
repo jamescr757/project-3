@@ -38,7 +38,6 @@ const ScoreCard = (props) => {
 
         API.getHighlight(teams, date)
             .then((res) => {
-                console.log("api response", res);
                 setGameHighlight(res.data[0].id.videoId)
             })
             .catch(error => console.log(error));
@@ -61,6 +60,7 @@ const ScoreCard = (props) => {
                     overtime={overtime}
                     winner={winner}
                     momentDate={moment(date).format("ddd M/D")}
+                    table={props.table}
                 />
             
                 <CardContent className={classes.cardContent}>

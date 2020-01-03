@@ -51,7 +51,7 @@ module.exports = {
     }
 
     switch (rival) {
-      case "division":
+      case "true":
         whereObj.homeTeamDivision = teamInfo.teamDivisionGenerator(searchTeam) || identifier;
         whereObj.awayTeamDivision = teamInfo.teamDivisionGenerator(searchTeam) || identifier;
         break;

@@ -9,14 +9,14 @@ const classNames = require("classnames");
 function TeamName({ team, loser, winner, teamScore }) {
 
     const teamClass = classNames({
+        "future": !winner,
         "loser": team === loser,
-        "winner": team === winner,
-        "future": !teamScore
+        "winner": team === winner
     });
 
     return (
         <Link
-            to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/all/all`}
+            to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false`}
         >
             <Typography 
                 className={teamClass} 

@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import Multiple from "./pages/Multiple";
+import Highlight from "./pages/Highlight";
 import Category from "./pages/Category";
 import { CssBaseline } from "@material-ui/core";
 import Footer from "./components/Footer";
@@ -16,7 +16,7 @@ const App = () => {
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/multiple" component={Multiple} />
+            <Route exact path="/highlight/:teams/date/:date" component={Highlight} />
             <Route exact path="/multiple/:category/:table/:identifier/:days/:location/:outcome/:rival/:ot" component={Category} />
           </Switch>
         </Router>

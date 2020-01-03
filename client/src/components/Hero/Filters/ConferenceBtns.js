@@ -13,7 +13,7 @@ const ConferenceBtns = () => {
                 return (
                     <Link
                         key={index}
-                        to={`/multiple/conference/completed/${conference}/3/all/all/all/all`}
+                        to={`/multiple/conference/completed/${conference}/3/all/all/false/false`}
                     >
                         <DropdownItem>
                             {conference} {conference !== "All Teams" && "Conference"}

@@ -62,7 +62,7 @@ module.exports = {
     }
 
     switch (rival) {
-      case "division":
+      case "true":
         whereObj.homeTeamDivision = teamInfo.teamDivisionGenerator(searchTeam) || identifier;
         whereObj.awayTeamDivision = teamInfo.teamDivisionGenerator(searchTeam) || identifier;
         break;
@@ -70,11 +70,13 @@ module.exports = {
         break;
     }
 
+    // whereObj.homeTeamDivision = { $col: "awayTeamDivision" }
+
     switch (ot) {
-      case "regulation":
-        whereObj.overtime = false;
-        break;
-      case "overtime":
+      // case "regulation":
+      //   whereObj.overtime = false;
+      //   break;
+      case "true":
         whereObj.overtime = true;
         break;
       default: 
@@ -87,6 +89,85 @@ module.exports = {
           order: [[ "date", "DESC" ]]
       })
       .then(scores => res.json(scores))
+      .catch(err => {
+        console.log(err);
+        res.status(422).json(err)
+      });
+  },
+
+  emailScoresByCategory: function(req, res) {
+
+    const { category, identifier, days } = req.params;
+
+    const searchTeam = teamInfo.teamNameDehyphenator(identifier);
+
+    const endDate = moment().subtract(1, "days").format("YYYYMMDD");
+    const startDate = moment().subtract(days, "days").format("YYYYMMDD");
+
+    const whereObj = { date: { [Op.between]: [startDate, endDate] } };
+
+    // switch (location) {
+    //   case "home":
+    //     whereObj.homeTeam = searchTeam;
+    //     break;
+    //   case "away":
+    //     whereObj.awayTeam = searchTeam;
+    //     break;
+    //   default: 
+    //     break;
+    // }
+
+    // switch (outcome) {
+    //   case "win":
+    //     whereObj.winner = searchTeam;
+    //     break;
+    //   case "loss":
+    //     whereObj.loser = searchTeam;
+    //     break;
+    //   default: 
+    //     break;
+    // }
+
+    switch (category) {
+      case "division":
+        whereObj[Op.or] = [{homeTeamDivision: identifier}, {awayTeamDivision: identifier}]
+        break;
+      case "team":
+        whereObj[Op.or] =  [{homeTeam: searchTeam}, {awayTeam: searchTeam}];
+        break;
+      default: 
+        identifier === "All Teams" ? "" : whereObj[Op.or] = [{homeTeamConference: identifier}, {awayTeamConference: identifier}]
+        break;
+    }
+
+    // switch (rival) {
+    //   case "true":
+    //     whereObj.homeTeamDivision = teamInfo.teamDivisionGenerator(searchTeam) || identifier;
+    //     whereObj.awayTeamDivision = teamInfo.teamDivisionGenerator(searchTeam) || identifier;
+    //     break;
+    //   default: 
+    //     break;
+    // }
+
+    // whereObj.homeTeamDivision = { $col: "awayTeamDivision" }
+
+    // switch (ot) {
+    //   // case "regulation":
+    //   //   whereObj.overtime = false;
+    //   //   break;
+    //   case "true":
+    //     whereObj.overtime = true;
+    //     break;
+    //   default: 
+    //     break;
+    // }
+
+    db.Completed
+      .findAll({
+          where: whereObj,
+          order: [[ "date", "DESC" ]]
+      })
+      .then(scores => require("../email/email")(scores))
       .catch(err => {
         console.log(err);
         res.status(422).json(err)

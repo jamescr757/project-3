@@ -13,7 +13,7 @@ const DivisionBtns = () => {
                 return (
                     <Link
                         key={index} 
-                        to={`/multiple/division/completed/${division}/3/all/all/all/all`}
+                        to={`/multiple/division/completed/${division}/3/all/all/false/false`}
                     >
                         <DropdownItem>
                             {division}  

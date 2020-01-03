@@ -3,9 +3,6 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from '@material-ui/core/styles';
 import Title from "./Title/Title";
 import SubHeading from "./SubHeading";
-import HeroFilters from "./HeroFilters";
-import Button from "@material-ui/core/Button";
-import ChangePage from "./ChangePage";
 
 const useStyles = makeStyles(theme => ({
 
@@ -16,21 +13,20 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export const MultiHero = (props) => {
+export const HighlightHero = (props) => {
     const classes = useStyles();
 
     return (
         <div className={classes.heroContent}>
             <Container maxWidth="lg">
-                <Title>NHL Scores</Title>
-                <HeroFilters />
+                <Title>NHL Highlights</Title>
+                <SubHeading>
+                    {props.description}
+                </SubHeading>
+                <SubHeading>
+                    {props.date}
+                </SubHeading>
             </Container>
-            <ChangePage
-                path="/"
-                justify="flex-start"
-            >
-                <Button>View Games by Date</Button>
-            </ChangePage>
         </div>
     );
 }

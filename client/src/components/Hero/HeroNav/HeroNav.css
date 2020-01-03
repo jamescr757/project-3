@@ -1,0 +1,24 @@
+.hero-nav-active {
+    font-weight: bold;
+    color: black;
+}
+
+.hero-nav-item {
+    color: gray;
+}
+
+.hero-nav-item:hover {
+    color: black;
+}
+
+.hero-nav-active:hover {
+    color: black;
+}
+
+.hero-nav-item:active {
+    color: black;
+}
+
+.hero-nav-active:active {
+    color: gray;
+}
