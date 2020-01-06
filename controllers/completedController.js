@@ -102,7 +102,8 @@ module.exports = {
     db.EmailData
       .findAll({
         where: {
-          email: req.params.email
+          email: req.params.email,
+          nextEmail: moment().add(1, "days").format("YYYYMMDD")
         }
       })
       .then((data) => {
@@ -148,7 +149,7 @@ module.exports = {
 
           if (futureTable) {
             const startDate = moment().format("YYYYMMDD");
-            const endDate = moment().add(frequency, "days").format("YYYYMMDD");
+            const endDate = moment().add(parseInt(frequency) - 1, "days").format("YYYYMMDD");
 
             whereObj.date = { [Op.between]: [startDate, endDate] };
 
@@ -171,7 +172,6 @@ module.exports = {
         })
       })
       .then(()=>{
-        // setTimeout(()=>console.log("user game info 3", userGameInfo), 100);
         setTimeout(() => {
           require("../email/email")(userGameInfo)
         }, 100);

@@ -1,4 +1,5 @@
 const db = require("../models");
+const moment = require("moment");
 
 // Defining methods for the booksController
 module.exports = {
@@ -13,7 +14,8 @@ module.exports = {
           identifier,
           frequency,
           completedTable,
-          futureTable
+          futureTable,
+          nextEmail: moment().add(1, "days").format("YYYYMMDD")
       })
       .then((data) => res.send(data))
       .catch(err => console.log(err));
@@ -50,8 +52,6 @@ module.exports = {
         break;
     }
 
-    console.log(updateObj);
-
     db.EmailData
       .update(updateObj, {
         where: {
@@ -79,5 +79,40 @@ module.exports = {
         res.send("error");
       });
   },
+
+  updateNextEmail: function(req, res) {
+
+    db.EmailData
+      .findAll({
+        where: {
+          nextEmail: moment().format("YYYYMMDD")
+        }
+      })
+      .then((data) => {
+
+        data.forEach((entry) => {
+
+          const { id, frequency, nextEmail } = entry.dataValues;
+
+          const newNextEmail = moment(nextEmail, "YYYYMMDD").add(frequency, "days").format("YYYYMMDD");
+
+          db.EmailData
+            .update({
+              nextEmail: newNextEmail
+            }, {
+              where: {
+                id: id
+              }
+            })
+            .then(() => {})
+            .catch(err => {
+              console.log(err);
+            });
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
 };

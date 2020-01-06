@@ -2,7 +2,7 @@ const moment = require("moment");
 
 module.exports = function deleteFuture(db) {
 
-    const today = moment().subtract(1, 'days').format("YYYYMMDD");
+    const yesterday = moment().subtract(1, 'days').format("YYYYMMDD");
 
     let closestDate;
     db.Future.findAll({
@@ -13,8 +13,8 @@ module.exports = function deleteFuture(db) {
     .then(data => {
         closestDate = moment(data[0].dataValues.date, "YYYYMMDD").format("YYYYMMDD");
 
-        if (closestDate <= today) {
-            daysToDelete = moment(today).diff(moment(closestDate), "days") + 1;
+        if (closestDate <= yesterday) {
+            daysToDelete = moment(yesterday).diff(moment(closestDate), "days") + 1;
         } else {
             daysToDelete = 0;
         }

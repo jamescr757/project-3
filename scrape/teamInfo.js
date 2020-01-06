@@ -112,6 +112,75 @@ module.exports = {
                 return "vancouver canucks"
             
         }
+    },
+
+    teamNameInitials (team) {
+
+        switch (team) {
+            case "bruins":
+                return "bos"
+            case "sabres":
+                return "buf"
+            case "red wings":
+                return "det"
+            case "panthers":
+                return "fla"
+            case "canadiens":
+                return "mtl"
+            case "senators":
+                return "ott"
+            case "lightning":
+                return "tb"
+            case "maple leafs":
+                return "tor"
+            case "hurricanes":
+                return "car"
+            case "blue jackets":
+                return "cbj"
+            case "devils":
+                return "nj"
+            case "islanders":
+                return "nyi"
+            case "rangers":
+                return "nyr"
+            case "flyers":
+                return "phi"
+            case "penguins":
+                return "pit"
+            case "capitals":
+                return "wsh"
+            case "blackhawks":
+                return "chi"
+            case "avalanche":
+                return "col"
+            case "stars":
+                return "dal"
+            case "wild":
+                return "min"
+            case "predators":
+                return "nsh"
+            case "blues":
+                return "stl"
+            case "jets":
+                return "win"
+            case "ducks":
+                return "ana"
+            case "coyotes":
+                return "ari"
+            case "flames":
+                return "cgy"
+            case "oilers":
+                return "edm"
+            case "golden knights":
+                return "vgs"
+            case "kings":
+                return "la"
+            case "sharks":
+                return "sj"
+            case "canucks":
+                return "van"
+            
+        }
     }
 }
 

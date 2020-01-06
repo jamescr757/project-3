@@ -86,6 +86,7 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         // don't add s to table name
         freezeTableName: true,
+        timestamps: false
     });
 
     return Completed;

@@ -34,6 +34,11 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
 
+        nextEmail: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+
         
 
     }, {
