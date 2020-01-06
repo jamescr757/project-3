@@ -3,14 +3,18 @@ import { Label, Input } from 'reactstrap';
 import teamInfo from "../../utils/teamInfo";
 
 export const TeamSelect = (props) => {
+    
+    const teamsFullNameArray = teamInfo.teamsArray.map((team) => {
+        return teamInfo.teamFullName(team);
+    })
 
     return (
         <React.Fragment>
             {/* <Label for="teamSelect">Favorite</Label> */}
             <Input style={{ textTransform: "capitalize" }} type="select" name="teamSelect" id="teamSelect" onChange={(e) => props.identifierChange(e.target.value)} >
-                {teamInfo.teamsArray.map((team, index) => {
+                {teamsFullNameArray.sort().map((team, index) => {
                     return (
-                        <option key={index} value={team}>{teamInfo.teamFullName(team)}</option>
+                        <option key={index} value={teamInfo.teamShortName(team)}>{team}</option>
                     );
                 })}
             </Input>

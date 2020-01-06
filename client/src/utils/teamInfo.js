@@ -110,6 +110,75 @@ export default {
                 return "vancouver canucks"
             
         }
+    },
+
+    teamShortName (team) {
+
+        switch (team) {
+            case "boston bruins":
+                return "bruins"
+            case "buffalo sabres":
+                return "sabres"
+            case "detroit red wings":
+                return "red wings"
+            case "florida panthers":
+                return "panthers"
+            case "montreal canadiens":
+                return "canadiens"
+            case "ottawa senators":
+                return "senators"
+            case "tampa bay lightning":
+                return "lightning"
+            case "toronto maple leafs":
+                return "maple leafs"
+            case "carolina hurricanes":
+                return "hurricanes"
+            case "columbus blue jackets":
+                return "blue jackets"
+            case "new jersey devils":
+                return "devils"
+            case "new york islanders":
+                return "islanders"
+            case "new york rangers":
+                return "rangers"
+            case "philadelphia flyers":
+                return "flyers"
+            case "pittsburgh penguins":
+                return "penguins"
+            case "washington capitals":
+                return "capitals"
+            case "chicago blackhawks":
+                return "blackhawks"
+            case "colorado avalanche":
+                return "avalanche"
+            case "dallas stars":
+                return "stars"
+            case "minnesota wild":
+                return "wild"
+            case "nashville predators":
+                return "predators"
+            case "st. louis blues":
+                return "blues"
+            case "winnipeg jets":
+                return "jets"
+            case "anaheim ducks":
+                return "ducks"
+            case "arizona coyotes":
+                return "coyotes"
+            case "calgary flames":
+                return "flames"
+            case "edmonton oilers":
+                return "oilers"
+            case "vegas golden knights":
+                return "golden knights"
+            case "los angeles kings":
+                return "kings"
+            case "san jose sharks":
+                return "sharks"
+            case "vancouver canucks":
+                return "canucks"
+            
+        }
     }
 }
 

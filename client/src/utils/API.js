@@ -66,7 +66,7 @@ export default {
 
   deleteUserData: function(id) {
 
-    return axios.delete(`/api/email-data/id/${id}`);
+    return axios.delete(`/api/email-data/id/${id}/any`);
   },
 
   updateUserData: function(id, colName, newValue) {

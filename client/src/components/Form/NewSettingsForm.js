@@ -5,7 +5,7 @@ import { DivisionSelect } from "./DivisionSelect";
 import { ConferenceSelect } from "./ConferenceSelect";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import { Button as MaterialBtn } from "@material-ui/core";
+import { Button as MaterialBtn, Grid } from "@material-ui/core";
 
 const NewSettingsForm = (props) => {
 
@@ -16,40 +16,54 @@ const NewSettingsForm = (props) => {
     const [futureTable, setFuture] = useState(false);
     const [errorMessage, setErrorMessage] = useState();
     const [entrySuccess, setEntrySuccess] = useState(false);
+    const [dbSuccess, setDbSuccess] = useState(false);
 
     const handleSubmit = e => {
         e.preventDefault();
+        
+        const data = { 
+            category: category.toLowerCase(),
+            identifier,
+            frequency: parseInt(frequency), 
+            completedTable, 
+            futureTable 
+        }
+
+        API.addEmail(data, props.match.params.email || props.userEmail)
+            .then(() => {
+                setEntrySuccess(false);
+                setErrorMessage("");
+                setDbSuccess(true);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }
+
+    const checkForValidEntries = (value, table) => {
 
         if (!parseInt(frequency) || frequency < 1 || frequency > 30) {
+            setEntrySuccess(false);
             setErrorMessage("Please enter a valid email frequency");
-        } else if (!completedTable && !futureTable) {
+        } else if (!value && table === "completed" && !futureTable) {
+            setEntrySuccess(false);
             setErrorMessage("Please check a game type");
-        } else if (errorMessage === "Please change something to add another") {
+        } else if (!value && table === "future" && !completedTable) {
+            setEntrySuccess(false);
+            setErrorMessage("Please check a game type");
+        } else if (dbSuccess) {
             setErrorMessage("Please change something to add another");
+            setDbSuccess(false);
         } else {
-            const data = { 
-                category: category.toLowerCase(),
-                identifier,
-                frequency: parseInt(frequency), 
-                completedTable, 
-                futureTable 
-            }
-    
-            API.addEmail(data, props.match.params.email || props.userEmail)
-                .then(() => {
-                    setEntrySuccess(true);
-                    setErrorMessage("");
-                })
-                .catch((err) => {
-                    console.log(err.message);
-                });
+            setEntrySuccess(true);
+            setErrorMessage();
         }
-    };
+    }
 
     const handleCategoryChange = e => {
         setCategory(e.target.value);
         setErrorMessage("");
-        setEntrySuccess();
+        setDbSuccess(false);
 
         switch (e.target.value) {
             case "Team":
@@ -66,20 +80,19 @@ const NewSettingsForm = (props) => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        setEntrySuccess(false);
-        setErrorMessage("Please change something to add another");
+        checkForValidEntries();
     }
 
     const identifierChange = (value) => {
         setIdentifier(value);
         setErrorMessage("");
-        setEntrySuccess();
+        setDbSuccess(false);
     } 
 
     const frequencyChange = (e) => {
         const value = e.target.value;
-        setFrequency(value)
-        setEntrySuccess();
+        setFrequency(value);
+        setDbSuccess(false);
 
         if (parseInt(value) && value > 0 && value < 31) {
             setErrorMessage("");
@@ -88,18 +101,18 @@ const NewSettingsForm = (props) => {
 
     const futureChange = (e) => {
         setFuture(!futureTable);
-        setErrorMessage("");
-        setEntrySuccess();
+        checkForValidEntries(!futureTable, "future");
+        setDbSuccess(false);
     }
-
+    
     const completedChange = (e) => {
         setCompleted(!completedTable);
-        setErrorMessage("");
-        setEntrySuccess();
+        checkForValidEntries(!completedTable, "completed");
+        setDbSuccess(false);
     }
 
     return (
-        <Form className="my-4" style={{ width: "50vw", margin: "auto"}}>
+        <Form className="my-4" style={{ width: "30vw", minWidth: 285, margin: "auto"}}>
             <FormGroup>
                 {/* <Label for="categorySelect">Category</Label> */}
                 <Input type="select" name="select" id="categorySelect" onChange={handleCategoryChange} >
@@ -129,26 +142,21 @@ const NewSettingsForm = (props) => {
                     Future Games
                 </Label>
             </FormGroup>
-            {!entrySuccess ? 
-                <MaterialBtn className="my-3 border border-secondary bg-secondary text-white" onClick={handleSubmit}>Add</MaterialBtn>
-                :
-                <Link to={`/member/dashboard/${props.match.params.email || props.userEmail}`}>
+            <Grid container justify="space-between">
+                {!entrySuccess ? 
+                    <MaterialBtn className="my-3 border border-secondary bg-secondary text-white" onClick={handleClick}>Add</MaterialBtn>
+                    :
                     <MaterialBtn className="my-3 border border-success bg-success text-white" onClick={handleSubmit}>Add</MaterialBtn>
+                }
+                <Link to={`/member/dashboard/${props.match.params.email || props.userEmail}`}>
+                    <MaterialBtn color="primary" className="my-3 border">
+                        My Account
+                    </MaterialBtn>
                 </Link>
-            }
-            <Link to={`/`}>
-                <MaterialBtn color="primary" style={{ float: "right" }} className="my-3 border">
-                    Home
-                </MaterialBtn>
-            </Link>
-            {/* <Link to={`/member/dashboard/${props.match.params.email || props.userEmail}`}>
-                <MaterialBtn color="primary" style={{ float: "right" }} className="my-3 mx-4 border">
-                    Notifications
-                </MaterialBtn>
-            </Link> */}
+            </Grid>
             <FormGroup>
                 <FormText>
-                    {entrySuccess ? "Custom email added to your account." : "" }  
+                    {dbSuccess ? "Custom email added to your account." : "" }  
                     {errorMessage ? errorMessage : "" }  
                 </FormText>
             </FormGroup>

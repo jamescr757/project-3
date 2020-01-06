@@ -104,6 +104,7 @@ module.exports = {
         where: {
           email: req.params.email,
           nextEmail: moment().add(1, "days").format("YYYYMMDD")
+          // nextEmail: moment().format("YYYYMMDD")
         }
       })
       .then((data) => {

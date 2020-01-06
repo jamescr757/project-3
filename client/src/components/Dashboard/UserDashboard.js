@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     cardGrid: {
       paddingTop: theme.spacing(4),
       paddingBottom: theme.spacing(4),
-      minHeight: "55vh"
+      minHeight: "60vh"
     },
     noGames: {
         textAlign: "center"
