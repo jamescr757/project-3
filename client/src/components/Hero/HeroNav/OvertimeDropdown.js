@@ -15,17 +15,6 @@ export const OvertimeDropdown = (props) => {
     }
 
     return (
-        // <UncontrolledDropdown nav inNavbar>
-
-        //     <DropdownToggle nav caret>
-        //         Overtime
-        //     </DropdownToggle>
-
-        //     <DropdownMenu>
-        //         <Overtime {...props} />
-        //     </DropdownMenu>
-
-        // </UncontrolledDropdown>
         <div onClick={handleClick} style={{ display: "flex", alignItems: "center", marginLeft: 12 }}>
             <NavItem>
                 <Link 

@@ -5,7 +5,7 @@ import ScoreBoard from "../components/ScoreBoard";
 import moment from "moment";
 
 
-const Home = () => { 
+const Home = (props) => { 
 
   const [date, setDate] = useState(moment().subtract(1, "days").format("YYYYMMDD"));
 
@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <NavBar />
+      <NavBar {...props}/>
       <DateHero 
         date={moment(date).format("MM/DD/YYYY")} 
         onBackClick={handleBackClick} 

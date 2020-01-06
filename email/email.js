@@ -18,59 +18,54 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
     
     const emailHTML = (gameInfo) => {
         const messageHTML = [];
+        const idHash = [];
 
         gameInfo.forEach((game, index) => {
-            const { awayTeam, homeTeam, awayTeamRecord, homeTeamRecord, awayTeamScore, homeTeamScore, date } = game;
+            const { id, awayTeam, homeTeam, awayTeamRecord, homeTeamRecord, awayTeamScore, homeTeamScore, date } = game;
 
-            const teams = teamInfo.teamNameJoiner(homeTeam, awayTeam);
+            if (!idHash.includes(id)) {
+                idHash.push(id);
 
-            // let gameHighlight;
-            // axios.get(`http://localhost:3003/api/highlight/${teams}/date/${date}`)
-            //     .then((res) => {
-            //         gameHighlight = res.data[0].id.videoId;
-            //         console.log(gameHighlight);
-            //     })
-            //     .catch(error => console.log(error));
+                messageHTML.push(`
+                    <mj-wrapper padding="30px 0 2px 0">
+                        <mj-section padding="10px 0">
+                            <mj-group width="350px">
+                                <mj-column width="11%">
+                                    <mj-image align="left" padding="0" src="http://nhl-scores-757.herokuapp.com/images/${teamInfo.teamNameConverter(awayTeam)}.png" width="30px" />
+                                </mj-column>
+                                <mj-column width="60%">
+                                    <mj-text padding="0 5px" font-size="24px" text-transform="capitalize">${awayTeam}</mj-text>
+                                    <mj-text padding="4px 5px" font-size="12px" color="gray">(${awayTeamRecord})</mj-text>
+                                </mj-column>
+                                <mj-column width="27%">
+                                    <mj-text align="right" padding="0 10px" font-size="24px">${awayTeamScore}</mj-text>
+                                </mj-column>
+                            </mj-group>
+                        </mj-section>
+                        <mj-section padding="10px 0">
+                            <mj-group width="350px">
+                                <mj-column width="11%">
+                                    <mj-image align="left" padding="0" src="http://nhl-scores-757.herokuapp.com/images/${teamInfo.teamNameConverter(homeTeam)}.png" width="30px" />
+                                </mj-column>
+                                <mj-column width="60%">
+                                    <mj-text padding="0 5px" font-size="24px" text-transform="capitalize">${homeTeam}</mj-text>
+                                    <mj-text padding="4px 5px" font-size="12px" color="gray">(${homeTeamRecord})</mj-text>
+                                </mj-column>
+                                <mj-column width="27%">
+                                    <mj-text align="right" padding="0 10px" font-size="24px">${homeTeamScore}</mj-text>
+                                </mj-column>
+                            </mj-group>
+                        </mj-section>
+                        <mj-section padding="0">
+                            <mj-column>
+                                <mj-button padding="0 0 5px 0" inner-padding="10px 10px" border-radius="8px" href="http://nhl-scores-757.herokuapp.com/highlight/${teamInfo.teamNameJoiner(homeTeam, awayTeam)}/date/${date}">View extended highlights</mj-button>
+                            </mj-column>
+                        </mj-section>
+                    </mj-wrapper>
+                `) 
 
-            messageHTML.push(`
-                <mj-wrapper padding="30px 0 2px 0">
-                    <mj-section padding="10px 0">
-                        <mj-group width="350px">
-                            <mj-column width="11%">
-                                <mj-image align="left" padding="0" src="http://nhl-scores-757.herokuapp.com/images/${teamInfo.teamNameConverter(awayTeam)}.png" width="30px" />
-                            </mj-column>
-                            <mj-column width="60%">
-                                <mj-text padding="0 5px" font-size="24px" text-transform="capitalize">${awayTeam}</mj-text>
-                                <mj-text padding="4px 5px" font-size="12px" color="gray">(${awayTeamRecord})</mj-text>
-                            </mj-column>
-                            <mj-column width="27%">
-                                <mj-text align="right" padding="0 10px" font-size="24px">${awayTeamScore}</mj-text>
-                            </mj-column>
-                        </mj-group>
-                    </mj-section>
-                    <mj-section padding="10px 0">
-                        <mj-group width="350px">
-                            <mj-column width="11%">
-                                <mj-image align="left" padding="0" src="http://nhl-scores-757.herokuapp.com/images/${teamInfo.teamNameConverter(homeTeam)}.png" width="30px" />
-                            </mj-column>
-                            <mj-column width="60%">
-                                <mj-text padding="0 5px" font-size="24px" text-transform="capitalize">${homeTeam}</mj-text>
-                                <mj-text padding="4px 5px" font-size="12px" color="gray">(${homeTeamRecord})</mj-text>
-                            </mj-column>
-                            <mj-column width="27%">
-                                <mj-text align="right" padding="0 10px" font-size="24px">${homeTeamScore}</mj-text>
-                            </mj-column>
-                        </mj-group>
-                    </mj-section>
-                    <mj-section padding="0">
-                        <mj-column>
-                            <mj-button padding="0 0 5px 0" inner-padding="10px 10px" border-radius="8px" href="http://nhl-scores-757.herokuapp.com/highlight/${teamInfo.teamNameJoiner(homeTeam, awayTeam)}/date/${date}">View extended highlights</mj-button>
-                        </mj-column>
-                    </mj-section>
-                </mj-wrapper>
-            `) 
-
-            messageHTML.push(`<mj-divider width="350px"></mj-divider>`);
+                messageHTML.push(`<mj-divider width="350px"></mj-divider>`);
+            }
         })
 
         return messageHTML.join('');
@@ -79,7 +74,7 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
     const htmlOutput = mjml2html(`
             <mjml>
                 <mj-body>
-                ${emailHTML(gameInfo)}
+                    ${emailHTML(gameInfo)}
                 </mj-body>
             </mjml>
     `)

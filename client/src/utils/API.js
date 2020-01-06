@@ -42,5 +42,40 @@ export default {
   getHighlight: function(teams, date) {
     
     return axios.get(`/api/highlight/${teams}/date/${date}`);
+  },
+
+  checkUserEmail: function(email, password) {
+
+    return axios.post(`/api/user-info/check-email`, { email, password });
+  },
+
+  newUser: function(email, password) {
+
+    return axios.put(`/api/user-info/add-user`, { email, password });
+  },
+
+  grabUserPassword: function(email) {
+
+    return axios.get(`/api/user-info/grab-password/${email}`);
+  },
+
+  findUserData: function(email) {
+
+    return axios.get(`/api/email-data/${email}`);
+  },
+
+  deleteUserData: function(id) {
+
+    return axios.delete(`/api/email-data/id/${id}`);
+  },
+
+  updateUserData: function(id, colName, newValue) {
+
+    return axios.put(`/api/email-data/id/${id}/${colName}`, { newValue });
+  },
+
+  addEmail: function(data, email) {
+
+    return axios.post(`/api/email-data/${email}`, data);
   }
 };

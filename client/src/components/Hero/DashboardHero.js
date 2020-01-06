@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Title from "./Title/Title";
 import SubHeading from "./SubHeading";
 import HeroButtons from "./HeroButtons";
+import DashboardButtons from "./DashboardButtons";
 
 const useStyles = makeStyles(theme => ({
 
@@ -14,19 +15,19 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export const DateHero = (props) => {
+export const DashboardHero = (props) => {
     const classes = useStyles();
 
     return (
         <div className={classes.heroContent}>
             <Container maxWidth="sm">
                 <Title>
-                    NHL Scores
+                    Notifications
                 </Title>
                 <SubHeading>
-                    Scores and highlights from any date this season! 
+                    One email - only the content you want!
                 </SubHeading>
-                <HeroButtons {...props}/>
+                <DashboardButtons {...props}/>
             </Container>
         </div>
     );

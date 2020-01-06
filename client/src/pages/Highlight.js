@@ -36,7 +36,7 @@ const Highlight = (props) => {
 
     return (
       <React.Fragment>
-        <NavBar />
+        <NavBar {...props} />
         <HighlightHero date={date} description={highlightDescription} />
         <HighlightVideo gameHighlight={gameHighlight} />
       </React.Fragment>

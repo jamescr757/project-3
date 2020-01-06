@@ -8,7 +8,7 @@ const Category = (props) => {
 
   return (
     <React.Fragment>
-      <NavBar />
+      <NavBar {...props} />
       <CategoryHero {...props} />
       <CategoryScoreBoard {...props} />
     </React.Fragment>

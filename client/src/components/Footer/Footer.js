@@ -20,10 +20,10 @@ const Footer = () => {
                 NHL Scores
             </Typography>
             <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                Built with React and Material-UI
+                Built with React
             </Typography>
             <Typography variant="body2" color="textSecondary" align="center">
-                {'Copyright © '}{2019}
+                {'Copyright © '}{2020}
             </Typography>
         </footer>
     );
