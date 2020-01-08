@@ -1,6 +1,6 @@
-const db = require("../models");
-const Op = db.Sequelize.Op;
-const moment = require("moment");
+// const db = require("../models");
+// const Op = db.Sequelize.Op;
+// const moment = require("moment");
 
 module.exports = function emailScores(db) {
 
@@ -10,7 +10,8 @@ module.exports = function emailScores(db) {
             data.forEach((entry) => {
                 const { email } = entry.dataValues;
 
-                require("./completedController").emailScores(email, db, Op, moment)
+                require("./emailScores")(email);
+                // require("./completedController").emailScores(email, db, Op, moment)
             })
         })
         .catch(err => {

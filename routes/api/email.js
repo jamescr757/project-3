@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const completedController = require("../../controllers/completedController");
+const emailScoresNow = require("../../controllers/emailScoresNow");
 
 router.route("/:email")
-    .get(completedController.emailScores)
+    .get(emailScoresNow)
 
 module.exports = router;
