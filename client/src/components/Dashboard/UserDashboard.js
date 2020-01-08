@@ -49,6 +49,7 @@ export const UserDashboard = (props) => {
     const [reRender, setReRender] = useState(false);
     const [show, showArrows] = useState(false);
     const [showIndex, setShowIndex] = useState();
+    const [emailNowSuccess, setEmailNowSuccess] = useState(false);
 
     useEffect(() => {
 
@@ -120,6 +121,20 @@ export const UserDashboard = (props) => {
             })
     }
 
+    const sendEmailNow = () => {
+        API.sendEmailNow(userEmail)
+        .then((res) => {
+            if (res.data === "error") {
+                console.log("there's been an error sending email");
+            } else {
+                setEmailNowSuccess(true);
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
     return (
         <React.Fragment>
         <DashboardHero userEmail={userEmail} />
@@ -130,7 +145,7 @@ export const UserDashboard = (props) => {
                     item 
                     key={index} 
                     xs={12}
-                    sm={8}
+                    sm={12}
                     md={6}
                 >
                     <Card className={classes.card}>
@@ -220,6 +235,26 @@ export const UserDashboard = (props) => {
                     </Card>
                 </Grid>
                 ))}
+                <Grid 
+                    item  
+                    xs={12}
+                    sm={12}
+                    md={6}
+                >
+                    <Card className={classes.card}>
+                        <Grid container direction="column" alignItems="center">
+                            <CardContent className="p-4">
+                                <Grid item xs={12} >
+                                    { !emailNowSuccess ? 
+                                    <Button color="success" onClick={sendEmailNow}>Send Email Now</Button>
+                                    :
+                                    <Typography variant="h4" className="text-success">Email sent!</Typography>
+                                    }
+                                </Grid>
+                            </CardContent>
+                        </Grid>
+                    </Card>
+                </Grid>
                 {renderNoData()}
             </Grid>
         </Container>

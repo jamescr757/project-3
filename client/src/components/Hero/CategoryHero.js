@@ -8,6 +8,7 @@ import { TeamTitle } from "./Title/TeamTitle";
 import { ConferenceTitle } from "./Title/ConferenceTitle";
 import HeroNav from "./HeroNav/HeroNav";
 import { FilterRow } from "./Filters/FilterRow";
+import { DivisionTitle } from "./Title/DivisionTitle";
 
 const useStyles = makeStyles(theme => ({
 
@@ -42,7 +43,9 @@ export const CategoryHero = (props) => {
                 }
 
                 {category === "division" && 
-                    <Title>{identifier} Division</Title>
+                    <DivisionTitle
+                        identifier={identifier}
+                    />
                 }
 
 

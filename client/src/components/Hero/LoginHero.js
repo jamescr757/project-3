@@ -19,7 +19,7 @@ export const LoginHero = (props) => {
     return (
         <div className={classes.heroContent}>
             <Container maxWidth="md">
-                <Title>
+                <Title responsive={true}>
                     Member Login
                 </Title>
                 <SubHeading>

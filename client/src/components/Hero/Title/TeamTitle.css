@@ -1,0 +1,47 @@
+.id-page-logo {
+    height: 68px;
+    width: "auto";
+    margin-top: 4px;
+}
+
+@media only screen and (max-width: 839px) {
+    .id-page-logo {
+        height: 40px;
+        width: "auto";
+        margin-top: 0;
+    }
+
+    .id-logo-container {
+        padding: 12px 6px !important;
+    }
+
+    .hero-title-container {
+        padding: 10px 8px !important;
+    }
+
+    .hero-title-responsive {
+        font-size: 2.25rem !important;
+        margin-bottom: 20px !important;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .id-page-logo {
+        height: 33px;
+        width: "auto";
+        margin-top: 0;
+    }
+
+    .id-logo-container {
+        padding: 12px 0px !important;
+    }
+
+    .hero-title-container {
+        padding: 10px 8px !important;
+    }
+
+    .hero-title-responsive {
+        font-size: 1.75rem !important;
+        margin-bottom: 20px !important;
+    }
+}

@@ -9,6 +9,7 @@
 
 .hero-nav-item:hover {
     color: black;
+    text-decoration: none;
 }
 
 .hero-nav-active:hover {

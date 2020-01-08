@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import teamInfo from "../../../utils/teamInfo";
 import { DropdownItem } from "reactstrap";
 import { Link } from "react-router-dom";
+import "./Button.css"
 
 const useStyles = makeStyles(theme => ({
 
@@ -33,6 +34,7 @@ const TeamBtns = (props) => {
                         <Grid item key={index}>
                             <Link
                                 to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`}
+                                className="btn-link"
                             >
                                 <DropdownItem 
                                     className="team-dropdown-item"
@@ -57,6 +59,7 @@ const TeamBtns = (props) => {
                         <Grid item key={index} container spacing={1} className={index === metroTeams.length - 1 ? "mb-3" : ""}>
                             <Link
                                 to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`}
+                                className="btn-link"
                             >
                                 <DropdownItem 
                                     className="team-dropdown-item"
@@ -81,6 +84,7 @@ const TeamBtns = (props) => {
                         <Grid item key={index} container spacing={1} className={index === centralTeams.length - 1 ? "mb-3" : ""}>
                             <Link
                                 to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`}
+                                className="btn-link"
                             >
                                 <DropdownItem 
                                     className="team-dropdown-item"
@@ -105,6 +109,7 @@ const TeamBtns = (props) => {
                         <Grid item key={index} container spacing={1}>
                             <Link
                                 to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`}
+                                className="btn-link"
                             >
                                 <DropdownItem 
                                     className="team-dropdown-item"

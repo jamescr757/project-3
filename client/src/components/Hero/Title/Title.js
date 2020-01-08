@@ -1,5 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import "./TeamTitle.css"
 
 
 const Title = (props) => {
@@ -12,6 +13,7 @@ const Title = (props) => {
             color="textPrimary"
             gutterBottom
             style={{ textTransform: "capitalize" }}
+            className={props.responsive ? "hero-title-responsive" : ""}
         >
             {props.children}
         </Typography>

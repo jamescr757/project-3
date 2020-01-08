@@ -19,7 +19,7 @@ export const HighlightHero = (props) => {
     return (
         <div className={classes.heroContent}>
             <Container maxWidth="lg">
-                <Title>NHL Highlights</Title>
+                <Title responsive={true}>NHL Highlights</Title>
                 <SubHeading>
                     {props.description}
                 </SubHeading>

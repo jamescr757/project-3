@@ -2,12 +2,8 @@ import React from "react";
 import { Typography, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import CancelIcon from '@material-ui/icons/Cancel';
+import "./Button.css";
 
-const styles = {
-    filter: {
-        color: "black"
-    }
-}
 
 export const FilterRow = ({ table, days, category, ot, rival, identifier, location, outcome, sort }) => {
 
@@ -15,13 +11,13 @@ export const FilterRow = ({ table, days, category, ot, rival, identifier, locati
     const otBool = ot === "true" ? true : false;
 
     let message;
-    if (days === "7" && category === "team" && !otBool && !rivalBool && location === "all" && outcome === "all" && table === "completed") {
+    if (days === "7" && category === "team" && !otBool && !rivalBool && location === "all" && outcome === "all" && table === "completed" && sort === "desc") {
         message = "Scores from the past week"
-    } else if (days === "3" && category !== "team" && !otBool && !rivalBool && location === "all" && outcome === "all" && table === "completed") {
+    } else if (days === "3" && category !== "team" && !otBool && !rivalBool && location === "all" && outcome === "all" && table === "completed" && sort === "desc") {
         message = "Scores from the past 3 days"
-    } else if (days === "7" && category === "team" && location === "all" && table === "future") {
+    } else if (days === "7" && category === "team" && location === "all" && table === "future" && sort === "asc") {
         message = "Games over the next week"
-    } else if (days === "3" && category !== "team" && location === "all" && table === "future") {
+    } else if (days === "3" && category !== "team" && location === "all" && table === "future" && sort === "asc") {
         message = "Games over the next 3 days"
     }
 
@@ -55,8 +51,8 @@ export const FilterRow = ({ table, days, category, ot, rival, identifier, locati
                 { days !== "7" && category === "team" &&
                     <Grid item xs={4} sm={2} md={1} container justify="center" style={{textAlign: "center"}} >
                         <Link 
-                        style={ styles.filter }
-                        to={`/multiple/${category}/${table}/${identifier}/7/${location}/${outcome}/${rival}/${ot}/${sort}`}
+                          className="filter-btn-cancel"
+                          to={`/multiple/${category}/${table}/${identifier}/7/${location}/${outcome}/${rival}/${ot}/${sort}`}
                         >
                                 <CancelIcon />
                                 <span style={{ marginLeft: 4}}>{daysLogic()}</span>
@@ -66,8 +62,8 @@ export const FilterRow = ({ table, days, category, ot, rival, identifier, locati
                 { days !== "3" && category !== "team" &&
                     <Grid item xs={3} sm={2} md={1} container justify="center" >
                         <Link 
-                        style={ styles.filter }
-                        to={`/multiple/${category}/${table}/${identifier}/3/${location}/${outcome}/${rival}/${ot}/${sort}`}
+                          className="filter-btn-cancel"
+                          to={`/multiple/${category}/${table}/${identifier}/3/${location}/${outcome}/${rival}/${ot}/${sort}`}
                         >
                                 <CancelIcon />
                                 <span style={{ marginLeft: 4}}>{daysLogic()}</span>
@@ -77,8 +73,8 @@ export const FilterRow = ({ table, days, category, ot, rival, identifier, locati
                 { location !== "all" && 
                     <Grid item xs={3} sm={2} md={1} container justify="center">
                         <Link 
-                        style={ styles.filter }
-                        to={`/multiple/${category}/${table}/${identifier}/${days}/all/${outcome}/${rival}/${ot}/${sort}`}
+                          className="filter-btn-cancel"
+                          to={`/multiple/${category}/${table}/${identifier}/${days}/all/${outcome}/${rival}/${ot}/${sort}`}
                         >
                                 <CancelIcon />
                                 <span style={{ textTransform: "capitalize", marginLeft: 4 }}>
@@ -90,8 +86,8 @@ export const FilterRow = ({ table, days, category, ot, rival, identifier, locati
                 { outcome !== "all" && table === "completed" &&
                     <Grid item xs={3} sm={2} md={1} container justify="center">
                         <Link 
-                        style={ styles.filter }
-                        to={`/multiple/${category}/${table}/${identifier}/${days}/${location}/all/${rival}/${ot}/${sort}`}
+                          className="filter-btn-cancel"
+                          to={`/multiple/${category}/${table}/${identifier}/${days}/${location}/all/${rival}/${ot}/${sort}`}
                         >
                                 <CancelIcon />
                                 <span style={{ marginLeft: 4 }}>
@@ -103,8 +99,8 @@ export const FilterRow = ({ table, days, category, ot, rival, identifier, locati
                 { otBool && table === "completed" &&
                     <Grid item xs={2} sm={2} md={1} container justify="center">
                         <Link 
-                        style={ styles.filter }
-                        to={`/multiple/${category}/${table}/${identifier}/${days}/${location}/${outcome}/${rival}/false/${sort}`}
+                          className="filter-btn-cancel"
+                          to={`/multiple/${category}/${table}/${identifier}/${days}/${location}/${outcome}/${rival}/false/${sort}`}
                         >
                                 <CancelIcon />
                                 <span style={{ marginLeft: 4 }}>
@@ -116,8 +112,8 @@ export const FilterRow = ({ table, days, category, ot, rival, identifier, locati
                 { rivalBool && category !== "conference" &&
                     <Grid item xs={3} sm={2} md={1} container justify="center">
                         <Link 
-                        style={ styles.filter }
-                        to={`/multiple/${category}/${table}/${identifier}/${days}/${location}/${outcome}/false/${ot}/${sort}`}
+                          className="filter-btn-cancel"
+                          to={`/multiple/${category}/${table}/${identifier}/${days}/${location}/${outcome}/false/${ot}/${sort}`}
                         >
                                 <CancelIcon />
                                 <span style={{ marginLeft: 4 }}>
@@ -129,8 +125,8 @@ export const FilterRow = ({ table, days, category, ot, rival, identifier, locati
                 { table === "completed" && sort === "asc" &&
                     <Grid item xs={3} sm={2} md={1} container justify="center">
                         <Link 
-                        style={ styles.filter }
-                        to={`/multiple/${category}/${table}/${identifier}/${days}/${location}/${outcome}/${rival}/${ot}/desc`}
+                          className="filter-btn-cancel"
+                          to={`/multiple/${category}/${table}/${identifier}/${days}/${location}/${outcome}/${rival}/${ot}/desc`}
                         >
                                 <CancelIcon />
                                 <span style={{ marginLeft: 4 }}>
@@ -142,8 +138,8 @@ export const FilterRow = ({ table, days, category, ot, rival, identifier, locati
                 { table === "future" && sort === "desc" &&
                     <Grid item xs={3} sm={2} md={1} container justify="center">
                         <Link 
-                        style={ styles.filter }
-                        to={`/multiple/${category}/${table}/${identifier}/${days}/${location}/${outcome}/${rival}/${ot}/asc`}
+                          className="filter-btn-cancel"
+                          to={`/multiple/${category}/${table}/${identifier}/${days}/${location}/${outcome}/${rival}/${ot}/asc`}
                         >
                                 <CancelIcon />
                                 <span style={{ marginLeft: 4 }}>

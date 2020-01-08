@@ -28,6 +28,7 @@ const Home = (props) => {
       <NavBar {...props}/>
       <DateHero 
         date={moment(date).format("MM/DD/YYYY")} 
+        dateDay={moment(date).format("ddd")} 
         onBackClick={handleBackClick} 
         onForwardClick={handleForwardClick} 
         handleChange={handleChange}

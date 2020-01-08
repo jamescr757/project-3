@@ -87,5 +87,10 @@ export default {
   addEmail: function(data, email) {
 
     return axios.post(`/api/email-data/${email}`, data);
+  },
+
+  sendEmailNow: function(email) {
+
+    return axios.get(`/api/email/${email}`);
   }
 };

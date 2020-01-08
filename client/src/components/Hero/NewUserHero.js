@@ -19,7 +19,7 @@ export const NewUserHero = (props) => {
     return (
         <div className={classes.heroContent}>
             <Container maxWidth="md">
-                <Title>
+                <Title responsive={true}>
                     NHL Scores Member
                 </Title>
                 <SubHeading>

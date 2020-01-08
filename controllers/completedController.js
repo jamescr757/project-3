@@ -168,7 +168,7 @@ module.exports = {
             })
         })
         .then(()=>{
-          
+          res.send("success");
             setTimeout(() => {
               if (userGameInfo.length) {
                 // require("../email/email")(userGameInfo, email)

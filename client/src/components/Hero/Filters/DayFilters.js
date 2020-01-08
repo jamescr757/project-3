@@ -2,6 +2,7 @@ import React from 'react';
 import "./Filters.css"
 import { DropdownItem } from 'reactstrap';
 import { Link } from "react-router-dom";
+import "./Button.css"
 
 const classNames = require("classnames");
 
@@ -18,9 +19,10 @@ export default function DayFilters(props) {
                 <Link
                     key={index}
                     to={`/multiple/${props.category}/${props.table}/${props.identifier}/${dayValues[index]}/${props.location}/${props.outcome}/${props.rival}/${props.ot}/${props.sort}`}
+                    className="hero-nav-dropdown-item"    
                 >
                     <DropdownItem 
-                        className={classNames({ "active": props.days == dayValues[index] })}
+                        className={classNames({ "hero-nav-dropdown-active": props.days == dayValues[index], "hero-nav-dropdown-item": props.days })}
                     >
                         {label}
                     </DropdownItem>

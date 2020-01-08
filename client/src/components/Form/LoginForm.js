@@ -10,7 +10,7 @@ import "./Form.css"
 
 const LoginForm = (props) => {
 
-    const [email, setEmail] = useState();
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState();
     const [emailSuccess, setEmailSuccess] = useState(false);

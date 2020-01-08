@@ -20,7 +20,7 @@ export const AccountHero = (props) => {
     return (
         <div className={classes.heroContent}>
             <Container maxWidth="sm">
-                <Title>
+                <Title responsive={true}>
                     Account Details
                 </Title>
                 {/* <SubHeading>

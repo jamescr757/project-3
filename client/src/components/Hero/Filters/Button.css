@@ -1,0 +1,68 @@
+.btn-link:hover {
+    text-decoration: none !important;
+}
+
+.btn-past-future:hover {
+    text-decoration: none;
+}
+
+.btn-past-future:focus {
+    outline: none;
+}
+
+.team-dropdown-item:active {
+    background-color: lightgray !important;
+    color: black !important;
+}
+
+.team-dropdown-item:focus {
+    outline: none !important;
+}
+
+.member-dropdown-item:hover {
+    text-decoration: none;
+}
+
+.member-dropdown-item:active {
+    background-color: lightgray !important;
+    color: black !important;
+}
+
+.member-dropdown-item:focus {
+    outline: none !important;
+}
+
+.new-settings-add-btn:focus {
+    outline: none !important;
+}
+
+.hero-nav-dropdown-item:active {
+    background-color: lightgray !important;
+    color: black !important;
+}
+
+.hero-nav-dropdown-item:focus {
+    outline: none !important;
+}
+
+.hero-nav-dropdown-item:hover {
+    text-decoration: none !important;
+}
+
+.hero-nav-dropdown-active {
+    font-weight: 600 !important;
+    text-decoration: underline !important;
+    /* background-color: lightgray !important; */
+}
+
+.filter-btn-cancel:hover {
+    text-decoration: none !important;
+}
+
+.filter-btn-cancel {
+    color: black !important;
+}
+
+.account-btn-link:hover {
+    text-decoration: none !important;
+}

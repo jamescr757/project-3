@@ -15,9 +15,11 @@ export default function HomeAway(props) {
             return (
                 <Link 
                     key={index}
-                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${label.toLowerCase()}/${props.outcome}/${props.rival}/${props.ot}/${props.sort}`}>
+                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${label.toLowerCase()}/${props.outcome}/${props.rival}/${props.ot}/${props.sort}`}
+                    className="hero-nav-dropdown-item"    
+                >
                     <DropdownItem 
-                        className={classNames({ "active": props.location === label.toLowerCase() })}
+                        className={classNames({ "hero-nav-dropdown-active": props.location === label.toLowerCase(), "hero-nav-dropdown-item": props.location })}
                     >
                         {label}
                     </DropdownItem>

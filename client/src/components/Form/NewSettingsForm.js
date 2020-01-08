@@ -7,6 +7,7 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Button as MaterialBtn, Grid, Container } from "@material-ui/core";
 import { NewSettingHero } from "../Hero/NewSettingHero";
+import "../Hero/Filters/Button.css"
 
 const NewSettingsForm = (props) => {
 
@@ -170,11 +171,11 @@ const NewSettingsForm = (props) => {
                     </FormGroup>
                     <Grid container justify="space-between">
                         {!entrySuccess ? 
-                            <MaterialBtn className="my-3 border border-secondary bg-secondary text-white" onClick={handleClick}>Add</MaterialBtn>
+                            <MaterialBtn className="my-3 border border-secondary bg-secondary text-white new-settings-add-btn" onClick={handleClick}>Add</MaterialBtn>
                             :
-                            <MaterialBtn className="my-3 border border-success bg-success text-white" onClick={handleSubmit}>Add</MaterialBtn>
+                            <MaterialBtn className="my-3 border border-success bg-success text-white new-settings-add-btn" onClick={handleSubmit}>Add</MaterialBtn>
                         }
-                        <Link to={`/member/dashboard/${props.match.params.email || props.userEmail}`}>
+                        <Link to={`/member/dashboard/${props.match.params.email || props.userEmail}`} className="account-btn-link">
                             <MaterialBtn color="primary" className="my-3 border">
                                 My Account
                             </MaterialBtn>

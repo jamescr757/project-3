@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ChangePage from "../ChangePage";
 import { Link } from "react-router-dom";
 import "./Filters.css"
+import "./Button.css";
 
 const classNames = require("classnames");
 
@@ -22,14 +23,14 @@ const PastFutureBtns = (props) => {
         <Grid container spacing={2} justify="center">
             
             <Grid item>
-                <Link to={`/multiple/${props.category}/completed/${props.identifier}/${props.days}/${props.location}/${props.outcome}/${props.rival}/${props.ot}/desc`}>
-                    <Button className={pastBtnBorder}>Past</Button>
+                <Link to={`/multiple/${props.category}/completed/${props.identifier}/${props.days}/${props.location}/${props.outcome}/${props.rival}/${props.ot}/desc`} className="btn-past-future">
+                    <Button className={pastBtnBorder + " btn-past-future"}>Past</Button>
                 </Link>
             </Grid>
 
             <Grid item>
-                <Link to={`/multiple/${props.category}/future/${props.identifier}/${props.days}/${props.location}/${props.outcome}/${props.rival}/${props.ot}/asc`}>
-                    <Button className={futureBtnBorder}>Future</Button>
+                <Link to={`/multiple/${props.category}/future/${props.identifier}/${props.days}/${props.location}/${props.outcome}/${props.rival}/${props.ot}/asc`} className="btn-past-future">
+                    <Button className={futureBtnBorder + " btn-past-future"}>Future</Button>
                 </Link>
             </Grid>
 

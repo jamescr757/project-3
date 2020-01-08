@@ -19,7 +19,7 @@ export const NewSettingHero = (props) => {
     return (
         <div className={classes.heroContent}>
             <Container maxWidth="md">
-                <Title>
+                <Title responsive={true}>
                     Add Notification
                 </Title>
                 <SubHeading>

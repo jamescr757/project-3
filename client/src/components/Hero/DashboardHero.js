@@ -20,7 +20,7 @@ export const DashboardHero = (props) => {
     return (
         <div className={classes.heroContent}>
             <Container maxWidth="sm">
-                <Title>
+                <Title responsive={true}>
                     Notifications
                 </Title>
                 <SubHeading>

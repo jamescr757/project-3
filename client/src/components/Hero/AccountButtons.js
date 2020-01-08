@@ -20,12 +20,12 @@ const AccountButtons = (props) => {
         <div className={classes.heroButtons}>
             <Grid container spacing={5} justify="center">
                 <Grid item>
-                    <Link to={`/member/new/${props.userEmail}`}>
+                    <Link to={`/member/new/${props.userEmail}`} className="account-btn-link">
                         <Button color="primary">Add Notification</Button>
                     </Link>
                 </Grid>
                 <Grid item>
-                    <Link to={`/member/dashboard/${props.userEmail}`}>
+                    <Link to={`/member/dashboard/${props.userEmail}`} className="account-btn-link">
                         <Button color="primary">Account Home</Button>
                     </Link>
                 </Grid>
