@@ -18,7 +18,7 @@ module.exports = {
 
   findGamesByCategory: function(req, res) {
 
-    const { category, days, identifier, location, rival } = req.params;
+    const { category, days, identifier, location, rival, sort } = req.params;
 
     const searchTeam = teamInfo.teamNameDehyphenator(identifier);
 
@@ -62,7 +62,7 @@ module.exports = {
     db.Future
       .findAll({
           where: whereObj,
-          order: [[ "date", "ASC" ]]
+          order: [[ "date", sort.toUpperCase() ]]
       })
       .then(scores => res.json(scores))
       .catch(err => {

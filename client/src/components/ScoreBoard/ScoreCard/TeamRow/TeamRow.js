@@ -49,7 +49,6 @@ function TeamRow({ team, winner, loser, teamScore, teamRecord }) {
                 </Grid>
 
             </Grid>
-
             <Grid 
                 item
                 xs={1}
@@ -59,7 +58,7 @@ function TeamRow({ team, winner, loser, teamScore, teamRecord }) {
                     loser={loser}
                     winner={winner}
                     teamScore={teamScore}
-                    />
+                />
             </Grid>
         </React.Fragment>
     );

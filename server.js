@@ -25,14 +25,26 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-db.sequelize.sync(syncOptions).then(() => {
+db.sequelize.sync(syncOptions)
+  .then(() => {
 
-  require("./scrape/newCompleted")(db);
-  require("./scrape/deleteFuture")(db);
-  // require("./scrape/allCompleted")(db);
-  // require("./scrape/allFuture")(db);
-  app.listen(PORT, function() {
-    console.log(`🌎 ==> API server now on port ${PORT}!`);
+    require("./scrape/newCompleted")(db);
+    // require("./scrape/deleteFuture")(db);
+    // require("./scrape/allCompleted")(db);
+    // require("./scrape/allFuture")(db);
+
+    app.listen(PORT, function() {
+      console.log(`🌎 ==> API server now on port ${PORT}!`);
+    });
+  })
+  .then(() => {
+    setTimeout(() => {
+      require("./controllers/emailNewsletter")(db);
+    }, 5 * 60 * 1000)
+  })
+  .then(() => {
+    setTimeout(() => {
+      require("./controllers/updateNextEmail")(db);
+    }, 10 * 60 * 1000)
   });
 
-});

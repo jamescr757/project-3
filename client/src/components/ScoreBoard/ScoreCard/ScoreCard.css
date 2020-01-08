@@ -20,6 +20,20 @@
     text-transform: capitalize;
 }
 
+a .loser:hover {
+    text-decoration: underline;
+    text-decoration-color: gray;
+}
+
+a .winner:hover {
+    text-decoration: underline;
+    text-decoration-color: black;
+}
+
+.MuiSvgIcon-fontSizeLarge {
+    font-size: 30px !important;
+}
+
 .future {
     color: black;
     text-transform: capitalize;

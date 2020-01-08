@@ -4,7 +4,7 @@ const completedController = require("../../controllers/completedController");
 router.route("/date/:date")
     .get(completedController.findByDateAnyTeam)
 
-router.route("/:category/:identifier/:days/:location/:outcome/:rival/:ot")
+router.route("/:category/:identifier/:days/:location/:outcome/:rival/:ot/:sort")
     .get(completedController.findScoresByCategory)
 
 module.exports = router;

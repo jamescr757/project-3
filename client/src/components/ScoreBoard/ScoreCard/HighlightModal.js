@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     paper: {
         position: 'absolute',
         width: 424,
-        minHeight: 310,
+        minHeight: 300,
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
@@ -66,7 +66,8 @@ const HighlightModal = ({ gameHighlight, open, onClose, awayTeam, homeTeam }) =>
             <div style={modalStyle} className={classes.paper}>
                 <h2
                     id="modalTitle"
-                    className={classes.modalTitle}
+                    className={classes.modalTitle + " mb-3"}
+                    style={{ fontSize: 24 }}
                     >
                         {awayTeam} @ {homeTeam}
                 </h2>

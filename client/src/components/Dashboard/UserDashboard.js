@@ -140,7 +140,7 @@ export const UserDashboard = (props) => {
                                 <CardTitle category={email.category} identifier={email.identifier} />
                                 <List className="pb-0">
                                     <ListItem>
-                                        <ListItemIcon style={{ cursor: "pointer" }}>
+                                        <ListItemIcon>
                                             <ScheduleIcon style={{ cursor: "pointer" }}
                                             onClick={()=>handleScheduleClick(index)}  />
                                         </ListItemIcon>

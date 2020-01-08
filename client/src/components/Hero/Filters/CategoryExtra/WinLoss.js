@@ -16,7 +16,7 @@ export default function WinLoss(props) {
             return (
                 <Link
                     key={index}
-                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${props.location}/${btnValues[index]}/${props.rival}/${props.ot}`}
+                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${props.location}/${btnValues[index]}/${props.rival}/${props.ot}/${props.sort}`}
                 >
                     <DropdownItem
                         className={classNames({ "active": props.outcome === btnValues[index] })}

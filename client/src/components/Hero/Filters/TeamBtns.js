@@ -26,13 +26,13 @@ const TeamBtns = (props) => {
 
     return (
         <Grid container spacing={1} justify="space-evenly">
-            <Grid item container xs={3} direction="column" justify="flex-start" spacing={1}>
+            <Grid item container md={3} xs={12} sm={6} direction="column" justify="flex-start" spacing={1} className="mb-3">
 
                 {atlanticTeams.map((team, index) => {
                     return (
                         <Grid item key={index}>
                             <Link
-                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false`}
+                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`}
                             >
                                 <DropdownItem 
                                     className="team-dropdown-item"
@@ -50,13 +50,13 @@ const TeamBtns = (props) => {
                 })}
 
             </Grid>
-            <Grid item container xs={3} direction="column" justify="flex-start" spacing={2}>
+            <Grid item container xs={12} sm={6} md={3} direction="column" justify="flex-start" spacing={2}>
                 
                 {metroTeams.map((team, index) => {
                     return (
-                        <Grid item key={index} container spacing={1}>
+                        <Grid item key={index} container spacing={1} className={index === metroTeams.length - 1 ? "mb-3" : ""}>
                             <Link
-                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false`}
+                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`}
                             >
                                 <DropdownItem 
                                     className="team-dropdown-item"
@@ -74,13 +74,13 @@ const TeamBtns = (props) => {
                 })}
 
             </Grid>
-            <Grid item container xs={3} direction="column" justify="flex-start" spacing={2}>
+            <Grid item container xs={12} sm={6} md={3} direction="column" justify="flex-start" spacing={2}>
 
                 {centralTeams.map((team, index) => {
                     return (
-                        <Grid item key={index} container spacing={1}>
+                        <Grid item key={index} container spacing={1} className={index === centralTeams.length - 1 ? "mb-3" : ""}>
                             <Link
-                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false`}
+                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`}
                             >
                                 <DropdownItem 
                                     className="team-dropdown-item"
@@ -98,13 +98,13 @@ const TeamBtns = (props) => {
                 })}
 
             </Grid>
-            <Grid item container xs={3} direction="column" justify="flex-start" spacing={2}>
+            <Grid item container xs={12} sm={6} md={3} direction="column" justify="flex-start" spacing={2}>
             
                 {pacificTeams.map((team, index) => {
                     return (
                         <Grid item key={index} container spacing={1}>
                             <Link
-                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false`}
+                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`}
                             >
                                 <DropdownItem 
                                     className="team-dropdown-item"

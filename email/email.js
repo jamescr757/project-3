@@ -14,7 +14,17 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
           user: process.env.EMAIL,
           pass: process.env.EMAIL_PASS
         }
-      });
+    });
+
+    const gameDateLogic = (date, loser, overtime) => {
+        if (loser && overtime) {
+            return `${moment(date).format("ddd M/D")} - Final/OT`
+        } else if (loser && !overtime) {
+            return `${moment(date).format("ddd M/D")} - Final`
+        } else {
+            return `${moment(date).format("dddd M/D")}`
+        }
+    }
 
     
     const emailHTML = (gameInfo) => {
@@ -22,7 +32,7 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
         const idHash = [];
 
         gameInfo.forEach((game, index) => {
-            const { id, awayTeam, homeTeam, awayTeamRecord, homeTeamRecord, awayTeamScore, homeTeamScore, date, loser } = game;
+            const { id, awayTeam, homeTeam, awayTeamRecord, homeTeamRecord, awayTeamScore, homeTeamScore, date, loser, overtime } = game;
 
             const homeColor = homeTeam === loser ? "gray" : "black";
             const awayColor = awayTeam === loser ? "gray" : "black";
@@ -34,7 +44,7 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
                     <mj-wrapper padding="30px 0 2px 0">
                         <mj-section padding="0">
                             <mj-column>
-                                <mj-text align="center" padding="5px 0" font-size="18px">${moment(date).format("dddd M/D")}</mj-text>
+                                <mj-text align="center" padding="5px 0" font-size="18px">${gameDateLogic(date, loser, overtime)}</mj-text>
                             </mj-column>
                         </mj-section>
                         <mj-section padding="10px 0">
@@ -69,18 +79,18 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
                 
                 if (loser) {
                     messageHTML.push(`
-                            <mj-section padding="0">
+                            <mj-section padding="0 0 0 0">
                                 <mj-column>
-                                    <mj-button background-color="#4aad54" padding="0 0 5px 0" inner-padding="10px 10px" border-radius="8px" href="http://nhl-scores-757.herokuapp.com/highlight/${teamInfo.teamNameJoiner(homeTeam, awayTeam)}/date/${date}">View extended highlights</mj-button>
+                                    <mj-button font-size="16px" background-color="white" color="blue" padding="0 0 -5px 0" text-decoration="underline" border-radius="8px" href="http://nhl-scores-757.herokuapp.com/highlight/${teamInfo.teamNameJoiner(homeTeam, awayTeam)}/date/${date}">View Highlights</mj-button>
                                 </mj-column>
                             </mj-section>
                         </mj-wrapper>
                     `);
                 } else {
                     messageHTML.push(`
-                            <mj-section padding="0">
+                            <mj-section padding="0 0 0 0">
                                 <mj-column>
-                                    <mj-button background-color="#4aad54" padding="0 0 5px 0" inner-padding="10px 10px" border-radius="8px" href="https://seatgeek.com/${teamInfo.teamFullName(homeTeam)}-tickets}">View tickets</mj-button>
+                                    <mj-button font-size="16px" background-color="white" color="blue" padding="0 0 -5px 0" text-decoration="underline" border-radius="8px" href="https://seatgeek.com/${teamInfo.teamFullName(homeTeam)}-tickets}">View Tickets</mj-button>
                                 </mj-column>
                             </mj-section>
                         </mj-wrapper>
@@ -91,7 +101,11 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
             }
         })
 
-        return messageHTML.join('');
+        if (!messageHTML.length) {
+            return `<mj-text align="left" padding="10px 0" font-size="18px">There were no games to update you about</mj-text>`
+        } else {
+            return messageHTML.join('');
+        }
     }
 
     const htmlOutput = mjml2html(`

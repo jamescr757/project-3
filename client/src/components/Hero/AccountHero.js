@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from '@material-ui/core/styles';
 import Title from "./Title/Title";
 import SubHeading from "./SubHeading";
-import DashboardButtons from "./DashboardButtons";
+import AccountButtons from "./AccountButtons";
 
 const useStyles = makeStyles(theme => ({
 
@@ -14,19 +14,19 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export const DashboardHero = (props) => {
+export const AccountHero = (props) => {
     const classes = useStyles();
 
     return (
         <div className={classes.heroContent}>
             <Container maxWidth="sm">
                 <Title>
-                    Notifications
+                    Account Details
                 </Title>
-                <SubHeading>
+                {/* <SubHeading>
                     One email - only the content you want!
-                </SubHeading>
-                <DashboardButtons {...props}/>
+                </SubHeading> */}
+                <AccountButtons {...props}/>
             </Container>
         </div>
     );

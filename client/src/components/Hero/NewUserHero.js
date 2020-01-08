@@ -3,7 +3,6 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from '@material-ui/core/styles';
 import Title from "./Title/Title";
 import SubHeading from "./SubHeading";
-import DashboardButtons from "./DashboardButtons";
 
 const useStyles = makeStyles(theme => ({
 
@@ -14,19 +13,18 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export const DashboardHero = (props) => {
+export const NewUserHero = (props) => {
     const classes = useStyles();
 
     return (
         <div className={classes.heroContent}>
-            <Container maxWidth="sm">
+            <Container maxWidth="md">
                 <Title>
-                    Notifications
+                    NHL Scores Member
                 </Title>
                 <SubHeading>
-                    One email - only the content you want!
+                    Receive customized emails with only the games you want
                 </SubHeading>
-                <DashboardButtons {...props}/>
             </Container>
         </div>
     );

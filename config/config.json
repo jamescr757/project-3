@@ -1,9 +1,9 @@
 {
     "development": {
-      "username": "root",
+      "username": null,
       "password": null,
-      "database": "nhlScores1920",
-      "host": "localhost",
+      "database": null,
+      "host": "z12itfj4c1vgopf8.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       "dialect": "mysql"
     },
     "test": {

@@ -7,9 +7,13 @@ const baseQuery = `https://www.googleapis.com/youtube/v3/search?part=snippet&key
 module.exports = {
     findHighlight: function(req, res) {
 
-        const date = moment(req.params.date).format("MM-DD-YY");
+        const dateMonth = moment(req.params.date, "YYYYMMDD").format("MMM.");
+        const dateDay = moment(req.params.date, "YYYYMMDD").format("D,");
+        const dateYear = moment(req.params.date, "YYYYMMDD").format("YYYY");
 
-        const query = baseQuery + req.params.teams + "%20" + date;
+        const query = baseQuery + req.params.teams + "%20" + dateMonth + "%20" + dateDay + "%20" + dateYear;
+
+        console.log(query);
 
         axios.get(query)
             .then(response => {

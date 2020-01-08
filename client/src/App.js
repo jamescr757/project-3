@@ -22,7 +22,8 @@ const App = () => {
             <Route exact path="/member/:type" component={Member} />
             {/* <Route exact path="/member/:email" component={MemberPreferences} /> */}
             <Route exact path="/member/:type/:email" component={NewMemberPreferences} />
-            <Route exact path="/multiple/:category/:table/:identifier/:days/:location/:outcome/:rival/:ot" component={Category} />
+            <Route exact path="/multiple/:category/:table/:identifier/:days/:location/:outcome/:rival/:ot/:sort" component={Category} />
+            <Route component={Home} />
           </Switch>
         </Router>
 

@@ -9,6 +9,7 @@ import GameAction from "./GameAction";
 import TeamRow from "./TeamRow";
 import CardTitle from "./CardTitle/CardTitle";
 import HighlightModal from "./HighlightModal";
+import ScoreArrow from "./TeamRow/ScoreArrow";
 import "./ScoreCard.css"
 import moment from "moment";
 
@@ -38,6 +39,7 @@ const ScoreCard = (props) => {
 
         API.getHighlight(teams, date)
             .then((res) => {
+                console.log(res.data[0]);
                 setGameHighlight(res.data[0].id.videoId)
             })
             .catch(error => console.log(error));
@@ -75,15 +77,34 @@ const ScoreCard = (props) => {
                             xs={12} 
                             container
                             justify="space-between"
+                            className="pr-0"
                             >
+                                <Grid
+                                  item
+                                  xs={11}
+                                  container
+                                  justify="space-between"
+                                >
+                                    <TeamRow 
+                                    team={awayTeam}
+                                    winner={winner}
+                                    loser={loser}
+                                    teamScore={awayTeamScore}
+                                    teamRecord={awayTeamRecord}
+                                    />
+                                </Grid>
 
-                            <TeamRow 
-                                team={awayTeam}
-                                winner={winner}
-                                loser={loser}
-                                teamScore={awayTeamScore}
-                                teamRecord={awayTeamRecord}
-                                />
+                                <Grid
+                                  item
+                                  xs={1}
+                                  container
+                                  justify="flex-end"
+                                >
+                                    <ScoreArrow 
+                                        team={awayTeam}
+                                        winner={winner}
+                                    />
+                                </Grid>
                             
                         </Grid>
 
@@ -92,15 +113,35 @@ const ScoreCard = (props) => {
                             xs={12} 
                             container
                             justify="space-between"
+                            className="pr-0"
                             >
 
-                            <TeamRow 
-                                team={homeTeam}
-                                winner={winner}
-                                loser={loser}
-                                teamScore={homeTeamScore}
-                                teamRecord={homeTeamRecord}
-                                />
+                                <Grid
+                                  item
+                                  xs={11}
+                                  container
+                                  justify="space-between"
+                                >
+                                    <TeamRow 
+                                    team={homeTeam}
+                                    winner={winner}
+                                    loser={loser}
+                                    teamScore={homeTeamScore}
+                                    teamRecord={homeTeamRecord}
+                                    />
+                                </Grid>
+
+                                <Grid
+                                  item
+                                  xs={1}
+                                  container
+                                  justify="flex-end"
+                                >
+                                    <ScoreArrow 
+                                        team={homeTeam}
+                                        winner={winner}
+                                    />
+                                </Grid>
 
                         </Grid>
 

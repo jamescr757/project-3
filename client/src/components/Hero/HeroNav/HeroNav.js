@@ -18,6 +18,7 @@ import { LocationDropdown } from "./LocationDropdown";
 import { ResultDropdown } from "./ResultDropdown";
 import { RivalDropdown } from "./RivalDropdown";
 import { OvertimeDropdown } from "./OvertimeDropdown";
+import { SortDropdown } from "./SortDropdown";
 
 const HeroNav = (props) => {
   
@@ -42,6 +43,8 @@ const HeroNav = (props) => {
             {props.table === "completed" && <OvertimeDropdown {...props} />}
 
             {props.category === "conference" || <RivalDropdown {...props} />}
+
+            <SortDropdown {...props} />
 
           </Nav>
           {/* <NavbarText>Simple Text</NavbarText> */}

@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from '@material-ui/core/styles';
 import Title from "./Title/Title";
-import Button from "@material-ui/core/Button";
-import ChangePage from "./ChangePage";
 import PastFutureBtns from "./Filters/PastFutureBtns";
-import DayRadio from "./Filters/DayFilters";
-import CategoryExtra from "./Filters/CategoryExtra/CategoryExtra";
 import teamInfo from "../../utils/teamInfo";
 import { TeamTitle } from "./Title/TeamTitle";
 import { ConferenceTitle } from "./Title/ConferenceTitle";
 import HeroNav from "./HeroNav/HeroNav";
+import { FilterRow } from "./Filters/FilterRow";
 
 const useStyles = makeStyles(theme => ({
 
@@ -51,6 +48,8 @@ export const CategoryHero = (props) => {
 
                 <PastFutureBtns {...props.match.params} />
                 <HeroNav {...props.match.params} />
+
+                <FilterRow {...props.match.params} />
             </Container>
         </div>
     );

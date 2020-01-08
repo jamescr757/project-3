@@ -3,7 +3,6 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from '@material-ui/core/styles';
 import Title from "./Title/Title";
 import SubHeading from "./SubHeading";
-import DashboardButtons from "./DashboardButtons";
 
 const useStyles = makeStyles(theme => ({
 
@@ -14,19 +13,18 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export const DashboardHero = (props) => {
+export const LoginHero = (props) => {
     const classes = useStyles();
 
     return (
         <div className={classes.heroContent}>
-            <Container maxWidth="sm">
+            <Container maxWidth="md">
                 <Title>
-                    Notifications
+                    Member Login
                 </Title>
                 <SubHeading>
-                    One email - only the content you want!
+                    Thanks for being a member!
                 </SubHeading>
-                <DashboardButtons {...props}/>
             </Container>
         </div>
     );

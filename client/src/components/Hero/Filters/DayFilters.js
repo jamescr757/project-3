@@ -17,7 +17,7 @@ export default function DayFilters(props) {
             return (
                 <Link
                     key={index}
-                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${dayValues[index]}/${props.location}/${props.outcome}/${props.rival}/${props.ot}`}
+                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${dayValues[index]}/${props.location}/${props.outcome}/${props.rival}/${props.ot}/${props.sort}`}
                 >
                     <DropdownItem 
                         className={classNames({ "active": props.days == dayValues[index] })}

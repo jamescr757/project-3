@@ -162,7 +162,7 @@ module.exports = {
             case "blues":
                 return "stl"
             case "jets":
-                return "win"
+                return "wpg"
             case "ducks":
                 return "ana"
             case "coyotes":

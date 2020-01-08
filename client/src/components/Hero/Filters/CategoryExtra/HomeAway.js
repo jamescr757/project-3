@@ -15,7 +15,7 @@ export default function HomeAway(props) {
             return (
                 <Link 
                     key={index}
-                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${label.toLowerCase()}/${props.outcome}/${props.rival}/${props.ot}`}>
+                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${label.toLowerCase()}/${props.outcome}/${props.rival}/${props.ot}/${props.sort}`}>
                     <DropdownItem 
                         className={classNames({ "active": props.location === label.toLowerCase() })}
                     >

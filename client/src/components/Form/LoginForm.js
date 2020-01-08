@@ -2,17 +2,22 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
+import { LoginHero } from "../Hero/LoginHero";
+import { Container } from "@material-ui/core";
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import "./Form.css"
 
 const LoginForm = (props) => {
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState();
     const [emailSuccess, setEmailSuccess] = useState(false);
     const [passwordSuccess, setPasswordSuccess] = useState(false);
     const [passwordMatch, setPasswordMatch] = useState();
     const [showUserMessage, setShowUserMessage] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const checkAndSetEmail = (text) => {
         setEmail(text);
@@ -22,22 +27,20 @@ const LoginForm = (props) => {
             API.grabUserPassword(text)
             .then(res => {
                 if (res.data === "error") {
-                    setError(true)
                     setErrorMessage("There's something wrong with the email you entered")
                     setEmailSuccess(false)
                 } else if (!res.data) {
-                    setError(true)
                     setErrorMessage("That email is not in our system")
                     setEmailSuccess(false)
                 } else {
-                    setError(false)
+                    setErrorMessage()
                     setEmailSuccess(true)
                     setShowUserMessage(true)
                     setPasswordMatch(res.data.password)
                 }
             })
         } else {
-            setError(false)
+            setErrorMessage()
             setEmailSuccess(false)
         }
     }
@@ -45,14 +48,13 @@ const LoginForm = (props) => {
     const checkAndSetPassword = (text) => {
         setPassword(text);
         setShowUserMessage(false);
-        setError(false);
+        setErrorMessage();
 
         if (!emailSuccess) {
-            setError(true)
             setErrorMessage("Please enter a valid email");
         } else if (text === passwordMatch) {
             setPasswordSuccess(true);
-            setError(false);
+            setErrorMessage();
         } else {
             setPasswordSuccess(false);
         }
@@ -60,34 +62,43 @@ const LoginForm = (props) => {
 
     const handleClick = event => {
         event.preventDefault();
-        setError(true)
         setErrorMessage("Password is incorrect");
     }
 
     return (
-        <Form className="my-4" style={{ width: "50vw", margin: "auto"}}>
-            <FormGroup>
-                <Label for="email">Email</Label>
-                <Input type="email" name="email" id="email" placeholder="" onChange={e => checkAndSetEmail(e.target.value)} />
-            </FormGroup>
-            <FormGroup>
-                <Label for="password">Password</Label>
-                <Input type="password" name="password" id="password" placeholder="" onChange={e => checkAndSetPassword(e.target.value)} />
-            </FormGroup>
-            <FormGroup>
-                <FormText color="muted">
-                    {error ? errorMessage : ""}
-                    {showUserMessage ? "Thanks for being a member! Please enter your password." : "" }
-                </FormText>
-            </FormGroup>
-            {!passwordSuccess ?  
-                <Button color={password.length > 5 ? "success" : "secondary"} onClick={handleClick}>Login</Button>
-                :
-                <Link to={`/member/dashboard/${email}`}>
-                    <Button color="success">Login</Button>
-                </Link>
-            }
-        </Form>
+        <React.Fragment>
+            <LoginHero />
+            <Container style={{ minHeight: 600 }}>
+                <Form className="my-5" style={{ width: "25vw", minWidth: 285, margin: "auto"}}>
+                    <FormGroup>
+                        <Label for="email">Email</Label>
+                        <Input type="email" name="email" id="email" placeholder="" onChange={e => checkAndSetEmail(e.target.value)} />
+                    </FormGroup>
+                    <FormGroup className="password-input-group">
+                        <Label for="password">Password</Label>
+                        <Input type={showPassword ? "text" : "password"} name="password" id="password" placeholder="" onChange={e => checkAndSetPassword(e.target.value)} />
+                        { showPassword ? 
+                            <VisibilityOffIcon className="password-icon" fontSize="large" onClick={()=>setShowPassword(false)} />
+                            :
+                            <VisibilityIcon className="password-icon" fontSize="large" onClick={()=>setShowPassword(true)} />
+                        }
+                    </FormGroup>
+                    {!passwordSuccess ?  
+                        <Button color={password.length > 5 ? "success" : "secondary"} onClick={handleClick}>Login</Button>
+                        :
+                        <Link to={`/member/dashboard/${email}`}>
+                            <Button color="success">Login</Button>
+                        </Link>
+                    }
+                    <FormGroup>
+                        <FormText color="muted mt-3" style={{ fontSize: 16 }}>
+                            {errorMessage ? errorMessage : ""}
+                            {showUserMessage ? "That email is in our system!" : "" }
+                        </FormText>
+                    </FormGroup>
+                </Form>
+            </Container>
+        </React.Fragment>
     );
 }
 

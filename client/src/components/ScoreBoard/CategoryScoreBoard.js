@@ -36,7 +36,7 @@ const CategoryScoreBoard = (props) => {
 
     const [gameInfo, setGameInfo] = useState([]);
 
-    const { category, table, identifier, days, location, outcome, rival, ot } = props.match.params
+    const { category, table, identifier, days, location, outcome, rival, ot, sort } = props.match.params
 
     useEffect(() => {
 
@@ -49,7 +49,7 @@ const CategoryScoreBoard = (props) => {
                 console.log(error.message);
             })
         
-    }, [category, table, identifier, days, location, outcome, rival, ot]) 
+    }, [category, table, identifier, days, location, outcome, rival, ot, sort]) 
 
     const renderNoGames = () => {
         if (gameInfo.length === 0) {

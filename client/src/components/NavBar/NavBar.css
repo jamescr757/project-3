@@ -7,8 +7,20 @@
     cursor: default;
 }
 
-.dropdown-menu.team-dropdown {
-    min-width: 55rem;
+@media only screen and (min-width: 700px) {
+
+    .dropdown-menu.team-dropdown {
+        min-width: 30rem;
+    }
+
+}
+
+@media only screen and (min-width: 1000px) {
+
+    .dropdown-menu.team-dropdown {
+        min-width: 55rem;
+    }
+
 }
 
 .dropdown-item.team-dropdown-item {

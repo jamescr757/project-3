@@ -7,15 +7,15 @@ module.exports = function scrapeAllFuture(db) {
 
     const nhlEndDate = moment("04/04/2020", "MM/DD/YYYY").format("YYYYMMDD");
 
-    const tomorrow = moment().add(1, 'days').format("YYYYMMDD");
+    const today = moment().format("YYYYMMDD");
 
     let futureDaysToScrape;
     
-    futureDaysToScrape = moment(nhlEndDate).diff(moment(tomorrow), "days");
+    futureDaysToScrape = moment(nhlEndDate).diff(moment(today), "days");
     
     for (let dayNum = 0; dayNum <= futureDaysToScrape; dayNum++) {
         
-            const seasonDate = moment(tomorrow).add(dayNum, 'days').format("YYYYMMDD");
+            const seasonDate = moment(today).add(dayNum, 'days').format("YYYYMMDD");
         
         axios.get(`https://www.espn.com/nhl/scoreboard/_/date/${seasonDate}`)
         .then(function(response) {

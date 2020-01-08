@@ -19,14 +19,14 @@ export default {
     }
   },
 
-  getScoresByCategory: function({ category, days, identifier, location, outcome, rival, ot }) {
+  getScoresByCategory: function({ category, days, identifier, location, outcome, rival, ot, sort }) {
 
-    return axios.get(`/api/completed/${category}/${identifier}/${days}/${location}/${outcome}/${rival}/${ot}`);
+    return axios.get(`/api/completed/${category}/${identifier}/${days}/${location}/${outcome}/${rival}/${ot}/${sort}`);
   },
 
-  getFutureGamesByCategory: function({ category, days, identifier, location, rival }) {
+  getFutureGamesByCategory: function({ category, days, identifier, location, rival, sort }) {
 
-    return axios.get(`/api/future/${category}/${identifier}/${days}/${location}/${rival}`);
+    return axios.get(`/api/future/${category}/${identifier}/${days}/${location}/${rival}/${sort}`);
   },
 
   getScoresByTeam: function(team, days, location, outcome, rival, ot) {
@@ -72,6 +72,16 @@ export default {
   updateUserData: function(id, colName, newValue) {
 
     return axios.put(`/api/email-data/id/${id}/${colName}`, { newValue });
+  },
+
+  updateUserEmail: function(email, newEmail) {
+
+    return axios.post(`/api/user-info/update-email/${email}`, { newEmail });
+  },
+
+  updateUserPassword: function(email, newPassword) {
+
+    return axios.post(`/api/user-info/update-password/${email}`, { newPassword });
   },
 
   addEmail: function(data, email) {

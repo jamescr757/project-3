@@ -7,7 +7,7 @@ export const DurationDropdown = (props) => {
     return (
         <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
-                Duration
+                Time Period
             </DropdownToggle>
             <DropdownMenu>
                 <DayFilters {...props} />
