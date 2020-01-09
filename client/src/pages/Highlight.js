@@ -25,7 +25,7 @@ const Highlight = (props) => {
     }
 
     useEffect(() => {
-        API.getHighlight(props.match.params.teams, props.match.params.date)
+        API.getHighlight(props.match.params.teams, props.match.params.date, props.match.params.type)
             .then((res) => {
                 setGameHighlight(res.data[0].id.videoId)
                 stripHighlightTitle(res.data[0].snippet.title)

@@ -7,6 +7,8 @@ const baseQuery = `https://www.googleapis.com/youtube/v3/search?part=snippet&key
 module.exports = {
     findHighlight: function(req, res) {
 
+        console.log(req.params.type);
+
         let query;
         if (req.params.type === "5") {
 
