@@ -39,3 +39,6 @@ teamInfo.teamsArray.forEach((team, index) => {
         .catch(error => console.log(error));
 
 })
+
+// const moment = require("moment");
+// console.log(moment().utcOffset(6).format("YYYYMMDD"));

@@ -15,7 +15,7 @@ module.exports = {
           frequency,
           completedTable,
           futureTable,
-          nextEmail: moment().add(1, "days").format("YYYYMMDD")
+          nextEmail: moment().utcOffset(-6).add(1, "days").format("YYYYMMDD")
       })
       .then((data) => res.send(data))
       .catch(err => console.log(err));
@@ -85,7 +85,7 @@ module.exports = {
     db.EmailData
       .findAll({
         where: {
-          nextEmail: moment().format("YYYYMMDD")
+          nextEmail: moment().utcOffset(-6).format("YYYYMMDD")
         }
       })
       .then((data) => {

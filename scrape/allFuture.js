@@ -7,7 +7,7 @@ module.exports = function scrapeAllFuture(db) {
 
     const nhlEndDate = moment("04/04/2020", "MM/DD/YYYY").format("YYYYMMDD");
 
-    const today = moment().format("YYYYMMDD");
+    const today = moment().utcOffset(-6).format("YYYYMMDD");
 
     let futureDaysToScrape;
     

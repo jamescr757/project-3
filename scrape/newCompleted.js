@@ -2,7 +2,7 @@ const moment = require("moment");
 
 module.exports = function scrapeNewCompleted(db) {
 
-    const yesterday = moment().subtract(1, 'days').format("YYYYMMDD");
+    const yesterday = moment().utcOffset(-6).subtract(1, 'days').format("YYYYMMDD");
 
     let lastScrapeDate;
     let pastDaysToScrape;

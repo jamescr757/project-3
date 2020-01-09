@@ -10,7 +10,7 @@ module.exports = function emailScores(email) {
         .findAll({
             where: {
                 email: email,
-                nextEmail: moment().format("YYYYMMDD")
+                nextEmail: moment().utcOffset(-6).format("YYYYMMDD")
             }
         })
         .then((data) => {

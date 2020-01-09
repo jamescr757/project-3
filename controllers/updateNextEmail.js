@@ -5,7 +5,7 @@ module.exports = function updateNextEmail(db) {
     db.EmailData
       .findAll({
         where: {
-          nextEmail: moment().format("YYYYMMDD")
+          nextEmail: moment().utcOffset(-6).format("YYYYMMDD")
         }
       })
       .then((data) => {
