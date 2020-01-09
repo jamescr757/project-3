@@ -28,9 +28,9 @@ if (process.env.NODE_ENV === "test") {
 db.sequelize.sync(syncOptions)
   .then(() => {
 
-    require("./scrape/newCompleted")(db);
+    // require("./scrape/newCompleted")(db);
     // require("./scrape/deleteFuture")(db);
-    // require("./scrape/allCompleted")(db);
+    require("./scrape/allCompleted")(db);
     // require("./scrape/allFuture")(db);
 
     app.listen(PORT, function() {
