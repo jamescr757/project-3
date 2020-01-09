@@ -146,7 +146,7 @@ export default {
             case "blue jackets":
                 return "Columbus Blue Jackets"
             case "devils":
-                return "New jersey Devils"
+                return "New Jersey Devils"
             case "islanders":
                 return "New York Islanders"
             case "rangers":
@@ -168,7 +168,7 @@ export default {
             case "predators":
                 return "Nashville Predators"
             case "blues":
-                return "St. louis Blues"
+                return "St. Louis Blues"
             case "jets":
                 return "Winnipeg Jets"
             case "ducks":

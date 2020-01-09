@@ -17,7 +17,7 @@ const ConferenceBtns = () => {
                         to={`/multiple/conference/completed/${conference}/3/all/all/false/false/desc`}
                         className="btn-link team-dropdown-item"
                     >
-                        <DropdownItem>
+                        <DropdownItem className="non-team-dropdown-item">
                             {conference} {conference !== "All Teams" && "Conference"}
                         </DropdownItem>
                     </Link>

@@ -17,7 +17,7 @@ const DivisionBtns = () => {
                         to={`/multiple/division/completed/${division}/3/all/all/false/false/desc`}
                         className="btn-link team-dropdown-item"
                     >
-                        <DropdownItem>
+                        <DropdownItem className="non-team-dropdown-item">
                             {division}  
                         </DropdownItem>
                     </Link>

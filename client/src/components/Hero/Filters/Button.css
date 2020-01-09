@@ -19,6 +19,15 @@
     outline: none !important;
 }
 
+.non-team-dropdown-item:active {
+    background-color: lightgray !important;
+    color: black !important;
+}
+
+.non-team-dropdown-item:focus {
+    outline: none !important;
+}
+
 .member-dropdown-item:hover {
     text-decoration: none;
 }
