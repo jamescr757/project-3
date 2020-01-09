@@ -9,25 +9,23 @@ function GameAction({ homeTeamScore, homeTeam, awayTeam, date, ticketLink, handl
 
     return (
         homeTeamScore >= 0 ?
-                <Grid container justify="space-between" xs={11}>
-                <Button
-                    onClick={()=>handleModalOpen(teamInfo.teamNameJoiner5(homeTeam, awayTeam), date, "5")}
-                    size="small"
-                    color="primary"
-                    className="scorecard-btn-link"
-                    style={{ marginLeft: 57 }}
-                    >
-                        5 Min. Highlight
-                </Button>
-                <Button
-                    onClick={()=>handleModalOpen(teamInfo.teamNameJoiner5(homeTeam, awayTeam), date, "9")}
-                    size="small"
-                    color="primary"
-                    className="scorecard-btn-link"
-                    style={{ marginRight: 7 }}
-                    >
-                        9 Min. Highlight
-                </Button>
+                <Grid container justify="center" xs={12}>
+                    <Button
+                        onClick={()=>handleModalOpen(teamInfo.teamNameJoiner5(homeTeam, awayTeam), date, "5")}
+                        size="small"
+                        color="primary"
+                        className="scorecard-btn-link mx-2 px-1"
+                        >
+                            5 Min Highlight
+                    </Button>
+                    <Button
+                        onClick={()=>handleModalOpen(teamInfo.teamNameJoiner5(homeTeam, awayTeam), date, "9")}
+                        size="small"
+                        color="primary"
+                        className="scorecard-btn-link mx-2 px-1"
+                        >
+                            9 Min Highlight
+                    </Button>
                 </Grid>
             :
             <Grid container justify="center">

@@ -148,7 +148,7 @@ const ScoreCard = (props) => {
                     </Grid>
                 </CardContent>
 
-                <CardActions>
+                <CardActions className="px-0 pt-3">
 
                     <GameAction 
                         {...props.game}
