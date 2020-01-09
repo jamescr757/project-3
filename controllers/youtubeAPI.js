@@ -7,11 +7,22 @@ const baseQuery = `https://www.googleapis.com/youtube/v3/search?part=snippet&key
 module.exports = {
     findHighlight: function(req, res) {
 
-        const dateMonth = moment(req.params.date, "YYYYMMDD").format("MMM.");
-        const dateDay = moment(req.params.date, "YYYYMMDD").format("D,");
-        const dateYear = moment(req.params.date, "YYYYMMDD").format("YYYY");
+        let query;
+        if (req.params.type === "5") {
 
-        const query = baseQuery + req.params.teams + "%20" + dateMonth + "%20" + dateDay + "%20" + dateYear;
+            const dateMonth = moment(req.params.date, "YYYYMMDD").format("MMM.");
+            const dateDay = moment(req.params.date, "YYYYMMDD").format("D,");
+            const dateYear = moment(req.params.date, "YYYYMMDD").format("YYYY");
+    
+            query = baseQuery + req.params.teams + "%20" + dateMonth + "%20" + dateDay + "%20" + dateYear;
+
+        } else {
+            const dateMonth = moment(req.params.date, "YYYYMMDD").format("M/");
+            const dateDay = moment(req.params.date, "YYYYMMDD").format("D/");
+            const dateYear = moment(req.params.date, "YYYYMMDD").format("YY");
+    
+            query = baseQuery + req.params.teams + "%20" + dateMonth + "%20" + dateDay + "%20" + dateYear;
+        }
 
         console.log(query);
 

@@ -20,14 +20,14 @@
     text-transform: capitalize;
 }
 
-a .loser:hover {
-    text-decoration: underline;
-    text-decoration-color: gray;
+.loser:hover {
+    text-decoration: none !important;
+    /* text-decoration-color: gray; */
 }
 
-a .winner:hover {
-    text-decoration: underline;
-    text-decoration-color: black;
+.winner:hover {
+    text-decoration: none !important;
+    /* text-decoration-color: black; */
 }
 
 .MuiSvgIcon-fontSizeLarge {
@@ -37,6 +37,11 @@ a .winner:hover {
 .future {
     color: black;
     text-transform: capitalize;
+}
+
+.future:hover {
+    text-decoration: none !important;
+    /* text-decoration-color: black; */
 }
 
 .loading-container {

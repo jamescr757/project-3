@@ -35,9 +35,9 @@ const ScoreCard = (props) => {
     const [open, setOpen] = useState(false);
     const [gameHighlight, setGameHighlight] = useState();
 
-    const handleModalOpen = (teams, date) => {
+    const handleModalOpen = (teams, date, type) => {
 
-        API.getHighlight(teams, date)
+        API.getHighlight(teams, date, type)
             .then((res) => {
                 console.log(res.data[0]);
                 setGameHighlight(res.data[0].id.videoId)
@@ -148,22 +148,14 @@ const ScoreCard = (props) => {
                     </Grid>
                 </CardContent>
 
-                <Grid 
-                    container 
-                    justify="center"
-                    >
-                    <CardActions>
+                <CardActions>
 
-                        <GameAction 
-                            teamScore={homeTeamScore}
-                            homeTeam={homeTeam}
-                            awayTeam={awayTeam}
-                            date={date}
-                            handleModalOpen={handleModalOpen}
-                            />
+                    <GameAction 
+                        {...props.game}
+                        handleModalOpen={handleModalOpen}
+                        />
 
-                    </CardActions>
-                </Grid>
+                </CardActions>
                 
             </Card>
 

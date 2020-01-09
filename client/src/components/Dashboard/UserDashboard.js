@@ -50,6 +50,7 @@ export const UserDashboard = (props) => {
     const [show, showArrows] = useState(false);
     const [showIndex, setShowIndex] = useState();
     const [emailNowSuccess, setEmailNowSuccess] = useState(false);
+    const [noData, setNoData] = useState(false);
 
     useEffect(() => {
 
@@ -58,6 +59,11 @@ export const UserDashboard = (props) => {
                 if (res.data === "error") {
                     setErrorMessage("There's been an error.");
                 } else {
+                    if (res.data.length === 0) {
+                        setNoData(true);
+
+                    } else setNoData(false);
+                    
                     setUserData(res.data);
                 }
             })
@@ -67,19 +73,18 @@ export const UserDashboard = (props) => {
     }, [reRender]);
 
     const renderNoData = () => {
-        if (userData.length === 0) {
-            return (
-                <Box width="100%">
-                    <Typography
-                        component="h2"
-                        color="textPrimary"
-                        className={classes.noGames}
-                    >
-                        You are not following anything.
-                    </Typography>
-                </Box>
-            );
-        }
+        
+        return (
+            <Box width="100%">
+                <Typography
+                    component="h2"
+                    color="textPrimary"
+                    className={classes.noGames}
+                >
+                    You are not following anything.
+                </Typography>
+            </Box>
+        );
     }
 
     const handleScheduleClick = (index) => {
@@ -235,7 +240,7 @@ export const UserDashboard = (props) => {
                     </Card>
                 </Grid>
                 ))}
-                <Grid 
+                {userData.length > 0 && <Grid 
                     item  
                     xs={12}
                     sm={12}
@@ -254,8 +259,8 @@ export const UserDashboard = (props) => {
                             </CardContent>
                         </Grid>
                     </Card>
-                </Grid>
-                {renderNoData()}
+                </Grid>}
+                {noData && renderNoData()}
             </Grid>
         </Container>
         </React.Fragment>

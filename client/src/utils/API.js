@@ -39,9 +39,9 @@ export default {
     return axios.get(`/api/future/team/${team}/${days}/${location}/${rival}`);
   },
 
-  getHighlight: function(teams, date) {
+  getHighlight: function(teams, date, type) {
     
-    return axios.get(`/api/highlight/${teams}/date/${date}`);
+    return axios.get(`/api/highlight/${teams}/date/${date}/${type}`);
   },
 
   checkUserEmail: function(email, password) {

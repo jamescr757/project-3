@@ -8,15 +8,18 @@ import moment from "moment";
 const Home = (props) => { 
 
   const [date, setDate] = useState(moment().subtract(1, "days").format("YYYYMMDD"));
+  const [noData, setNoData] = useState(false);
 
   const handleBackClick = () => {
     const newDate = moment(date).subtract(1, "days").format("YYYYMMDD");
     setDate(newDate);
+    setNoData(false);
   }
 
   const handleForwardClick = () => {
     const newDate = moment(date).add(1, "days").format("YYYYMMDD");
     setDate(newDate);
+    setNoData(false);
   }
 
   const handleChange = date => {
@@ -36,6 +39,8 @@ const Home = (props) => {
       <ScoreBoard 
         date={date} 
         displayDate={moment(date).format("dddd, MMMM Do")}
+        noData={noData}
+        setNoData={setNoData}
       />
     </React.Fragment>
   );

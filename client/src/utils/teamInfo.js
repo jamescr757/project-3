@@ -37,10 +37,16 @@ export default {
         return teamName.replace(/-/g, " ")
     },
 
-    teamNameJoiner (team1, team2) {
-        const team1Modified = team1.replace(/\s/g, "+");
-        const team2Modified = team2.replace(/\s/g, "+");
-        return team2Modified + "+vs+" + team1Modified;
+    teamNameJoiner5 (homeTeam, awayTeam) {
+        const homeTeamModified = homeTeam.replace(/\s/g, "+");
+        const awayTeamModified = awayTeam.replace(/\s/g, "+");
+        return awayTeamModified + "+vs+" + homeTeamModified;
+    },
+
+    teamNameJoiner9 (homeTeam, awayTeam) {
+        const homeTeamModified = homeTeam.replace(/\s/g, "+");
+        const awayTeamModified = awayTeam.replace(/\s/g, "+");
+        return awayTeamModified + "+@+" + homeTeamModified;
     },
 
     teamFullName (team) {

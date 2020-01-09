@@ -1,34 +1,66 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import teamInfo from "../../../utils/teamInfo";
+import "../../Hero/Filters/Button.css"
+import { Grid } from "@material-ui/core";
 
 
-function GameAction({ teamScore, homeTeam, awayTeam, date, ticketDate, handleModalOpen }) {
+function GameAction({ homeTeamScore, homeTeam, awayTeam, date, ticketLink, handleModalOpen }) {
 
     return (
-        <React.Fragment>
-            {teamScore >= 0 ?
+        homeTeamScore >= 0 ?
+                <Grid container justify="space-between" xs={11}>
                 <Button
-                    onClick={()=>handleModalOpen(teamInfo.teamNameJoiner(homeTeam, awayTeam), date)}
+                    onClick={()=>handleModalOpen(teamInfo.teamNameJoiner5(homeTeam, awayTeam), date, "5")}
                     size="small"
                     color="primary"
+                    className="scorecard-btn-link"
+                    style={{ marginLeft: 57 }}
                     >
-                        View Extended Highlights
+                        5 Min. Highlight
                 </Button>
-                :
-                <a 
-                    href={`https://seatgeek.com/${teamInfo.teamFullName(homeTeam)}-tickets`} 
-                    target="_blank"
+                <Button
+                    onClick={()=>handleModalOpen(teamInfo.teamNameJoiner5(homeTeam, awayTeam), date, "9")}
+                    size="small"
+                    color="primary"
+                    className="scorecard-btn-link"
+                    style={{ marginRight: 7 }}
                     >
-                    <Button
-                        size="small"
-                        color="primary"
+                        9 Min. Highlight
+                </Button>
+                </Grid>
+            :
+            <Grid container justify="center">
+                { ticketLink ? 
+                    <a 
+                        href={`${ticketLink}`} 
+                        target="_blank"
+                        className="scorecard-btn-link"
                         >
-                        View Tickets
-                    </Button>
-                </a>
-            }
-        </React.Fragment>
+                        <Button
+                            size="small"
+                            color="primary"
+                            className="scorecard-btn-link"
+                            >
+                            View Tickets
+                        </Button>
+                    </a>
+                :
+                    <a 
+                        href={`https://seatgeek.com/${teamInfo.teamFullName(homeTeam)}-tickets`} 
+                        target="_blank"
+                        className="scorecard-btn-link"
+                        >
+                        <Button
+                            size="small"
+                            color="primary"
+                            className="scorecard-btn-link"
+                            >
+                            View Tickets
+                        </Button>
+                    </a>
+                }
+            </Grid>
     );
 }
 

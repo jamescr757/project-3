@@ -35,6 +35,7 @@ const CategoryScoreBoard = (props) => {
     const classes = useStyles();
 
     const [gameInfo, setGameInfo] = useState([]);
+    const [noData, setNoData] = useState(false);
 
     const { category, table, identifier, days, location, outcome, rival, ot, sort } = props.match.params
 
@@ -42,6 +43,11 @@ const CategoryScoreBoard = (props) => {
 
         APIcall(table, props.match.params)
             .then(response => {
+                if (response.data.length === 0) {
+                    setNoData(true);
+
+                } else setNoData(false);
+                
                 setGameInfo(response.data);
             })
             .catch(error => {
@@ -52,19 +58,18 @@ const CategoryScoreBoard = (props) => {
     }, [category, table, identifier, days, location, outcome, rival, ot, sort]) 
 
     const renderNoGames = () => {
-        if (gameInfo.length === 0) {
-            return (
-                <Box width="100%">
-                    <Typography
-                        component="h2"
-                        color="textPrimary"
-                        className={classes.noGames}
-                    >
-                        There are no games that match the specified filters.
-                    </Typography>
-                </Box>
-            );
-        }
+        
+        return (
+            <Box width="100%">
+                <Typography
+                    component="h2"
+                    color="textPrimary"
+                    className={classes.noGames}
+                >
+                    There are no games that match the specified filters.
+                </Typography>
+            </Box>
+        );
     }
 
     return (
@@ -86,7 +91,7 @@ const CategoryScoreBoard = (props) => {
                     />
                 </Grid>
                 ))}
-                {renderNoGames()}
+                {noData && renderNoGames()}
             </Grid>
         </Container>
     );

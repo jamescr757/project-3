@@ -46,5 +46,5 @@ db.sequelize.sync(syncOptions)
   //   setTimeout(() => {
   //     require("./controllers/updateNextEmail")(db);
   //   }, 10 * 60 * 1000)
-  });
+  // });
 

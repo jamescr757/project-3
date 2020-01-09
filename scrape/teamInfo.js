@@ -35,6 +35,10 @@ module.exports = {
         return teamName.replace(/\s/g, "-")
     },
 
+    teamNameAddPlus(teamName) {
+        return teamName.replace(/\s/g, "+")
+    },
+
     teamNameDehyphenator(teamName) {
         return teamName.replace(/-/g, " ")
     },

@@ -30,6 +30,11 @@ const ScoreBoard = (props) => {
     useEffect(() => {
         API.getScoresByDate(props.date)
             .then(response => {
+                if (response.data.length === 0) {
+                    props.setNoData(true);
+
+                } else props.setNoData(false);
+
                 setGameInfo(response.data);
             })
             .catch(error => {
@@ -39,19 +44,18 @@ const ScoreBoard = (props) => {
     }, [props.date]) 
 
     const renderNoGames = () => {
-        if (gameInfo.length === 0) {
-            return (
-                <Box width="100%">
-                    <Typography
-                        component="h2"
-                        color="textPrimary"
-                        className={classes.noGames}
-                    >
-                        No games on {props.displayDate}
-                    </Typography>
-                </Box>
-            );
-        }
+        
+        return (
+            <Box width="100%">
+                <Typography
+                    component="h2"
+                    color="textPrimary"
+                    className={classes.noGames}
+                >
+                    No games on {props.displayDate}
+                </Typography>
+            </Box>
+        );
     }
 
     return (
@@ -69,7 +73,7 @@ const ScoreBoard = (props) => {
                     <ScoreCard game={{...game}}/>
                 </Grid>
                 ))}
-                {renderNoGames()}
+                {props.noData && renderNoGames()}
             </Grid>
         </Container>
     );

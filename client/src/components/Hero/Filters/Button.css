@@ -51,7 +51,7 @@
 
 .hero-nav-dropdown-active {
     font-weight: 600 !important;
-    text-decoration: underline !important;
+    /* text-decoration: underline !important; */
     /* background-color: lightgray !important; */
 }
 
@@ -64,5 +64,17 @@
 }
 
 .account-btn-link:hover {
+    text-decoration: none !important;
+}
+
+.scorecard-btn-link:focus {
+    outline: none !important;
+}
+
+.scorecard-btn-link:hover {
+    text-decoration: none !important;
+}
+
+.dashboard-title-link:hover {
     text-decoration: none !important;
 }

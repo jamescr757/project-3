@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import teamInfo from "../../utils/teamInfo";
 import { Grid } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import "../Hero/Filters/Button.css"
 
 const useStyles = makeStyles(theme => ({
 
@@ -24,9 +26,11 @@ export default function({ identifier }) {
                 src={`${process.env.PUBLIC_URL}/images/${teamInfo.teamNameConverter(identifier)}.png`}
                 alt={identifier}
             />
-            <Typography style={{ textTransform: "capitalize" }} variant="h5" align="center" gutterBottom={false}>
-                {teamInfo.teamFullName(identifier)}
-            </Typography>
+            <Link to={`/multiple/team/completed/${teamInfo.teamNameConverter(identifier)}/7/all/all/false/false/desc`} className="dashboard-title-link">
+                <Typography style={{ textTransform: "capitalize" }} variant="h5" align="center" gutterBottom={false} color="textPrimary">
+                    {teamInfo.teamFullName(identifier)}
+                </Typography>
+            </Link>
         </Grid>
     );
 }

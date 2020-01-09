@@ -17,9 +17,10 @@ export default function WinLoss(props) {
                 <Link
                     key={index}
                     to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${props.location}/${btnValues[index]}/${props.rival}/${props.ot}/${props.sort}`}
+                    className="hero-nav-dropdown-item" 
                 >
                     <DropdownItem
-                        className={classNames({ "active": props.outcome === btnValues[index] })}
+                        className={classNames({ "hero-nav-dropdown-active": props.outcome === btnValues[index], "hero-nav-dropdown-item": props.outcome })}
                     >
                         {label}
                     </DropdownItem>
