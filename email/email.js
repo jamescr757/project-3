@@ -32,7 +32,7 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
         const idHash = [];
 
         gameInfo.forEach((game, index) => {
-            const { id, awayTeam, homeTeam, awayTeamRecord, homeTeamRecord, awayTeamScore, homeTeamScore, date, loser, overtime } = game;
+            const { id, awayTeam, homeTeam, awayTeamRecord, homeTeamRecord, awayTeamScore, homeTeamScore, date, loser, overtime, ticketLink } = game;
 
             const homeColor = homeTeam === loser ? "gray" : "black";
             const awayColor = awayTeam === loser ? "gray" : "black";
@@ -90,7 +90,7 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
                     messageHTML.push(`
                             <mj-section padding="0 0 0 0">
                                 <mj-column>
-                                    <mj-button font-size="16px" background-color="white" color="blue" padding="0 0 -5px 0" text-decoration="underline" border-radius="8px" href="https://seatgeek.com/${teamInfo.teamFullName(homeTeam)}-tickets}">View Tickets</mj-button>
+                                    <mj-button font-size="16px" background-color="white" color="blue" padding="0 0 -5px 0" text-decoration="underline" border-radius="8px" href="${ticketLink}">View Tickets</mj-button>
                                 </mj-column>
                             </mj-section>
                         </mj-wrapper>
