@@ -22,7 +22,7 @@ const HeroButtons = (props) => {
 
     return (
         <div className={classes.heroButtons}>
-            <Grid container spacing={2} justify="center">
+            <Grid container justify="center">
                 <Grid item style={{ padding: "8px 0px"}}>
 
                     <div onClick={props.onBackClick}>
@@ -30,7 +30,7 @@ const HeroButtons = (props) => {
                     </div>
 
                 </Grid>
-                <Grid item container justify="center" alignItems="center" style={{ maxWidth: 270, padding: 4 }}>
+                <Grid item container justify="center" alignItems="center" style={{ maxWidth: 270, padding: 4, paddingBottom: 8 }}>
                     <span style={{ fontSize: 24, width: 100, textAlign: "right", cursor: "default", marginRight: 4 }}>{props.dateDay}</span>
                     <DatePick {...props} />
                 </Grid>
