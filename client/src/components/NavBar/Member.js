@@ -23,16 +23,28 @@ export const Member = (props) => {
                         Preferences
                     </DropdownItem>
                 </Link>
-                <div onMouseOver={props.revealMessage} onMouseLeave={props.hideMessage}>
+                { sessionStorage.getItem("userEmail") ?
                     <Link
-                        to={`/member/new`}
+                        onClick={()=>sessionStorage.clear()}
+                        to={`/`}
                         className="member-dropdown-item"
                     >
                         <DropdownItem className="member-dropdown-item">
-                            Sign-up
+                            Logout
                         </DropdownItem>
                     </Link>
-                </div>
+                :
+                    <div onMouseOver={props.revealMessage} onMouseLeave={props.hideMessage}>
+                        <Link
+                            to={`/member/new`}
+                            className="member-dropdown-item"
+                        >
+                            <DropdownItem className="member-dropdown-item">
+                                Sign-up
+                            </DropdownItem>
+                        </Link>
+                    </div>
+                }
             </DropdownMenu>
 
         </UncontrolledDropdown>
