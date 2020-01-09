@@ -39,8 +39,3 @@ teamInfo.teamsArray.forEach((team, index) => {
         .catch(error => console.log(error));
 
 })
-
-    
-
-
-// }
