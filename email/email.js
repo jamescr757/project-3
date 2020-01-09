@@ -119,7 +119,7 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
     const mailOptions = {
         from: process.env.EMAIL,
         to: userEmail,
-        subject: 'Your custom scores and highlights',
+        subject: 'Your custom notification',
         html: `${htmlOutput.html}`
     };
     
