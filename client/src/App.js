@@ -18,7 +18,7 @@ const App = () => {
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/highlight/:teams/date/:date" component={Highlight} />
+            <Route exact path="/highlight/:teams/date/:date/:type" component={Highlight} />
             <Route exact path="/member/:type" component={Member} />
             {/* <Route exact path="/member/:email" component={MemberPreferences} /> */}
             <Route exact path="/member/:type/:email" component={NewMemberPreferences} />
