@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import NewSettingsForm from "../components/Form/NewSettingsForm";
 import { UserDashboard } from "../components/Dashboard/UserDashboard";
 import { AccountDetails } from "../components/Dashboard/AccountDetails";
+import { ForgotPassword } from "../components/Form/ForgotPassword";
 
 
 const NewMemberPreferences = (props) => { 
@@ -16,6 +17,7 @@ const NewMemberPreferences = (props) => {
       { props.match.params.type === "my-account" && <AccountDetails {...props} /> }
       { props.match.params.type === "update-email" && <AccountDetails {...props} /> }
       { props.match.params.type === "update-password" && <AccountDetails {...props} /> }
+      { props.match.params.type === "forgot-password" && <ForgotPassword userEmail={props.match.params.email} {...props} /> }
       
     </React.Fragment>
   );

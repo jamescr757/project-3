@@ -6,6 +6,7 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
+  NavItem,
   NavbarText
 } from 'reactstrap';
 import { TeamDropdown } from "./TeamDropdown";
@@ -45,6 +46,32 @@ const NavBar = (props) => {
             <Nav navbar style={{ marginRight: "1rem"}}>
               <Member revealMessage={revealMessage} hideMessage={hideMessage} />
               {showMessage && <NewMemberMessage />}
+            </Nav>
+          }
+          {props.match.params.type === "sign-in" && sessionStorage.getItem("userEmail") &&
+            <Nav navbar style={{ marginRight: "1rem"}}>
+              <Link
+                  onClick={()=>sessionStorage.clear()}
+                  to={`/`}
+                  className="logout-nav-item"
+              >
+                <NavbarText className="logout-nav-item">
+                  Logout
+                </NavbarText>
+              </Link>
+            </Nav>
+          }
+          {props.match.params.type === "dashboard" &&
+            <Nav navbar style={{ marginRight: "1rem"}}>
+              <Link
+                  onClick={()=>sessionStorage.clear()}
+                  to={`/`}
+                  className="logout-nav-item"
+              >
+                <NavbarText className="logout-nav-item">
+                  Logout
+                </NavbarText>
+              </Link>
             </Nav>
           }
         </Collapse>

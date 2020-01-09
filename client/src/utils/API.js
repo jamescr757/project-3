@@ -102,5 +102,15 @@ export default {
   deleteEmailData: function(email) {
     
     return axios.delete(`/api/email-data/${email}`);
+  },
+
+  checkIfUserEmailExists: function(email) {
+
+    return axios.get(`/api/user-info/check-email/${email}`)
+  },
+
+  sendForgotPasswordEmail: function(email) {
+    
+    return axios.get(`/api/email/forgot-password/${email}`)
   }
 };

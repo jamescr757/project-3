@@ -3,14 +3,14 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { LoginHero } from "../Hero/LoginHero";
-import { Container } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import "./Form.css"
 
 const LoginForm = (props) => {
 
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState("a");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState();
     const [emailSuccess, setEmailSuccess] = useState(false);
@@ -18,10 +18,12 @@ const LoginForm = (props) => {
     const [passwordMatch, setPasswordMatch] = useState();
     const [showUserMessage, setShowUserMessage] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [showForgotPassword, setShowForgotPassword] = useState(false);
 
     const checkAndSetEmail = (text) => {
         setEmail(text);
         setEmailSuccess(false);
+        setShowForgotPassword();
 
         if (text.match(/.+@.+\....+/)) {
             API.grabUserPassword(text)
@@ -49,6 +51,7 @@ const LoginForm = (props) => {
         setPassword(text);
         setShowUserMessage(false);
         setErrorMessage();
+        setShowForgotPassword();
 
         if (!emailSuccess) {
             setErrorMessage("Please enter a valid email");
@@ -63,6 +66,27 @@ const LoginForm = (props) => {
     const handleClick = event => {
         event.preventDefault();
         setErrorMessage("Password is incorrect");
+    }
+
+    const sendEmail = () => {
+        API.checkIfUserEmailExists(email)
+            .then(res => {
+                if (res.data === "email not in system") {
+                    setErrorMessage("That email is not in our system");
+                } else {
+                    API.sendForgotPasswordEmail(email) 
+                        .then(res => {
+                            if (res.data === "error") {
+                                setShowUserMessage()
+                                setErrorMessage("There's been an error. Please try again")
+                            } else {
+                                setShowUserMessage()
+                                setErrorMessage();
+                                setShowForgotPassword(true);
+                            }
+                        })
+                }
+            })
     }
 
     return (
@@ -83,6 +107,7 @@ const LoginForm = (props) => {
                             <VisibilityIcon className="password-icon" fontSize="large" onClick={()=>setShowPassword(true)} />
                         }
                     </FormGroup>
+                    <Grid container>
                     {!passwordSuccess ?  
                         <Button color={password.length > 5 ? "success" : "secondary"} onClick={handleClick}>Login</Button>
                         :
@@ -90,10 +115,13 @@ const LoginForm = (props) => {
                             <Button color="success">Login</Button>
                         </Link>
                     }
+                        <Link to="/member/sign-in" onClick={sendEmail} style={{ fontSize: 16, marginTop: 8 }} color="white" className="ml-3">Forgot Password?</Link>
+                    </Grid>
                     <FormGroup>
                         <FormText color="muted mt-3" style={{ fontSize: 16 }}>
                             {errorMessage ? errorMessage : ""}
                             {showUserMessage ? "That email is in our system!" : "" }
+                            {showForgotPassword ? "Forgot password link sent to your email" : "" }
                         </FormText>
                     </FormGroup>
                 </Form>

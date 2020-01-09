@@ -1,5 +1,4 @@
 const nodemailer = require("nodemailer");
-const axios = require("axios");
 const teamInfo = require("../scrape/teamInfo");
 require("dotenv").config();
 const mjml2html = require('mjml');

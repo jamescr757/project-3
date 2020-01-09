@@ -4,6 +4,9 @@ const userInfo = require("../../controllers/userInfoController");
 router.route("/check-email")
     .post(userInfo.updateUserPassword)
 
+router.route("/check-email/:email")
+    .get(userInfo.checkIfUserEmailExists)
+
 router.route("/add-user")
     .put(userInfo.newUser)
 

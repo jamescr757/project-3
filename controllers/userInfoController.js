@@ -111,6 +111,29 @@ module.exports = {
         console.log(err.errors[0].message);
         res.send("error")
       });
+  },
+
+  checkIfUserEmailExists: function(req, res) {
+
+    const { email } = req.params
+
+    db.UserInfo
+      .findAll({
+        where: {
+          email,
+        }
+      })
+      .then((data) => {
+        if (data.length === 0) {
+          res.send("email not in system")
+        } else {
+          res.send("email in system")
+        }
+      })
+      .catch(err => {
+        console.log(err.errors[0].message);
+        res.send("error")
+      });
   }
 
 };

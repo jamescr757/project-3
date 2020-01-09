@@ -33,4 +33,17 @@
     .sign-up-message {
         display: none
     }
+
+}
+
+.logout-nav-item:hover {
+    color: rgb(0, 0, 0, 0.7) !important;
+}
+
+@media only screen and (max-width: 767px) {
+
+    .logout-nav-item {
+        margin-left: 8px;
+    }
+
 }
