@@ -81,7 +81,7 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
                     messageHTML.push(`
                             <mj-section padding="0 0 0 0">
                                 <mj-column>
-                                    <mj-button font-size="16px" background-color="white" color="blue" padding="0 0 -5px 0" text-decoration="underline" border-radius="8px" href="http://nhl-scores-757.herokuapp.com/highlight/${teamInfo.teamNameJoiner5(homeTeam, awayTeam)}/date/${date}/5">View Highlights</mj-button>
+                                    <mj-button font-size="16px" background-color="white" color="blue" padding="0 0 -5px 0" text-decoration="underline" border-radius="8px" href="https://nhl-scores-757.herokuapp.com/highlight/${teamInfo.teamNameJoiner5(homeTeam, awayTeam)}/date/${date}/5">View Highlights</mj-button>
                                 </mj-column>
                             </mj-section>
                         </mj-wrapper>
