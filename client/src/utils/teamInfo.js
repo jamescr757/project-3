@@ -37,6 +37,10 @@ export default {
         return teamName.replace(/-/g, " ")
     },
 
+    teamNameDePlus(teamName) {
+        return teamName.replace(/\+/g, " ")
+    },
+
     teamNameJoiner5 (homeTeam, awayTeam) {
         const homeTeamModified = homeTeam.replace(/\s/g, "+");
         const awayTeamModified = awayTeam.replace(/\s/g, "+");
@@ -114,6 +118,75 @@ export default {
                 return "san jose sharks"
             case "canucks":
                 return "vancouver canucks"
+            
+        }
+    },
+
+    teamFullNameCaptilized (team) {
+
+        switch (team) {
+            case "bruins":
+                return "Boston Bruins"
+            case "sabres":
+                return "Buffalo Sabres"
+            case "red wings":
+                return "Detroit Red Wings"
+            case "panthers":
+                return "Florida Panthers"
+            case "canadiens":
+                return "Montreal Canadiens"
+            case "senators":
+                return "Ottawa Senators"
+            case "lightning":
+                return "Tampa Bay Lightning"
+            case "maple leafs":
+                return "Toronto Maple leafs"
+            case "hurricanes":
+                return "Carolina Hurricanes"
+            case "blue jackets":
+                return "Columbus Blue Jackets"
+            case "devils":
+                return "New jersey Devils"
+            case "islanders":
+                return "New York Islanders"
+            case "rangers":
+                return "New York Rangers"
+            case "flyers":
+                return "Philadelphia Flyers"
+            case "penguins":
+                return "Pittsburgh Penguins"
+            case "capitals":
+                return "Washington Capitals"
+            case "blackhawks":
+                return "Chicago Blackhawks"
+            case "avalanche":
+                return "Colorado Avalanche"
+            case "stars":
+                return "Dallas Stars"
+            case "wild":
+                return "Minnesota Wild"
+            case "predators":
+                return "Nashville Predators"
+            case "blues":
+                return "St. louis Blues"
+            case "jets":
+                return "Winnipeg Jets"
+            case "ducks":
+                return "Anaheim Ducks"
+            case "coyotes":
+                return "Arizona Coyotes"
+            case "flames":
+                return "Calgary Flames"
+            case "oilers":
+                return "Edmonton Oilers"
+            case "golden knights":
+                return "Vegas Golden Knights"
+            case "kings":
+                return "Los Angeles Kings"
+            case "sharks":
+                return "San Jose Sharks"
+            case "canucks":
+                return "Vancouver Canucks"
             
         }
     },

@@ -4,6 +4,7 @@ import HighlightVideo from "../components/ScoreBoard/HighlightVideo";
 import NavBar from "../components/NavBar";
 import API from "../utils/API";
 import moment from "moment";
+import teamInfo from "../utils/teamInfo";
 
 
 const Highlight = (props) => { 
@@ -12,24 +13,21 @@ const Highlight = (props) => {
     const [highlightDescription, setHighlightDescription] = useState();
     const [date, setDate] = useState();
 
-    const stripHighlightTitle = (title) => {
-      const arr = title.split(" ");
-      const date = arr[arr.length - 1];
-      setDate(moment(date).format("dddd M/D"))
-    }
-
-    const stripHighlightDescription = (description) => {
-      const arr = description.split(" ");
-      const teams = arr.splice(4, 7).join(" ").replace(/\./, "");
-      setHighlightDescription(teams)
+    const stripTeamsParam = (teams) => {
+      const vsIndex = teams.indexOf("v");
+      const awayTeam = teams.slice(0, vsIndex - 1);
+      const homeTeam = teams.slice(vsIndex + 3);
+      const awayTeamFullName = teamInfo.teamFullNameCaptilized(teamInfo.teamNameDePlus(awayTeam));
+      const homeTeamFullName = teamInfo.teamFullNameCaptilized(teamInfo.teamNameDePlus(homeTeam));
+      setHighlightDescription(`${awayTeamFullName} vs. ${homeTeamFullName}`)
     }
 
     useEffect(() => {
         API.getHighlight(props.match.params.teams, props.match.params.date, props.match.params.type)
             .then((res) => {
                 setGameHighlight(res.data[0].id.videoId)
-                stripHighlightTitle(res.data[0].snippet.title)
-                stripHighlightDescription(res.data[0].snippet.description)
+                setDate(moment(props.match.params.date, "YYYYMMDD").format("dddd M/D"));
+                stripTeamsParam(props.match.params.teams)
             })
             .catch(error => console.log(error));
     }, [])
