@@ -12,7 +12,7 @@ import "../Hero/Filters/Button.css"
 const NewSettingsForm = (props) => {
 
     const [category, setCategory] = useState("Team");
-    const [identifier, setIdentifier] = useState("bruins");
+    const [identifier, setIdentifier] = useState("ducks");
     const [frequency, setFrequency] = useState();
     const [completedTable, setCompleted] = useState(false);
     const [futureTable, setFuture] = useState(false);
@@ -80,7 +80,7 @@ const NewSettingsForm = (props) => {
 
         switch (e.target.value) {
             case "Team":
-                setIdentifier("bruins");
+                setIdentifier("ducks");
                 break;
             case "Division":
                 setIdentifier("Atlantic");

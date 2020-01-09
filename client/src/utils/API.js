@@ -92,5 +92,15 @@ export default {
   sendEmailNow: function(email) {
 
     return axios.get(`/api/email/${email}`);
+  },
+
+  deleteAccount: function(email) {
+
+    return axios.delete(`/api/user-info/delete-account/${email}`);
+  },
+  
+  deleteEmailData: function(email) {
+    
+    return axios.delete(`/api/email-data/${email}`);
   }
 };

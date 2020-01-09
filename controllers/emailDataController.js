@@ -113,6 +113,23 @@ module.exports = {
       .catch(err => {
         console.log(err);
       });
+  },
+  
+  deleteEmailData: function(req, res) {
+
+    const { email } = req.params
+
+    db.EmailData
+      .destroy({
+        where: {
+          email,
+        }
+      })
+      .then(() => res.send("delete successful"))
+      .catch(err => {
+        console.log(err.errors[0].message);
+        res.send("error")
+      });
   }
 
 };

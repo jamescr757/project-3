@@ -96,4 +96,21 @@ module.exports = {
       });
   },
 
+  deleteAccount: function(req, res) {
+
+    const { email } = req.params
+
+    db.UserInfo
+      .destroy({
+        where: {
+          email,
+        }
+      })
+      .then(() => res.send("delete successful"))
+      .catch(err => {
+        console.log(err.errors[0].message);
+        res.send("error")
+      });
+  }
+
 };

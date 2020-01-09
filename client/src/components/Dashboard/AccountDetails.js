@@ -44,38 +44,32 @@ export const AccountDetails = (props) => {
     const userEmail = props.match.params.email || props.userEmail;
     sessionStorage.setItem("userEmail", userEmail);
 
-    const [userData, setUserData] = useState([]);
     const [errorMessage, setErrorMessage] = useState();
-    const [reRender, setReRender] = useState(false);
-    const [show, showArrows] = useState(false);
-    const [showIndex, setShowIndex] = useState();
 
-    const handleEmailClick = (index) => {
-        setShowIndex(index);
-        showArrows(true)
-    }
+    const handleDelete = () => {
 
-    const handlePasswordClick = (id, colName, newValue) => {
-
-        API.updateUserData(id, colName, newValue)
+        API.deleteAccount(userEmail)
             .then((res) => {
                 if (res.data === "error") {
-                    console.log("there's been an error updating the email data table");
+                    console.log("error deleting account");
                 } else {
-                    setReRender(!reRender);
+                    window.location.href = "/";
+                    sessionStorage.clear();
+
+                    API.deleteEmailData(userEmail)
+                        .then(res => {
+                            if (res.data === "error") {
+                                console.log("error deleting all emailData from user");
+                            }
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
                 }
             })
             .catch(err => {
                 console.log(err);
             });
-    } 
-
-    const handleDelete = () => {
-
-    }
-
-    const handleSave = () => {
-
     }
 
     return (

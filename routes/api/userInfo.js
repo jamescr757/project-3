@@ -16,5 +16,8 @@ router.route("/update-email/:email")
 router.route("/update-password/:email")
     .post(userInfo.updateUserPassword)
 
+router.route("/delete-account/:email")
+    .delete(userInfo.deleteAccount)
+
 
 module.exports = router;

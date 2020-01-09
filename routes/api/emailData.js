@@ -11,5 +11,6 @@ router.route("/id/:id/:colName")
 router.route("/:email")
     .get(emailData.findAllByEmail)
     .post(emailData.addEmail)
+    .delete(emailData.deleteEmailData)
 
 module.exports = router;
