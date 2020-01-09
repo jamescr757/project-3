@@ -30,11 +30,9 @@ const HeroButtons = (props) => {
                     </div>
 
                 </Grid>
-                <Grid item container justify="center" style={{ maxWidth: 270, padding: 4 }}>
-                    {/* <Typography className={classes.date} variant="h4" color="textPrimary" align="center"> */}
-                        <span style={{ fontSize: 24, paddingTop: 1.5, width: 70, textAlign: "right", cursor: "default", marginRight: 4 }}>{props.dateDay}</span>
-                        <DatePick {...props} />
-                    {/* </Typography> */}
+                <Grid item container justify="center" alignItems="center" style={{ maxWidth: 270, padding: 4 }}>
+                    <span style={{ fontSize: 24, width: 100, textAlign: "right", cursor: "default", marginRight: 4 }}>{props.dateDay}</span>
+                    <DatePick {...props} />
                 </Grid>
                 <Grid item style={{ padding: "8px 0px"}}>
 

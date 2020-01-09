@@ -4,14 +4,7 @@ import {
   Navbar,
   NavbarToggler,
   NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText
+  Nav
 } from 'reactstrap';
 import { DurationDropdown } from "./DurationDropdown";
 import { LocationDropdown } from "./LocationDropdown";
@@ -19,6 +12,7 @@ import { ResultDropdown } from "./ResultDropdown";
 import { RivalDropdown } from "./RivalDropdown";
 import { OvertimeDropdown } from "./OvertimeDropdown";
 import { SortDropdown } from "./SortDropdown";
+import "./HeroNav.css";
 
 const HeroNav = (props) => {
   
@@ -40,11 +34,13 @@ const HeroNav = (props) => {
 
             {props.category === "team" && props.table === "completed" && <ResultDropdown {...props} />}
 
-            {props.table === "completed" && <OvertimeDropdown {...props} />}
+            <div className="hero-nav-container">
+              {props.table === "completed" && <OvertimeDropdown {...props} />}
 
-            {props.category === "conference" || <RivalDropdown {...props} />}
+              {props.category === "conference" || <RivalDropdown {...props} />}
 
-            <SortDropdown {...props} />
+              <SortDropdown {...props} />
+            </div>
 
           </Nav>
           {/* <NavbarText>Simple Text</NavbarText> */}

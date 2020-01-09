@@ -14,6 +14,7 @@ export default function DatePick(props) {
             minDate={new Date("10/02/2019")}
             maxDate={new Date("04/04/2020")}
             dateFormat="M/d"
+            calendarClassName="datepicker-calendar"
         />
     );
 }
