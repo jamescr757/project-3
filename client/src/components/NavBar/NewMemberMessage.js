@@ -1,5 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography"
+import "./NavBar.css";
 
 const styles = {
     message: {
@@ -18,7 +19,7 @@ const styles = {
 export const NewMemberMessage = () => {
 
     return (
-        <div style={styles.message}>
+        <div style={styles.message} className="sign-up-message">
             <Typography variant="body1">
                 Scores and highlights sent right to your inbox! Follow your favorite team(s) or rivals to stay up-to-date with the playoff race!
             </Typography>

@@ -27,3 +27,10 @@
     padding: 0.25rem 0.25rem;
     text-transform: capitalize;
 }
+
+@media only screen and (max-width: 800px) {
+
+    .sign-up-message {
+        display: none
+    }
+}

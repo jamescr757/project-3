@@ -2,8 +2,16 @@
     border: none;
     text-align: left;
     cursor: pointer;
-    max-width: 70px;
+    max-width: 100px;
     margin-left: 4px;
     font-size: 24px;
     display: inline-flex;
+}
+
+.main-date:focus {
+    outline: none;
+}
+
+.datepicker-calendar {
+    right: 90px;
 }
