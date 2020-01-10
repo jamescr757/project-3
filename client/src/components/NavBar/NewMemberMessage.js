@@ -12,7 +12,8 @@ const styles = {
         padding: 8,
         backgroundColor: "rgb(255, 255, 255)",
         borderRadius: 4,
-        fontSize: 16
+        fontSize: 16,
+        zIndex: 10
     }
 }
 
