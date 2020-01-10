@@ -56,7 +56,7 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
                                     <mj-text padding="4px 5px" font-size="12px" color="gray">(${awayTeamRecord})</mj-text>
                                 </mj-column>
                                 <mj-column width="27%">
-                                    <mj-text align="right" padding="0 10px" font-size="24px" color=${awayColor}>${awayTeamScore || ""}</mj-text>
+                                    <mj-text align="right" padding="0 10px" font-size="24px" color=${awayColor}>${awayTeamScore >= 0 ? awayTeamScore : ""}</mj-text>
                                 </mj-column>
                             </mj-group>
                         </mj-section>
@@ -70,7 +70,7 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
                                     <mj-text padding="4px 5px" font-size="12px" color="gray">(${homeTeamRecord})</mj-text>
                                 </mj-column>
                                 <mj-column width="27%">
-                                    <mj-text align="right" padding="0 10px" font-size="24px" color=${homeColor}>${homeTeamScore || ""}</mj-text>
+                                    <mj-text align="right" padding="0 10px" font-size="24px" color=${homeColor}>${homeTeamScore >= 0 ? homeTeamScore : ""}</mj-text>
                                 </mj-column>
                             </mj-group>
                         </mj-section>
