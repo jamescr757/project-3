@@ -15,9 +15,9 @@ export const FilterRow = ({ table, days, category, ot, rival, identifier, locati
         message = "Scores from the past week"
     } else if (days === "3" && category !== "team" && !otBool && !rivalBool && location === "all" && outcome === "all" && table === "completed" && sort === "desc") {
         message = "Scores from the past 3 days"
-    } else if (days === "7" && category === "team" && location === "all" && table === "future" && sort === "asc") {
+    } else if (days === "7" && category === "team" && location === "all" && table === "future" && !rivalBool && sort === "asc") {
         message = "Games over the next week"
-    } else if (days === "3" && category !== "team" && location === "all" && table === "future" && sort === "asc") {
+    } else if (days === "3" && category !== "team" && location === "all" && table === "future" && !rivalBool && sort === "asc") {
         message = "Games over the next 3 days"
     }
 
