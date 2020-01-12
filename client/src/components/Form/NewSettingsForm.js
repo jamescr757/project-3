@@ -18,7 +18,7 @@ const NewSettingsForm = (props) => {
     const [futureTable, setFuture] = useState(false);
     const [errorMessage, setErrorMessage] = useState();
     const [entrySuccess, setEntrySuccess] = useState(false);
-    const [dbSuccess, setDbSuccess] = useState(false);
+    const [dbSuccessMessage, setDbSuccessMessage] = useState(false);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -31,15 +31,21 @@ const NewSettingsForm = (props) => {
             futureTable 
         }
 
-        API.addEmail(data, props.match.params.email || props.userEmail)
+        if (dbSuccessMessage) {
+            setDbSuccessMessage();
+            setErrorMessage("Please change something to add another notification");
+        } else {
+
+            API.addEmail(data, props.match.params.email || props.userEmail)
             .then(() => {
                 setEntrySuccess(false);
                 setErrorMessage("");
-                setDbSuccess(true);
+                setDbSuccessMessage("Notification added to your account!");
             })
             .catch((err) => {
                 console.log(err.message);
             });
+        }
     }
 
     const checkForValidEntries = (value, table) => {
@@ -76,7 +82,7 @@ const NewSettingsForm = (props) => {
     const handleCategoryChange = e => {
         setCategory(e.target.value);
         setErrorMessage("");
-        setDbSuccess(false);
+        setDbSuccessMessage();
 
         switch (e.target.value) {
             case "Team":
@@ -95,20 +101,26 @@ const NewSettingsForm = (props) => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        checkForValidEntriesAgain(true);
+        
+        if (dbSuccessMessage) {
+            setDbSuccessMessage();
+            setErrorMessage("Please change something to add another notification");
+        } else {
+            checkForValidEntriesAgain(true);
+        }
     }
 
     const identifierChange = (value) => {
         setIdentifier(value);
         setErrorMessage("");
-        setDbSuccess(false);
+        setDbSuccessMessage();
         checkForValidEntriesAgain(false);
     } 
 
     const frequencyChange = (e) => {
         const value = e.target.value;
         setFrequency(value);
-        setDbSuccess(false);
+        setDbSuccessMessage();
 
         if (parseInt(value) && value > 0 && value < 31) {
             setErrorMessage("");
@@ -126,13 +138,13 @@ const NewSettingsForm = (props) => {
     const futureChange = (e) => {
         setFuture(!futureTable);
         checkForValidEntries(!futureTable, "future");
-        setDbSuccess(false);
+        setDbSuccessMessage();
     }
     
     const completedChange = (e) => {
         setCompleted(!completedTable);
         checkForValidEntries(!completedTable, "completed");
-        setDbSuccess(false);
+        setDbSuccessMessage();
     }
 
     return (
@@ -182,8 +194,8 @@ const NewSettingsForm = (props) => {
                         </Link>
                     </Grid>
                     <FormGroup>
-                        <FormText color={dbSuccess ? "success" : "secondary"} style={{ fontSize: 16, fontWeight: "bold" }}>
-                            {dbSuccess ? "Notification added to your account!" : "" }  
+                        <FormText color={dbSuccessMessage ? "success" : "secondary"} style={{ fontSize: 16, fontWeight: "bold" }}>
+                            {dbSuccessMessage ? dbSuccessMessage : "" }  
                             {errorMessage ? errorMessage : "" }  
                         </FormText>
                     </FormGroup>

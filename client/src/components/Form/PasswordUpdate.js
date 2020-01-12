@@ -74,7 +74,7 @@ export const PasswordUpdate = (props) => {
 
     const handleClick = () => {
         if (currentPassword !== currentPasswordMatch) {
-            setErrorMessage("current password incorrect");
+            setErrorMessage("Current password incorrect");
         } else if (newPassword.length < 6) {
             setErrorMessage("Password must be at least 6 characters");
         } else if (newPassword !== passwordConfirm) {
@@ -117,7 +117,7 @@ export const PasswordUpdate = (props) => {
             </Grid>
             
             <FormGroup>
-                <FormText color="muted mt-3 text-center" style={{ fontSize: 16 }}>
+                <FormText color={errorMessage === "Success!" ? "success" : "muted"} className="mt-3 text-center" style={{ fontSize: 16 }}>
                     {errorMessage ? errorMessage : ""}
                 </FormText>
             </FormGroup>

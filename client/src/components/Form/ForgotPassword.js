@@ -19,6 +19,11 @@ export const ForgotPassword = (props) => {
     const setNewPasswordFxn = (text) => {
         setErrorMessage();
         setNewPassword(text);
+
+        if (text.length > 5 && text === passwordConfirm) {
+            setPasswordSuccess(true);
+            setErrorMessage();
+        } 
     }
 
     const checkAndSetPassword = (text) => {
@@ -32,22 +37,29 @@ export const ForgotPassword = (props) => {
 
     const handleSave = (userEmail) => {
 
-        API.updateUserPassword(userEmail, newPassword)
-            .then((res) => {
-                if (res.data === "error") {
-                    setErrorMessage("There's something wrong with the password you entered")
+        if (newPassword.length > 5 && passwordConfirm === newPassword) {
+
+            API.updateUserPassword(userEmail, newPassword)
+                .then((res) => {
+                    if (res.data === "error") {
+                        setErrorMessage("There's something wrong with the password you entered")
+                        setPasswordSuccess(false)
+                    } else {
+                        setErrorMessage("Success!");
+                        sessionStorage.setItem("userEmail", userEmail);
+                        window.location.href = `/member/dashboard/${userEmail}`;
+                    }
+                })
+                .catch((err) => {
+                    setErrorMessage("There's been an error. Please try again");
                     setPasswordSuccess(false)
-                } else {
-                    setErrorMessage("Success!");
-                    sessionStorage.setItem("userEmail", userEmail);
-                    window.location.href = `/member/dashboard/${userEmail}`;
-                }
-            })
-            .catch((err) => {
-                setErrorMessage("There's been an error. Please try again");
-                setPasswordSuccess(false)
-                console.log(err.message);
-            })
+                    console.log(err.message);
+                })
+        } else {
+            if (newPassword.length < 6) setErrorMessage("Password must be at least 6 characters");
+
+            else if (passwordConfirm !== newPassword) setErrorMessage("Confirmation password must match")
+        }
     }
 
     const handleClick = () => {
@@ -88,7 +100,7 @@ export const ForgotPassword = (props) => {
                 </Grid>
                 
                 <FormGroup>
-                    <FormText color="muted mt-3 text-center" style={{ fontSize: 16 }}>
+                    <FormText color={errorMessage === "Success!" ? "success" : "muted"} className="mt-3 text-center" style={{ fontSize: 16 }}>
                         {errorMessage ? errorMessage : ""}
                     </FormText>
                 </FormGroup>

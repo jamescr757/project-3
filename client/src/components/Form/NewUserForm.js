@@ -36,7 +36,8 @@ const NewUserForm = (props) => {
                     setErrorMessage("There's something wrong with the email you entered")
                     setEmailSuccess(false)
                 } else {
-                    window.location.href = `/member/new/${email}`
+                    window.location.href = `/member/new/${email}`;
+                    sessionStorage.setItem("userEmail", email);
                 }
             })
             .catch((err) => {
@@ -44,8 +45,6 @@ const NewUserForm = (props) => {
                 setEmailSuccess(false)
                 console.log(err.message);
             })
-
-        sessionStorage.setItem("userEmail", email);
     };
 
     const checkAndSetPassword = (text) => {

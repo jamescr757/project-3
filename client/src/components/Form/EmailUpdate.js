@@ -83,7 +83,7 @@ export const EmailUpdate = (props) => {
             </Grid>
             
             <FormGroup>
-                <FormText color="muted mt-3 text-center" style={{ fontSize: 16 }}>
+                <FormText color={errorMessage === "Success!" ? "success" : "muted"} className="mt-3 text-center" style={{ fontSize: 16 }}>
                     {errorMessage ? errorMessage : ""}
                 </FormText>
             </FormGroup>
