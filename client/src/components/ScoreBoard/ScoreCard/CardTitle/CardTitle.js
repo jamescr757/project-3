@@ -9,10 +9,10 @@ const CardTitle = ({ date, overtime, winner, momentDate, gameTime, table }) => {
         return <GameFinal overtime={overtime} />
     }
     else if (date && table === "future") {
-        return <GameDate>{momentDate + " - " + gameTime}</GameDate>
+        return <GameDate>{gameTime ? momentDate + " - " + gameTime : momentDate + " - TBA" }</GameDate>
     }
     else if (!date && !winner) {
-        return <GameDate>{gameTime}</GameDate>;
+        return <GameDate>{gameTime ? gameTime : "Time TBA"}</GameDate>;
     }
     else if (!overtime) {
         return <GameDate>{momentDate} - Final</GameDate>
