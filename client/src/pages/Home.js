@@ -7,7 +7,7 @@ import moment from "moment";
 
 const Home = (props) => { 
 
-  const [date, setDate] = useState(moment().utcOffset(-6).subtract(1, "days").format("YYYYMMDD"));
+  const [date, setDate] = useState(moment().utcOffset(-8).subtract(1, "days").format("YYYYMMDD"));
   const [noData, setNoData] = useState(false);
 
   const handleBackClick = () => {

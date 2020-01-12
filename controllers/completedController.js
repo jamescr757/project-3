@@ -22,8 +22,8 @@ module.exports = {
 
     const searchTeam = teamInfo.teamNameDehyphenator(identifier);
 
-    const endDate = moment().utcOffset(-6).subtract(1, "days").format("YYYYMMDD");
-    const startDate = moment().utcOffset(-6).subtract(days, "days").format("YYYYMMDD");
+    const endDate = moment().utcOffset(-8).subtract(1, "days").format("YYYYMMDD");
+    const startDate = moment().utcOffset(-8).subtract(days, "days").format("YYYYMMDD");
 
     const whereObj = { date: { [Op.between]: [startDate, endDate] } };
 
