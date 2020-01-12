@@ -34,6 +34,9 @@ db.sequelize.sync(syncOptions)
     // require("./scrape/allCompleted")(db);
     // require("./scrape/allFuture")(db);
 
+    // set second input to > 10 if want to just update way in advance games
+    require("./scrape/tixAndGameTime")(db, 0);
+
     app.listen(PORT, function() {
       console.log(`🌎 ==> API server now on port ${PORT}!`);
     });

@@ -5,7 +5,8 @@ module.exports = function updateNextEmail(db) {
     db.EmailData
       .findAll({
         where: {
-          nextEmail: moment().utcOffset(-8).format("YYYYMMDD")
+          nextEmail: moment().utcOffset(-8).format("YYYYMMDD"),
+          emailSent: true
         }
       })
       .then((data) => {
@@ -18,13 +19,13 @@ module.exports = function updateNextEmail(db) {
 
           db.EmailData
             .update({
-              nextEmail: newNextEmail
+              nextEmail: newNextEmail,
+              emailSent: false
             }, {
               where: {
                 id: id
               }
             })
-            .then(() => {})
             .catch(err => {
               console.log(err);
             });
@@ -33,5 +34,37 @@ module.exports = function updateNextEmail(db) {
       .catch(err => {
         console.log(err);
       });
+
+      db.EmailData
+        .findAll({
+          where: {
+            nextEmail: moment().utcOffset(-8).format("YYYYMMDD"),
+            emailSent: false
+          }
+        })
+        .then((data) => {
+
+          data.forEach((entry) => {
+
+            const { id, nextEmail } = entry.dataValues;
+
+            const newNextEmail = moment(nextEmail, "YYYYMMDD").add(1, "days").format("YYYYMMDD");
+
+            db.EmailData
+              .update({
+                nextEmail: newNextEmail,
+              }, {
+                where: {
+                  id: id
+                }
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          })
+        })
+        .catch(err => {
+          console.log(err);
+        });
 
 }

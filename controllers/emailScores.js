@@ -17,62 +17,78 @@ module.exports = function emailScores(email) {
 
             data.forEach((entry, index) => {
 
-            const { category, identifier, frequency, completedTable, futureTable } = entry.dataValues;
+                const currentNumberOfGames = userGameInfo.length;
 
-            const whereObj = {};
-            switch (category) {
-                case "division":
-                whereObj[Op.or] = [{homeTeamDivision: identifier}, {awayTeamDivision: identifier}]
-                break;
-                case "team":
-                whereObj[Op.or] =  [{homeTeam: identifier}, {awayTeam: identifier}];
-                break;
-                default:
-                identifier === "All Teams" ? "" : whereObj[Op.or] = [{homeTeamConference: identifier}, {awayTeamConference: identifier}]
-                break;
-            }
+                const { category, identifier, frequency, completedTable, futureTable, id } = entry.dataValues;
 
-            if (completedTable) {
-                const endDate = moment().subtract(1, "days").format("YYYYMMDD");
-                const startDate = moment().subtract(frequency, "days").format("YYYYMMDD");
+                const whereObj = {};
+                switch (category) {
+                    case "division":
+                    whereObj[Op.or] = [{homeTeamDivision: identifier}, {awayTeamDivision: identifier}]
+                    break;
+                    case "team":
+                    whereObj[Op.or] =  [{homeTeam: identifier}, {awayTeam: identifier}];
+                    break;
+                    default:
+                    identifier === "All Teams" ? "" : whereObj[Op.or] = [{homeTeamConference: identifier}, {awayTeamConference: identifier}]
+                    break;
+                }
 
-                whereObj.date = { [Op.between]: [startDate, endDate] };
+                if (completedTable) {
+                    const endDate = moment().subtract(1, "days").format("YYYYMMDD");
+                    const startDate = moment().subtract(frequency, "days").format("YYYYMMDD");
 
-                db.Completed
-                    .findAll({
-                        where: whereObj,
-                        order: [[ "date", "DESC" ]]
-                    })
-                    .then(scores => {
-                        scores.forEach(game => {
-                        userGameInfo.push(game.dataValues);
+                    whereObj.date = { [Op.between]: [startDate, endDate] };
+
+                    db.Completed
+                        .findAll({
+                            where: whereObj,
+                            order: [[ "date", "DESC" ]]
                         })
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    });
-            }
-
-            if (futureTable) {
-                const startDate = moment().format("YYYYMMDD");
-                const endDate = moment().add(parseInt(frequency) - 1, "days").format("YYYYMMDD");
-
-                whereObj.date = { [Op.between]: [startDate, endDate] };
-
-                db.Future
-                    .findAll({
-                        where: whereObj,
-                        order: [[ "date", "ASC" ]]
-                    })
-                    .then(games => {
-                        games.forEach(game => {
-                        userGameInfo.push(game.dataValues);
+                        .then(scores => {
+                            scores.forEach(game => {
+                                userGameInfo.push(game.dataValues);
+                            })
                         })
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    });
-            }
+                        .catch(err => {
+                            console.log(err);
+                        });
+                }
+
+                if (futureTable) {
+                    const startDate = moment().format("YYYYMMDD");
+                    const endDate = moment().add(parseInt(frequency) - 1, "days").format("YYYYMMDD");
+
+                    whereObj.date = { [Op.between]: [startDate, endDate] };
+
+                    db.Future
+                        .findAll({
+                            where: whereObj,
+                            order: [[ "date", "ASC" ]]
+                        })
+                        .then(games => {
+                            games.forEach(game => {
+                                userGameInfo.push(game.dataValues);
+                            })
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
+                }
+
+                if (currentNumberOfGames !== userGameInfo.length) {
+                    db.EmailData
+                        .update({
+                            emailSent: true
+                        }, {
+                            where: {
+                                id: id
+                            }
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
+                }
 
             })
         })

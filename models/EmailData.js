@@ -37,6 +37,12 @@ module.exports = function(sequelize, DataTypes) {
         nextEmail: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+
+        emailSent: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false
         }
 
         

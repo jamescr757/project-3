@@ -1,6 +1,3 @@
-// const db = require("../models");
-// const Op = db.Sequelize.Op;
-// const moment = require("moment");
 
 module.exports = function emailScores(db) {
 
@@ -11,7 +8,6 @@ module.exports = function emailScores(db) {
                 const { email } = entry.dataValues;
 
                 require("./emailScores")(email);
-                // require("./completedController").emailScores(email, db, Op, moment)
             })
         })
         .catch(err => {
