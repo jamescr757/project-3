@@ -30,6 +30,7 @@ db.sequelize.sync(syncOptions)
 
     // require("./scrape/newCompleted")(db);
     // require("./scrape/deleteFuture")(db);
+    require("./scrape/updateRecords")(db);
     // require("./scrape/allCompleted")(db);
     // require("./scrape/allFuture")(db);
 
