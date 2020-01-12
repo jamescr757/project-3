@@ -51,7 +51,7 @@ const ScoreCard = (props) => {
         setOpen(false);
     }
 
-    const { awayTeam, homeTeam, loser, winner, overtime, homeTeamScore, awayTeamScore, homeTeamRecord, awayTeamRecord, date } = props.game;
+    const { awayTeam, homeTeam, loser, winner, overtime, homeTeamScore, awayTeamScore, homeTeamRecord, awayTeamRecord, date, gameTime } = props.game;
 
     return (
         <React.Fragment>
@@ -62,6 +62,7 @@ const ScoreCard = (props) => {
                     overtime={overtime}
                     winner={winner}
                     momentDate={moment(date).format("ddd M/D")}
+                    gameTime={gameTime}
                     table={props.table}
                 />
             

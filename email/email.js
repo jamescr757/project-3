@@ -15,13 +15,13 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
         }
     });
 
-    const gameDateLogic = (date, loser, overtime) => {
+    const gameDateLogic = (date, loser, overtime, gameTime) => {
         if (loser && overtime) {
             return `${moment(date).format("ddd M/D")} - Final/OT`
         } else if (loser && !overtime) {
             return `${moment(date).format("ddd M/D")} - Final`
         } else {
-            return `${moment(date).format("dddd M/D")}`
+            return `${moment(date).format("ddd M/D")} - ${gameTime}`
         }
     }
 
@@ -31,7 +31,7 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
         const idHash = [];
 
         gameInfo.forEach((game, index) => {
-            const { id, awayTeam, homeTeam, awayTeamRecord, homeTeamRecord, awayTeamScore, homeTeamScore, date, loser, overtime, ticketLink } = game;
+            const { id, awayTeam, homeTeam, awayTeamRecord, homeTeamRecord, awayTeamScore, homeTeamScore, date, loser, overtime, gameTime, ticketLink } = game;
 
             const homeColor = homeTeam === loser ? "gray" : "black";
             const awayColor = awayTeam === loser ? "gray" : "black";
@@ -43,7 +43,7 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
                     <mj-wrapper padding="30px 0 2px 0">
                         <mj-section padding="0">
                             <mj-column>
-                                <mj-text align="center" padding="5px 0" font-size="18px">${gameDateLogic(date, loser, overtime)}</mj-text>
+                                <mj-text align="center" padding="5px 0" font-size="18px">${gameDateLogic(date, loser, overtime, gameTime)}</mj-text>
                             </mj-column>
                         </mj-section>
                         <mj-section padding="10px 0">

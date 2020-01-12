@@ -21,6 +21,20 @@ module.exports = {
         else return false;
     },
 
+    timeZoneDiff(teamName) {
+        const teamIndex = this.teamIDGenerator(teamName);
+
+        if (teamIndex <= 15 && teamIndex > -1) return -1;
+
+        else if (teamIndex === 17 || teamIndex === 24 || teamIndex === 25 || teamIndex === 26) return 1;
+
+        else if (teamIndex <= 22 && teamIndex > -1) return 0;
+
+        else if (teamIndex > 0) return 2;
+
+        else return false;
+    },
+
     teamConferenceGenerator(teamName) {
         const teamIndex = this.teamIDGenerator(teamName);
 

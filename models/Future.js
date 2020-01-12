@@ -52,6 +52,10 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
 
+        gameTime: {
+            type: DataTypes.STRING,
+        },
+
         ticketLink: {
             type: DataTypes.STRING
         },
