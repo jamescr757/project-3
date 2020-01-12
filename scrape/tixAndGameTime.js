@@ -5,6 +5,8 @@ const moment = require("moment");
 
 module.exports = function scrapeTixAndGameTimes(db, eventStartNum = 0) {
 
+    const Op = db.Sequelize.Op;
+
     teamInfo.teamsArray.forEach((team, index) => {
 
         const fullTeamName = teamInfo.teamFullName(team);
@@ -33,7 +35,10 @@ module.exports = function scrapeTixAndGameTimes(db, eventStartNum = 0) {
                         }, {
                             where: {
                                 date: dbDate,
-                                homeTeam: team
+                                homeTeam: team,
+                                gameTime: {
+                                    [Op.is]: null 
+                                }
                             }
                         })
                 }
