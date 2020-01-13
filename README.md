@@ -1,4 +1,4 @@
-# NHL Scores - https://nhl-scores-757.herokuapp.com/
+# NHL Scores 
 
 ### Overview 
 
@@ -14,4 +14,10 @@ Games that haven't been played yet have a link to look at tickets for that speci
 
 If a user wants to, they can sign up for an email newsletter. The newsletter contains scores and/or future games from a user-specified team(s)/division/conference. The newsletter is sent out based on a frequency set by the user. The games in the newsletter have a link to view the highlights or tickets. A member can follow several teams and will at most receive one email per day. The program also removes duplicate games before sending the email. The server processes user's settings and sends out emails between 2-4 am CST. 
 
-External libraries include: Material-UI, reactstrap, sequelize, moment, classnames, react-datepicker, nodemailer, and mjml
+### Deployed Link
+
+https://nhl-scores-757.herokuapp.com/
+
+### External Libraries 
+
+Material-UI, reactstrap, sequelize, moment, classnames, react-datepicker, nodemailer, and mjml
