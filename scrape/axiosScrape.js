@@ -77,6 +77,9 @@ module.exports = function scrape(db, seasonDate) {
             }
 
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(seasonDate);
+            console.log(error.message)
+        });
 
 }

@@ -58,7 +58,10 @@ module.exports = function scrapeAllFuture(db) {
             }
 
         })
-        .catch(error => console.log(error.message));
+        .catch(error => {
+            console.log(seasonDate);
+            console.log(error.message)
+        });
 
     }
 }
