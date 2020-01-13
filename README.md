@@ -1,4 +1,4 @@
-# NHL Scores and Highlights
+# NHL Scores - https://nhl-scores-757.herokuapp.com/
 
 ### Overview 
 
