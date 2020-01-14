@@ -31,7 +31,10 @@ const LoginForm = (props) => {
                 if (res.data === "error") {
                     setErrorMessage("There's something wrong with the email you entered")
                     setEmailSuccess(false)
+                    setShowUserMessage(false)
                 } else if (!res.data) {
+                    setEmailSuccess(false)
+                    setShowUserMessage(false)
                     setErrorMessage("That email is not in our system")
                     setEmailSuccess(false)
                 } else {
@@ -42,6 +45,7 @@ const LoginForm = (props) => {
                 }
             })
         } else {
+            setShowUserMessage(false)
             setErrorMessage()
             setEmailSuccess(false)
         }
@@ -63,9 +67,19 @@ const LoginForm = (props) => {
         }
     }
 
-    const handleClick = event => {
-        event.preventDefault();
-        setErrorMessage("Password is incorrect");
+    const handleLogin = () => {
+
+        if (passwordSuccess && emailSuccess) {
+            window.location.href = `/member/dashboard/${email}`;
+        } else if (passwordMatch === password && showUserMessage && emailSuccess) {
+            window.location.href = `/member/dashboard/${email}`;
+        } else if (!emailSuccess) {
+            setShowUserMessage(false);
+            setErrorMessage("Please enter a valid email");
+        } else if (passwordMatch !== password) {
+            setShowUserMessage(false);
+            setErrorMessage("Password is incorrect");
+        }
     }
 
     const sendEmail = () => {
@@ -109,7 +123,7 @@ const LoginForm = (props) => {
                     </FormGroup>
                     <Grid container>
                     {!passwordSuccess ?  
-                        <Button color={password.length > 5 ? "success" : "secondary"} onClick={handleClick}>Login</Button>
+                        <Button color={password.length > 5 ? "success" : "secondary"} onClick={handleLogin}>Login</Button>
                         :
                         <Link to={`/member/dashboard/${email}`}>
                             <Button color="success">Login</Button>
