@@ -70,7 +70,10 @@ const ScoreBoard = (props) => {
                     md={4}
                     lg={4}
                 >
-                    <ScoreCard game={{...game}}/>
+                    <ScoreCard 
+                        game={{...game}}
+                        category={false}
+                    />
                 </Grid>
                 ))}
                 {props.noData && renderNoGames()}

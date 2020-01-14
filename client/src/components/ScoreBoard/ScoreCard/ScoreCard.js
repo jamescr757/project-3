@@ -87,11 +87,12 @@ const ScoreCard = (props) => {
                                   justify="space-between"
                                 >
                                     <TeamRow 
-                                    team={awayTeam}
-                                    winner={winner}
-                                    loser={loser}
-                                    teamScore={awayTeamScore}
-                                    teamRecord={awayTeamRecord}
+                                        team={awayTeam}
+                                        winner={winner}
+                                        loser={loser}
+                                        teamScore={awayTeamScore}
+                                        teamRecord={awayTeamRecord}
+                                        {...props}
                                     />
                                 </Grid>
 
@@ -124,11 +125,12 @@ const ScoreCard = (props) => {
                                   justify="space-between"
                                 >
                                     <TeamRow 
-                                    team={homeTeam}
-                                    winner={winner}
-                                    loser={loser}
-                                    teamScore={homeTeamScore}
-                                    teamRecord={homeTeamRecord}
+                                        team={homeTeam}
+                                        winner={winner}
+                                        loser={loser}
+                                        teamScore={homeTeamScore}
+                                        teamRecord={homeTeamRecord}
+                                        {...props}
                                     />
                                 </Grid>
 

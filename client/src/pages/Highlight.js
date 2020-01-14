@@ -14,15 +14,6 @@ const Highlight = (props) => {
     const [highlightDescription, setHighlightDescription] = useState();
     const [date, setDate] = useState();
 
-    // const stripTeamsParam = (teams) => {
-    //   const vsIndex = teams.indexOf("v", 3);
-    //   const awayTeam = teams.slice(0, vsIndex - 1);
-    //   const homeTeam = teams.slice(vsIndex + 3);
-    //   const awayTeamFullName = teamInfo.teamFullNameCaptilized(teamInfo.teamNameDePlus(awayTeam));
-    //   const homeTeamFullName = teamInfo.teamFullNameCaptilized(teamInfo.teamNameDePlus(homeTeam));
-    //   setHighlightDescription(`${awayTeamFullName} vs. ${homeTeamFullName}`)
-    // }
-
     useEffect(() => {
         API.getEmailHighlight(props.match.params.homeTeam, props.match.params.awayTeam, props.match.params.date, "5")
             .then((res) => {

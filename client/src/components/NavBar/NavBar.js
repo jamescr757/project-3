@@ -31,11 +31,11 @@ const NavBar = (props) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <TeamDropdown />
+            <TeamDropdown {...props} />
 
-            <DivisionDropdown />
+            <DivisionDropdown {...props} />
 
-            <ConferenceDropdown />
+            <ConferenceDropdown {...props} />
 
             {/* <Member /> */}
           </Nav>

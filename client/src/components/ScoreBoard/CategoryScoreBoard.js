@@ -88,6 +88,8 @@ const CategoryScoreBoard = (props) => {
                         date={true}
                         game={{...game}}
                         table={table}
+                        category={true}
+                        {...props}
                     />
                 </Grid>
                 ))}

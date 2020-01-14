@@ -25,6 +25,17 @@ const TeamBtns = (props) => {
     const centralTeams = teamInfo.teamsArray.slice(16, 23);
     const pacificTeams = teamInfo.teamsArray.slice(23);
 
+    const toLogic = (team) => {
+        
+        if (props.category && props.match.params.table === "completed") {
+            return `/multiple/team/completed/${teamInfo.teamNameConverter(team)}/${props.match.params.days}/${props.match.params.location}/${props.match.params.outcome}/${props.match.params.rival}/${props.match.params.ot}/desc`;
+        } else if (props.category && props.match.params.table === "future") {
+            return `/multiple/team/future/${teamInfo.teamNameConverter(team)}/${props.match.params.days}/${props.match.params.location}/${props.match.params.outcome}/${props.match.params.rival}/${props.match.params.ot}/asc`;
+        } else {
+            return `/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`;
+        }
+    }
+
     return (
         <Grid container spacing={1} justify="space-evenly">
             <Grid item container md={3} xs={12} sm={6} direction="column" justify="flex-start" spacing={1} className="mb-3">
@@ -33,7 +44,7 @@ const TeamBtns = (props) => {
                     return (
                         <Grid item key={index}>
                             <Link
-                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`}
+                                to={toLogic(team)}
                                 className="btn-link"
                             >
                                 <DropdownItem 
@@ -58,7 +69,7 @@ const TeamBtns = (props) => {
                     return (
                         <Grid item key={index} container spacing={1} className={index === metroTeams.length - 1 ? "mb-3" : ""}>
                             <Link
-                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`}
+                                to={toLogic(team)} 
                                 className="btn-link"
                             >
                                 <DropdownItem 
@@ -83,7 +94,7 @@ const TeamBtns = (props) => {
                     return (
                         <Grid item key={index} container spacing={1} className={index === centralTeams.length - 1 ? "mb-3" : ""}>
                             <Link
-                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`}
+                                to={toLogic(team)} 
                                 className="btn-link"
                             >
                                 <DropdownItem 
@@ -108,7 +119,7 @@ const TeamBtns = (props) => {
                     return (
                         <Grid item key={index} container spacing={1}>
                             <Link
-                                to={`/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`}
+                                to={toLogic(team)} 
                                 className="btn-link"
                             >
                                 <DropdownItem 

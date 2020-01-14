@@ -12,7 +12,7 @@ export const ConferenceDropdown = (props) => {
             </DropdownToggle>
 
             <DropdownMenu className="conference-dropdown">
-                <ConferenceBtns />
+                <ConferenceBtns {...props} />
             </DropdownMenu>
 
         </UncontrolledDropdown>

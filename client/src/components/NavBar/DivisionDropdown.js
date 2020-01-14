@@ -12,7 +12,7 @@ export const DivisionDropdown = (props) => {
             </DropdownToggle>
 
             <DropdownMenu className="division-dropdown">
-                <DivisionBtns />
+                <DivisionBtns {...props} />
             </DropdownMenu>
 
         </UncontrolledDropdown>

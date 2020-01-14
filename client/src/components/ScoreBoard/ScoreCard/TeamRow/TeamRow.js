@@ -7,7 +7,9 @@ import TeamScore from "./TeamScore";
 import "../ScoreCard.css";
 
 
-function TeamRow({ team, winner, loser, teamScore, teamRecord }) {
+function TeamRow(props) {
+
+    const { team, winner, loser, teamScore, teamRecord } = props
 
     return (
         <React.Fragment>
@@ -38,14 +40,14 @@ function TeamRow({ team, winner, loser, teamScore, teamRecord }) {
                         team={team}
                         loser={loser}
                         winner={winner}
-                        teamScore={teamScore}
-                        />
+                        {...props}
+                    />
                     <TeamRecord
                         team={team}
                         loser={loser}
                         winner={winner}
                         teamRecord={teamRecord}
-                        />
+                    />
                 </Grid>
 
             </Grid>

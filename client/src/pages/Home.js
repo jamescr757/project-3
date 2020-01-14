@@ -28,7 +28,7 @@ const Home = (props) => {
 
   return (
     <React.Fragment>
-      <NavBar {...props}/>
+      <NavBar {...props} category={false} />
       <DateHero 
         date={moment(date).format("MM/DD/YYYY")} 
         dateDay={moment(date).format("ddd")} 
