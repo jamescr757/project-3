@@ -28,6 +28,7 @@ const LoginForm = (props) => {
         if (text.match(/.+@.+\....+/)) {
             API.grabUserPassword(text)
             .then(res => {
+                console.log(res.data);
                 if (res.data === "error") {
                     setErrorMessage("There's something wrong with the email you entered")
                     setEmailSuccess(false)
@@ -63,9 +64,16 @@ const LoginForm = (props) => {
         }
     }
 
-    const handleClick = event => {
-        event.preventDefault();
-        setErrorMessage("Password is incorrect");
+    const handleLogin = () => {
+
+        if (passwordSuccess) {
+            window.location.href = `/member/dashboard/${email}`;
+        } else if (passwordMatch === password && showUserMessage) {
+            window.location.href = `/member/dashboard/${email}`;
+        } else {
+            setShowUserMessage(false);
+            setErrorMessage("Password is incorrect");
+        }
     }
 
     const sendEmail = () => {
@@ -109,7 +117,7 @@ const LoginForm = (props) => {
                     </FormGroup>
                     <Grid container>
                     {!passwordSuccess ?  
-                        <Button color={password.length > 5 ? "success" : "secondary"} onClick={handleClick}>Login</Button>
+                        <Button color={password.length > 5 ? "success" : "secondary"} onClick={handleLogin}>Login</Button>
                         :
                         <Link to={`/member/dashboard/${email}`}>
                             <Button color="success">Login</Button>
