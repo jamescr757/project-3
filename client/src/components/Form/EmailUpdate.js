@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Grid } from "@material-ui/core";
 import API from "../../utils/API";
+import { Link } from "react-router-dom";
 
 
 export const EmailUpdate = (props) => {
@@ -70,6 +71,9 @@ export const EmailUpdate = (props) => {
                 <Input type="email" name="confirm-email" id="confirm-email" placeholder="confirm email" onChange={e => checkAndSetEmail(e.target.value)} />
             </FormGroup>
             <Grid container justify="flex-end">
+                <Link to={`/member/my-account/${props.userEmail}`}>
+                    <Button color="primary" className="mr-3">Cancel</Button>
+                </Link>
                 { emailSuccess ? 
                     <Button color="success" onClick={()=>handleSave(props.userEmail)}>
                         Save
@@ -79,7 +83,6 @@ export const EmailUpdate = (props) => {
                         Save
                     </Button>
                 }
-                
             </Grid>
             
             <FormGroup>

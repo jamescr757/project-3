@@ -4,6 +4,7 @@ import { Grid } from "@material-ui/core";
 import API from "../../utils/API";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import { Link } from "react-router-dom";
 import "./Form.css"
 
 
@@ -33,6 +34,11 @@ export const PasswordUpdate = (props) => {
     const setNewPasswordFxn = (text) => {
         setErrorMessage();
         setNewPassword(text);
+
+        if (text.length > 5 && text === passwordConfirm) {
+            setPasswordSuccess(true);
+            setErrorMessage();
+        } 
     }
 
     const checkAndSetPassword = (text) => {
@@ -52,7 +58,13 @@ export const PasswordUpdate = (props) => {
     const handleSave = (userEmail) => {
 
         if (currentPassword !== currentPasswordMatch) {
-            setErrorMessage("current password incorrect");
+            setErrorMessage("Current password incorrect");
+        } else if (newPassword.length < 6) {
+            setErrorMessage("New password not long enough");
+            setPasswordSuccess(false);
+        } else if (newPassword !== passwordConfirm) {
+            setErrorMessage("Confirmation password does not match");
+            setPasswordSuccess(false);
         } else {
             API.updateUserPassword(userEmail, newPassword)
                 .then((res) => {
@@ -104,6 +116,9 @@ export const PasswordUpdate = (props) => {
                 <Input type={showConfirmPassword ? "text" : "password"} name="password" id="password" placeholder="confirm new password" onChange={e => checkAndSetPassword(e.target.value)} />
             </FormGroup>
             <Grid container justify="flex-end">
+                <Link to={`/member/my-account/${props.userEmail}`}>
+                    <Button color="primary" className="mr-3">Cancel</Button>
+                </Link>
                 { passwordSuccess ? 
                     <Button color="success" onClick={()=>handleSave(props.userEmail)}>
                         Save
@@ -113,7 +128,6 @@ export const PasswordUpdate = (props) => {
                         Save
                     </Button>
                 }
-                
             </Grid>
             
             <FormGroup>
