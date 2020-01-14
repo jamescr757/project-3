@@ -75,7 +75,7 @@ const LoginForm = (props) => {
             window.location.href = `/member/dashboard/${email}`;
         } else if (!emailSuccess) {
             setShowUserMessage(false);
-            setErrorMessage("Please enter a valid email");
+            setErrorMessage("That email is not in our system");
         } else if (passwordMatch !== password) {
             setShowUserMessage(false);
             setErrorMessage("Password is incorrect");
