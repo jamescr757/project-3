@@ -30,25 +30,25 @@ db.sequelize.sync(syncOptions)
 
     // require("./scrape/newCompleted")(db);
     // require("./scrape/deleteFuture")(db);
-    require("./scrape/updateRecords")(db);
+    // require("./scrape/updateRecords")(db);
     // require("./scrape/allCompleted")(db);
     // require("./scrape/allFuture")(db);
 
     // set second input to > 10 if want to just update way in advance games
     // require("./scrape/tixAndGameTime")(db, 15);
 
-    app.listen(PORT, function() {
-      console.log(`🌎 ==> API server now on port ${PORT}!`);
-    });
+    // app.listen(PORT, function() {
+    //   console.log(`🌎 ==> API server now on port ${PORT}!`);
+    // });
   })
   .then(() => {
     setTimeout(() => {
       require("./controllers/emailNewsletter")(db);
-    }, 1 * 60 * 1000)
+    }, 3 * 60 * 1000)
   })
   .then(() => {
     setTimeout(() => {
       require("./controllers/updateNextEmail")(db);
-    }, 2 * 60 * 1000)
+    }, 10 * 60 * 1000)
   });
 
