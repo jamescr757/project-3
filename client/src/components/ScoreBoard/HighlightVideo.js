@@ -27,15 +27,27 @@ const HighlightVideo = (props) => {
 
     return (
         <Container className={classes.cardGrid} maxWidth="lg">
-            <Grid container justify="center" className="mt-5">
-                <iframe
-                    width="392"
-                    height="220.5"
-                    src={`https://www.youtube.com/embed/${props.gameHighlight}`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen="allowfullscreen"
-                />
+            <Grid container spacing={4} direction="column" alignItems="center" justify="center" className="mt-1">
+                <Grid item>
+                    <iframe
+                        width="355.5"
+                        height="200"
+                        src={`https://www.youtube.com/embed/${props.gameHighlight5}`}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen="allowfullscreen"
+                    />
+                </Grid>
+                <Grid item className="mb-3">
+                    <iframe
+                        width="355.5"
+                        height="200"
+                        src={`https://www.youtube.com/embed/${props.gameHighlight9}`}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen="allowfullscreen"
+                    />
+                </Grid>
             </Grid>
         </Container>
     );

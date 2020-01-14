@@ -44,6 +44,11 @@ export default {
     return axios.get(`/api/highlight/${teams}/date/${date}/${type}`);
   },
 
+  getEmailHighlight: function(homeTeam, awayTeam, date, type) {
+    
+    return axios.get(`/api/highlight/${homeTeam}/${awayTeam}/date/${date}/${type}`);
+  },
+
   checkUserEmail: function(email, password) {
 
     return axios.post(`/api/user-info/check-email`, { email, password });
