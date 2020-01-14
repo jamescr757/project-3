@@ -4,16 +4,14 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Card, CardContent, List, ListItem, ListItemText, ListItemIcon, Button as SaveButton } from "@material-ui/core";
-import ScheduleIcon from '@material-ui/icons/Schedule';
 import { Button } from "reactstrap";
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import "./Dashboard.css";
 import { AccountHero } from "../Hero/AccountHero";
 import SettingsIcon from '@material-ui/icons/Settings';
 import { EmailUpdate } from "../Form/EmailUpdate";
 import { Link } from "react-router-dom";
 import { PasswordUpdate } from "../Form/PasswordUpdate";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const classNames = require("classnames");
 
@@ -44,32 +42,35 @@ export const AccountDetails = (props) => {
     const userEmail = props.match.params.email || props.userEmail;
     sessionStorage.setItem("userEmail", userEmail);
 
-    const [errorMessage, setErrorMessage] = useState();
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
 
     const handleDelete = () => {
 
         API.deleteAccount(userEmail)
-            .then((res) => {
-                if (res.data === "error") {
-                    console.log("error deleting account");
-                } else {
-                    window.location.href = "/";
-                    sessionStorage.clear();
+        .then((res) => {
+            if (res.data === "error") {
+                console.log("error deleting account");
+            } else {
+                window.location.href = "/";
+                sessionStorage.clear();
 
-                    API.deleteEmailData(userEmail)
-                        .then(res => {
-                            if (res.data === "error") {
-                                console.log("error deleting all emailData from user");
-                            }
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        });
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            });
+                API.deleteEmailData(userEmail)
+                    .then(res => {
+                        if (res.data === "error") {
+                            console.log("error deleting all emailData from user");
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
+        
     }
 
     return (
@@ -114,7 +115,7 @@ export const AccountDetails = (props) => {
                         </Grid>
                         <Grid container justify="flex-end">
                             {/* <Grid item> */}
-                                <Button color="danger" className="m-3" onClick={()=>handleDelete()}>
+                                <Button color="danger" className="m-3" onClick={toggle}>
                                     Delete Account
                                 </Button>
                             {/* </Grid> */}
@@ -145,6 +146,19 @@ export const AccountDetails = (props) => {
                     }
                 </Grid>
             </Grid>
+            <div>
+                {/* <Button color="danger" onClick={toggle}>{buttonLabel}</Button> */}
+                <Modal isOpen={modal} toggle={toggle}>
+                    <ModalHeader toggle={toggle}>Delete Account</ModalHeader>
+                    {/* <ModalBody>
+                        Are you sure you want to delete your account?
+                    </ModalBody> */}
+                    <ModalFooter>
+                        <Button color="danger" onClick={()=>handleDelete()}>Delete</Button>{' '}
+                        <Button color="secondary" onClick={toggle}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
+            </div>
         </Container>
         </React.Fragment>
     );

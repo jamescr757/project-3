@@ -1,7 +1,7 @@
 const express = require("express");
 const routes = require("./routes");
 
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
@@ -28,14 +28,14 @@ if (process.env.NODE_ENV === "test") {
 db.sequelize.sync(syncOptions)
   .then(() => {
 
-    require("./scrape/newCompleted")(db);
+    // require("./scrape/newCompleted")(db);
     // require("./scrape/deleteFuture")(db);
-    require("./scrape/updateRecords")(db);
+    // require("./scrape/updateRecords")(db);
     // require("./scrape/allCompleted")(db);
     // require("./scrape/allFuture")(db);
 
     // set second input to > 10 if want to just update way in advance games
-    require("./scrape/tixAndGameTime")(db, 15);
+    // require("./scrape/tixAndGameTime")(db, 15);
 
     app.listen(PORT, function() {
       console.log(`🌎 ==> API server now on port ${PORT}!`);

@@ -2,7 +2,7 @@ const moment = require("moment");
 
 module.exports = function deleteFuture(db) {
 
-    const yesterday = moment().utcOffset(-8).subtract(1, 'days').format("YYYYMMDD");
+    const yesterday = moment().utcOffset(-7).subtract(1, 'days').format("YYYYMMDD");
 
     let closestDate;
     db.Future.findAll({

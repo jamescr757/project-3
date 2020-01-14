@@ -2,14 +2,35 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const moment = require("moment");
 
+function recordStripper(record) {
+
+    const firstHyphen = record.indexOf("-");
+    const secondHyphen = record.indexOf("-", 3);
+
+    const wins = parseInt(record.slice(0, firstHyphen));
+    const losses = parseInt(record.slice(firstHyphen + 1, secondHyphen));
+    const ot = parseInt(record.slice(secondHyphen + 1));
+
+    const gamesPlayed = wins + losses + ot;
+    const points = wins * 2 + ot;
+
+    return {
+        record,
+        wins,
+        losses,
+        ot,
+        gamesPlayed,
+        points
+    }
+}
+
 module.exports = function updateRecords(db) {
 
     const nhlEndDate = moment("04/04/2020", "MM/DD/YYYY").format("YYYYMMDD");
 
-    const today = moment().utcOffset(-8).format("YYYYMMDD");
+    const today = moment().utcOffset(-7).format("YYYYMMDD");
 
-    const futureDaysToScrape = moment(nhlEndDate).diff(moment(today), "days") > 15 ? 15 : moment(nhlEndDate).diff(moment(today), "days");
-    console.log(futureDaysToScrape);
+    const futureDaysToScrape = moment(nhlEndDate).diff(moment(today), "days") > 30 ? 30 : moment(nhlEndDate).diff(moment(today), "days");
     
     for (let dayNum = 0; dayNum <= futureDaysToScrape; dayNum++) {
         
@@ -28,10 +49,12 @@ module.exports = function updateRecords(db) {
 
                 const awayTeam = teams[teamIndex].children[0].data.toLowerCase();
                 const homeTeam = teams[teamIndex + 1].children[0].data.toLowerCase();
+                const homeTeamRecord = records[teamIndex + 1].children[0].data;
+                const standingsObj = recordStripper(homeTeamRecord);
 
                 db.Future.update({
 
-                    homeTeamRecord: `${records[teamIndex + 1].children[0].data}`,
+                    homeTeamRecord,
 
                 }, {
                     where: {
@@ -52,10 +75,22 @@ module.exports = function updateRecords(db) {
                 })
                     .catch((error) => console.log(error.message));
 
+                db.Standings.update(standingsObj, {
+
+                    where: {
+                        team: homeTeam
+                    }
+
+                })
+                    .catch((error) => console.log(error.message));
+
             }
 
         })
-        .catch(error => console.log(error.message));
+        .catch(error => {
+            console.log(seasonDate);
+            console.log(error.message)
+        });
 
     }
 }

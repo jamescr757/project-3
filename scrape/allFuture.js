@@ -7,7 +7,7 @@ module.exports = function scrapeAllFuture(db) {
 
     const nhlEndDate = moment("04/04/2020", "MM/DD/YYYY").format("YYYYMMDD");
 
-    const today = moment().utcOffset(-8).format("YYYYMMDD");
+    const today = moment().utcOffset(-7).format("YYYYMMDD");
 
     let futureDaysToScrape;
     
@@ -58,7 +58,10 @@ module.exports = function scrapeAllFuture(db) {
             }
 
         })
-        .catch(error => console.log(error.message));
+        .catch(error => {
+            console.log(seasonDate);
+            console.log(error.message)
+        });
 
     }
 }
