@@ -28,11 +28,13 @@ const LoginForm = (props) => {
         if (text.match(/.+@.+\....+/)) {
             API.grabUserPassword(text)
             .then(res => {
-                console.log(res.data);
                 if (res.data === "error") {
                     setErrorMessage("There's something wrong with the email you entered")
                     setEmailSuccess(false)
+                    setShowUserMessage(false)
                 } else if (!res.data) {
+                    setEmailSuccess(false)
+                    setShowUserMessage(false)
                     setErrorMessage("That email is not in our system")
                     setEmailSuccess(false)
                 } else {
@@ -43,6 +45,7 @@ const LoginForm = (props) => {
                 }
             })
         } else {
+            setShowUserMessage(false)
             setErrorMessage()
             setEmailSuccess(false)
         }
@@ -66,11 +69,14 @@ const LoginForm = (props) => {
 
     const handleLogin = () => {
 
-        if (passwordSuccess) {
+        if (passwordSuccess && emailSuccess) {
             window.location.href = `/member/dashboard/${email}`;
-        } else if (passwordMatch === password && showUserMessage) {
+        } else if (passwordMatch === password && showUserMessage && emailSuccess) {
             window.location.href = `/member/dashboard/${email}`;
-        } else {
+        } else if (!emailSuccess) {
+            setShowUserMessage(false);
+            setErrorMessage("Please enter a valid email");
+        } else if (passwordMatch !== password) {
             setShowUserMessage(false);
             setErrorMessage("Password is incorrect");
         }
