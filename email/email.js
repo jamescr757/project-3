@@ -5,7 +5,7 @@ const mjml2html = require('mjml');
 const moment = require("moment");
 
 
-module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas.edu") { 
+module.exports = function deleteFuture(gameInfo, userEmail) { 
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -18,8 +18,13 @@ module.exports = function deleteFuture(gameInfo, userEmail = "jamesriddle@utexas
     const gameDateLogic = (date, loser, overtime, gameTime) => {
         if (loser && overtime) {
             return `${moment(date).format("ddd M/D")} - Final/OT`
+            
         } else if (loser && !overtime) {
-            return `${moment(date).format("ddd M/D")} - Final`
+            return `${moment(date).format("ddd M/D")} - Final`;
+
+        } else if (date === moment().utcOffset(-7).format("YYYYMMDD")) {
+            return `Today - ${gameTime}`;
+
         } else {
             return `${moment(date).format("ddd M/D")} - ${gameTime}`
         }

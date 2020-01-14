@@ -9,8 +9,10 @@ module.exports = function emailScores(email) {
     db.EmailData
         .findAll({
             where: {
-                email: email,
-                nextEmail: moment().utcOffset(-8).format("YYYYMMDD")
+                // email: email,
+                email: "jamesriddle@utexas.edu",
+                // nextEmail: moment().utcOffset(-7).format("YYYYMMDD")
+                nextEmail: "20200114"
             }
         })
         .then((data) => {

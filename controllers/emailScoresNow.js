@@ -32,8 +32,8 @@ module.exports = function emailScoresNow(req, res) {
             }
 
             if (completedTable) {
-                const endDate = moment().utcOffset(-8).subtract(1, "days").format("YYYYMMDD");
-                const startDate = moment().utcOffset(-8).subtract(frequency, "days").format("YYYYMMDD");
+                const endDate = moment().utcOffset(-7).subtract(1, "days").format("YYYYMMDD");
+                const startDate = moment().utcOffset(-7).subtract(frequency, "days").format("YYYYMMDD");
 
                 whereObj.date = { [Op.between]: [startDate, endDate] };
 
@@ -53,8 +53,8 @@ module.exports = function emailScoresNow(req, res) {
             }
 
             if (futureTable) {
-                const startDate = moment().utcOffset(-8).format("YYYYMMDD");
-                const endDate = moment().utcOffset(-8).add(parseInt(frequency) - 1, "days").format("YYYYMMDD");
+                const startDate = moment().utcOffset(-7).format("YYYYMMDD");
+                const endDate = moment().utcOffset(-7).add(parseInt(frequency) - 1, "days").format("YYYYMMDD");
 
                 whereObj.date = { [Op.between]: [startDate, endDate] };
 

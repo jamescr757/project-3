@@ -61,7 +61,7 @@ export const PasswordUpdate = (props) => {
                         setPasswordSuccess(false)
                     } else {
                         setErrorMessage("Success!")
-                        window.location.href = `/member/my-account/${userEmail}`;
+                        window.location.href = `/member/dashboard/${userEmail}`;
                     }
                 })
                 .catch((err) => {

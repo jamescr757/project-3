@@ -28,7 +28,7 @@ module.exports = function updateRecords(db) {
 
     const nhlEndDate = moment("04/04/2020", "MM/DD/YYYY").format("YYYYMMDD");
 
-    const today = moment().utcOffset(-8).format("YYYYMMDD");
+    const today = moment().utcOffset(-7).format("YYYYMMDD");
 
     const futureDaysToScrape = moment(nhlEndDate).diff(moment(today), "days") > 30 ? 30 : moment(nhlEndDate).diff(moment(today), "days");
     

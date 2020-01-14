@@ -41,14 +41,14 @@ db.sequelize.sync(syncOptions)
       console.log(`🌎 ==> API server now on port ${PORT}!`);
     });
   })
-  // .then(() => {
-  //   setTimeout(() => {
-  //     require("./controllers/emailNewsletter")(db);
-  //   }, 3 * 60 * 1000)
-  // })
-  // .then(() => {
-  //   setTimeout(() => {
-  //     require("./controllers/updateNextEmail")(db);
-  //   }, 10 * 60 * 1000)
-  // });
+  .then(() => {
+    setTimeout(() => {
+      require("./controllers/emailNewsletter")(db);
+    }, 1 * 60 * 1000)
+  })
+  .then(() => {
+    setTimeout(() => {
+      require("./controllers/updateNextEmail")(db);
+    }, 2 * 60 * 1000)
+  });
 
