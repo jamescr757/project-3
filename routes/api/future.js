@@ -7,4 +7,7 @@ router.route("/date/:date")
 router.route("/:category/:identifier/:days/:location/:rival/:sort")
     .get(futureController.findGamesByCategory)
 
+router.route("/user-games/:days/:sort") 
+    .post(futureController.findUserGames)
+
 module.exports = router;

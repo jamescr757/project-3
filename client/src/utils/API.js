@@ -117,5 +117,15 @@ export default {
   sendForgotPasswordEmail: function(email) {
     
     return axios.get(`/api/email/forgot-password/${email}`)
+  },
+
+  getCustomScores: function(idArr, days, sort) {
+
+    return axios.post(`/api/completed/user-games/${days}/${sort}`, { idArr })
+  },
+
+  getCustomGames: function(idArr, days, sort) {
+
+    return axios.post(`/api/future/user-games/${days}/${sort}`, { idArr })
   }
 };

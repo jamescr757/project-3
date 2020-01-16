@@ -18,7 +18,16 @@ const DashboardButtons = (props) => {
 
     return (
         <div className={classes.heroButtons}>
-            <Grid container spacing={5} justify="center">
+           {!props.noData &&  
+                <Grid container justify="center">
+                    <Grid item>
+                        <Link to={`/member/scoreboard/${props.userEmail}/completed/7/desc`} className="account-btn-link">
+                            <Button color="primary">Custom Scoreboard</Button>
+                        </Link>
+                    </Grid>
+                </Grid>
+            }
+            <Grid container spacing={3} justify="center">
                 <Grid item>
                     <Link to={`/member/new/${props.userEmail}`} className="account-btn-link">
                         <Button color="primary">Add Notification</Button>

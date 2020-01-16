@@ -4,9 +4,7 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
-  NavItem,
   NavbarText
 } from 'reactstrap';
 import { TeamDropdown } from "./TeamDropdown";
@@ -37,12 +35,14 @@ const NavBar = (props) => {
 
             <ConferenceDropdown {...props} />
 
-            {/* <Member /> */}
           </Nav>
-          {/* <NavbarText>
-            <Member />
-          </NavbarText> */}
           {!props.match.params.type && !props.match.params.email &&
+            <Nav navbar style={{ marginRight: "1rem"}}>
+              <Member revealMessage={revealMessage} hideMessage={hideMessage} />
+              {showMessage && <NewMemberMessage />}
+            </Nav>
+          }
+          {props.match.params.type === "scoreboard" &&
             <Nav navbar style={{ marginRight: "1rem"}}>
               <Member revealMessage={revealMessage} hideMessage={hideMessage} />
               {showMessage && <NewMemberMessage />}

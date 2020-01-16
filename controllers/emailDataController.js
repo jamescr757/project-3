@@ -37,7 +37,6 @@ module.exports = {
   },
 
   updateById: function(req, res) {
-    console.log(req.body.newValue);
 
     const updateObj = {};
     switch (req.params.colName) {
@@ -47,8 +46,11 @@ module.exports = {
       case "future":
         updateObj.futureTable = req.body.newValue;
         break;
-      default:
+      case "frequency":
         updateObj.frequency = req.body.newValue;
+        break;
+      default:
+        updateObj.nextEmail = req.body.newValue;
         break;
     }
 

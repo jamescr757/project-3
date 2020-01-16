@@ -9,7 +9,7 @@ function GameAction({ homeTeamScore, homeTeam, awayTeam, date, ticketLink, handl
 
     return (
         homeTeamScore >= 0 ?
-                <Grid container justify="center" xs={12}>
+                <Grid container justify="center">
                     <Button
                         onClick={()=>handleModalOpen(teamInfo.teamNameJoiner5(homeTeam, awayTeam), date, "5")}
                         size="small"

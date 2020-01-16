@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Highlight from "./pages/Highlight";
 import Category from "./pages/Category";
 import Member from "./pages/Member";
+import Custom from "./pages/Custom";
 import NewMemberPreferences from "./pages/NewMemberPreferences";
 import { CssBaseline } from "@material-ui/core";
 import Footer from "./components/Footer";
@@ -23,6 +24,7 @@ const App = () => {
             {/* <Route exact path="/member/:email" component={MemberPreferences} /> */}
             <Route exact path="/member/:type/:email" component={NewMemberPreferences} />
             <Route exact path="/multiple/:category/:table/:identifier/:days/:location/:outcome/:rival/:ot/:sort" component={Category} />
+            <Route exact path="/member/:type/:email/:table/:days/:sort" component={Custom} />
             <Route component={Home} />
           </Switch>
         </Router>

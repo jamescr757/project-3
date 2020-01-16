@@ -14,6 +14,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import "./Dashboard.css";
 import { DashboardHero } from "../Hero/DashboardHero";
+import moment from "moment";
 
 const classNames = require("classnames");
 
@@ -47,8 +48,10 @@ export const UserDashboard = (props) => {
     const [userData, setUserData] = useState([]);
     const [errorMessage, setErrorMessage] = useState();
     const [reRender, setReRender] = useState(false);
-    const [show, showArrows] = useState(false);
-    const [showIndex, setShowIndex] = useState();
+    const [showFrequency, showFrequencyArrows] = useState(false);
+    const [showEmail, showEmailArrows] = useState(false);
+    const [showFrequencyIndex, setShowFrequencyIndex] = useState();
+    const [showEmailIndex, setShowEmailIndex] = useState();
     const [emailNowSuccess, setEmailNowSuccess] = useState(false);
     const [noData, setNoData] = useState(false);
 
@@ -88,8 +91,13 @@ export const UserDashboard = (props) => {
     }
 
     const handleScheduleClick = (index) => {
-        setShowIndex(index);
-        showArrows(true)
+        setShowFrequencyIndex(index);
+        showFrequencyArrows(true)
+    }
+
+    const handleNextEmailClick = (index) => {
+        setShowEmailIndex(index);
+        showEmailArrows(true)
     }
 
     const handleEditClick = (id, colName, newValue) => {
@@ -107,8 +115,12 @@ export const UserDashboard = (props) => {
             });
     } 
 
-    const handleSave = () => {
-        showArrows(false);
+    const handleFrequencySave = () => {
+        showFrequencyArrows(false);
+    }
+
+    const handleEmailSave = () => {
+        showEmailArrows(false);
     }
 
     const handleDelete = (id) => {
@@ -142,7 +154,10 @@ export const UserDashboard = (props) => {
 
     return (
         <React.Fragment>
-        <DashboardHero userEmail={userEmail} />
+        <DashboardHero 
+            userEmail={userEmail} 
+            noData={noData}
+        />
         <Container className={classes.cardGrid} maxWidth="md">
             <Grid container spacing={4}>
                 {userData.map((email, index) => (
@@ -167,7 +182,7 @@ export const UserDashboard = (props) => {
                                         <ListItemText style={{ maxWidth: 110 }}
                                             primary={email.frequency === "1" ? "Everyday" : `Every ${email.frequency} days`}
                                         />
-                                        { show && email.frequency > 1 && showIndex === index &&
+                                        { showFrequency && email.frequency > 1 && showFrequencyIndex === index &&
                                             <ListItemIcon style={{ minWidth: 30 }}>
                                                 <ArrowDropDownIcon
                                                   style={{ cursor: "pointer" }}
@@ -175,7 +190,7 @@ export const UserDashboard = (props) => {
                                                 />
                                             </ListItemIcon>
                                         }
-                                        { show && email.frequency < 30 && showIndex === index &&
+                                        { showFrequency && email.frequency < 30 && showFrequencyIndex === index &&
                                             <ListItemIcon className={classNames({ "arrow-padding": email.frequency < 2 })}
                                             style={{ minWidth: 34 }}
                                             >
@@ -185,28 +200,57 @@ export const UserDashboard = (props) => {
                                                 />
                                             </ListItemIcon>
                                         }
-                                        { show && showIndex === index &&
-                                            <SaveButton className="py-1" onClick={handleSave}>Done</SaveButton>
+                                        { showFrequency && showFrequencyIndex === index &&
+                                            <SaveButton className="py-1" onClick={handleFrequencySave}>Done</SaveButton>
                                         }
                                     </ListItem>
-                                        <ListItem>
-                                            <ListItemIcon>
-                                                {email.completedTable ?  
-                                                <CheckCircleIcon 
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            <ScheduleIcon style={{ cursor: "pointer" }}
+                                            onClick={()=>handleNextEmailClick(index)}  />
+                                        </ListItemIcon>
+                                        <ListItemText style={{ maxWidth: 170 }}
+                                            primary={`Next email - ${moment(email.nextEmail, "YYYYMMDD").format("ddd M/D")}`}
+                                        />
+                                        { showEmail && email.nextEmail > moment().utcOffset(-7).add(1, "days").format("YYYYMMDD") && showEmailIndex === index &&
+                                            <ListItemIcon style={{ minWidth: 30 }}>
+                                                <ArrowDropDownIcon
                                                   style={{ cursor: "pointer" }}
-                                                  htmlColor="rgb(74,173,84)" onClick={()=>handleEditClick(email.id, "completed", false)} />
-                                                :
-                                                <RadioButtonUncheckedIcon 
-                                                  style={{ cursor: "pointer" }}
-                                                  onClick={()=>handleEditClick(email.id, "completed", true)}
+                                                  onClick={()=>handleEditClick(email.id, "nextEmail", moment(email.nextEmail).subtract(1, "days").format("YYYYMMDD"))}
                                                 />
-                                            }
                                             </ListItemIcon>
-                                            <ListItemText 
-                                                primary="Completed Games"
+                                        }
+                                        { showEmail && showEmailIndex === index &&
+                                            <ListItemIcon className={classNames({ "arrow-padding": email.nextEmail < moment().utcOffset(-7).add(2, "days").format("YYYYMMDD") })}
+                                            style={{ minWidth: 34 }}
+                                            >
+                                                <ArrowDropUpIcon
+                                                  style={{ cursor: "pointer" }}
+                                                  onClick={()=>handleEditClick(email.id, "nextEmail", moment(email.nextEmail).add(1, "days").format("YYYYMMDD"))}
+                                                />
+                                            </ListItemIcon>
+                                        }
+                                        { showEmail && showEmailIndex === index &&
+                                            <SaveButton className="py-1" onClick={handleEmailSave}>Done</SaveButton>
+                                        }
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            {email.completedTable ?  
+                                            <CheckCircleIcon 
+                                                style={{ cursor: "pointer" }}
+                                                htmlColor="rgb(74,173,84)" onClick={()=>handleEditClick(email.id, "completed", false)} />
+                                            :
+                                            <RadioButtonUncheckedIcon 
+                                                style={{ cursor: "pointer" }}
+                                                onClick={()=>handleEditClick(email.id, "completed", true)}
                                             />
-                                        </ListItem>
-
+                                        }
+                                        </ListItemIcon>
+                                        <ListItemText 
+                                            primary="Completed Games"
+                                        />
+                                    </ListItem>
                                     <ListItem className="pb-0">
                                             <ListItemIcon>
                                              {email.futureTable ?  

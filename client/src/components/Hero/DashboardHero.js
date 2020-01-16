@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Title from "./Title/Title";
 import SubHeading from "./SubHeading";
 import DashboardButtons from "./DashboardButtons";
+import DashboardSBLink from "./DashboardSBLink";
 
 const useStyles = makeStyles(theme => ({
 
@@ -27,6 +28,7 @@ export const DashboardHero = (props) => {
                     One email - only the content you want!
                 </SubHeading>
                 <DashboardButtons {...props}/>
+                {/* <DashboardSBLink {...props}/> */}
             </Container>
         </div>
     );

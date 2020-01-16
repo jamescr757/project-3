@@ -180,6 +180,59 @@ module.exports = {
             console.log(err);
             console.log("error with EmailData query while emailing the scores");
         });
+  },
+
+  findUserScores: function(req, res) {
+
+    const { days, sort } = req.params;
+
+    const endDate = moment().utcOffset(-7).subtract(1, "days").format("YYYYMMDD");
+    const startDate = moment().utcOffset(-7).subtract(days, "days").format("YYYYMMDD");
+
+    const whereObj = { date: { [Op.between]: [startDate, endDate] } };
+    whereObj[Op.or] = [];
+
+    req.body.idArr.forEach(id => {
+
+      switch (id) {
+        case "All Teams":
+          break;
+        case "Atlantic":
+        case "Metropolitan":
+        case "Central":
+        case "Pacific":
+          whereObj[Op.or].push({homeTeamDivision: id}, {awayTeamDivision: id})
+          break;
+        case "Eastern":
+        case "Western":
+          whereObj[Op.or].push({homeTeamConference: id}, {awayTeamConference: id});
+          break;
+        default:
+          whereObj[Op.or].push({homeTeam: id}, {awayTeam: id});
+          break;
+      }
+
+    })
+
+    // switch (ot) {
+    //   case "true":
+    //     whereObj.overtime = true;
+    //     break;
+    //   default:
+    //     break;
+    // }
+
+    db.Completed
+      .findAll({
+          where: whereObj,
+          order: [[ "date", sort.toUpperCase() ]]
+      })
+      .then(scores => res.json(scores))
+      .catch(err => {
+        console.log(err);
+        res.status(422).json(err)
+      });
+
   }
 
 }

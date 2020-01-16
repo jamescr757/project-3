@@ -16,9 +16,22 @@ export default function DayFilters(props) {
           {dayArr.map((label, index) => {
 
             return (
+                !props.type ?
                 <Link
                     key={index}
                     to={`/multiple/${props.category}/${props.table}/${props.identifier}/${dayValues[index]}/${props.location}/${props.outcome}/${props.rival}/${props.ot}/${props.sort}`}
+                    className="hero-nav-dropdown-item"    
+                >
+                    <DropdownItem 
+                        className={classNames({ "hero-nav-dropdown-active": props.days == dayValues[index], "hero-nav-dropdown-item": props.days })}
+                    >
+                        {label}
+                    </DropdownItem>
+                </Link>
+                :
+                <Link
+                    key={index}
+                    to={`/member/scoreboard/${props.email}/${props.table}/${dayValues[index]}/${props.sort}`}
                     className="hero-nav-dropdown-item"    
                 >
                     <DropdownItem 
