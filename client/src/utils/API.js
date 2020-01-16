@@ -127,5 +127,10 @@ export default {
   getCustomGames: function(idArr, days, sort) {
 
     return axios.post(`/api/future/user-games/${days}/${sort}`, { idArr })
+  },
+
+  getRecords: function(order) {
+    
+    return axios.get(`/api/standings/${order}`)
   }
 };
