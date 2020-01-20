@@ -6,10 +6,18 @@ module.exports = {
 
     const { order } = req.params
 
+    const orderObj = {};
+    switch (order) {
+      case "league": 
+        orderObj.order = [[ "points", "DESC" ]] 
+        break;
+      default: 
+        orderObj.order = [["conference", "ASC"], [order, "ASC"], [ "points", "DESC" ]]
+        break;
+    }
+
     db.Standings
-      .findAll({
-        order: [[order, "ASC"], [ "points", "DESC" ]]
-      })
+      .findAll(orderObj)
       .then((data) => res.send(data))
       .catch(err => {
         console.log(err.errors[0].message);

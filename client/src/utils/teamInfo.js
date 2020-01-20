@@ -140,7 +140,7 @@ export default {
             case "lightning":
                 return "Tampa Bay Lightning"
             case "maple leafs":
-                return "Toronto Maple leafs"
+                return "Toronto Maple Leafs"
             case "hurricanes":
                 return "Carolina Hurricanes"
             case "blue jackets":

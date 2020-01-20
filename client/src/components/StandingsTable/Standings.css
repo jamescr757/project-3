@@ -1,0 +1,24 @@
+.standings-page-logo {
+    height: 25px;
+    width: auto;
+    margin-bottom: 3px;
+}
+
+.standings-page-team-row {
+    max-height: 33px;
+}
+
+.standings-page-divider-row {
+    max-height: 49px;
+}
+
+.standings-page-category-row {
+    color: white !important;
+    background-color: black !important;
+}
+
+.wildcard-page-conference-row {
+    max-height: 65px;
+    color: white !important;
+    background-color: blue !important;
+}
