@@ -191,6 +191,144 @@ export default {
         }
     },
 
+    teamCityNameCaptilized (team) {
+
+        switch (team) {
+            case "bruins":
+                return "Boston"
+            case "sabres":
+                return "Buffalo"
+            case "red wings":
+                return "Detroit"
+            case "panthers":
+                return "Florida"
+            case "canadiens":
+                return "Montreal"
+            case "senators":
+                return "Ottawa"
+            case "lightning":
+                return "Tampa Bay"
+            case "maple leafs":
+                return "Toronto"
+            case "hurricanes":
+                return "Carolina"
+            case "blue jackets":
+                return "Columbus"
+            case "devils":
+                return "New Jersey"
+            case "islanders":
+                return "New York"
+            case "rangers":
+                return "New York"
+            case "flyers":
+                return "Philadelphia"
+            case "penguins":
+                return "Pittsburgh"
+            case "capitals":
+                return "Washington"
+            case "blackhawks":
+                return "Chicago"
+            case "avalanche":
+                return "Colorado"
+            case "stars":
+                return "Dallas"
+            case "wild":
+                return "Minnesota"
+            case "predators":
+                return "Nashville"
+            case "blues":
+                return "St. Louis"
+            case "jets":
+                return "Winnipeg"
+            case "ducks":
+                return "Anaheim"
+            case "coyotes":
+                return "Arizona"
+            case "flames":
+                return "Calgary"
+            case "oilers":
+                return "Edmonton"
+            case "golden knights":
+                return "Vegas"
+            case "kings":
+                return "Los Angeles"
+            case "sharks":
+                return "San Jose"
+            case "canucks":
+                return "Vancouver"
+            
+        }
+    },
+
+    teamName3Letters (team) {
+
+        switch (team) {
+            case "bruins":
+                return "BOS"
+            case "sabres":
+                return "BUF"
+            case "red wings":
+                return "DET"
+            case "panthers":
+                return "FLA"
+            case "canadiens":
+                return "MTL"
+            case "senators":
+                return "OTT"
+            case "lightning":
+                return "TBL"
+            case "maple leafs":
+                return "TOR"
+            case "hurricanes":
+                return "CAR"
+            case "blue jackets":
+                return "CBJ"
+            case "devils":
+                return "NJD"
+            case "islanders":
+                return "NYI"
+            case "rangers":
+                return "NYR"
+            case "flyers":
+                return "PHI"
+            case "penguins":
+                return "PIT"
+            case "capitals":
+                return "WSH"
+            case "blackhawks":
+                return "CHI"
+            case "avalanche":
+                return "COL"
+            case "stars":
+                return "DAL"
+            case "wild":
+                return "MIN"
+            case "predators":
+                return "NSH"
+            case "blues":
+                return "STL"
+            case "jets":
+                return "WPG"
+            case "ducks":
+                return "ANA"
+            case "coyotes":
+                return "ARI"
+            case "flames":
+                return "CGY"
+            case "oilers":
+                return "EDM"
+            case "golden knights":
+                return "VGK"
+            case "kings":
+                return "LAK"
+            case "sharks":
+                return "SJS"
+            case "canucks":
+                return "VAN"
+            
+        }
+    },
+
     teamShortName (team) {
 
         switch (team) {

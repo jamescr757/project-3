@@ -1,8 +1,10 @@
 import React from "react";
 import { StandingsHero } from "../components/Hero";
-import StandingsTable from "../components/StandingsTable/StandingsTable";
 import NavBar from "../components/NavBar";
 import WildcardTable from "../components/StandingsTable/WildcardTable";
+import DivisionTable from "../components/StandingsTable/DivisionTable";
+import ConferenceTable from "../components/StandingsTable/ConferenceTable";
+import LeagueTable from "../components/StandingsTable/LeagueTable";
 
 
 const Standings = (props) => { 
@@ -11,11 +13,11 @@ const Standings = (props) => {
     <React.Fragment>
       <NavBar {...props} category={false} />
       <StandingsHero {...props} />
-      { props.match.params.order !== "wildcard" ? 
-        <StandingsTable {...props} /> 
-        :
-        <WildcardTable {...props} />
-      }
+
+      {props.match.params.order === "league" && <LeagueTable {...props} />}
+      {props.match.params.order === "conference" && <ConferenceTable {...props} />}
+      {props.match.params.order === "division" && <DivisionTable {...props} />}
+      {props.match.params.order === "wildcard" && <WildcardTable {...props} />}
     </React.Fragment>
   );
 }

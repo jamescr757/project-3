@@ -26,47 +26,33 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const WildcardTable = (props) => {
+const ConferenceTable = (props) => {
     
     const classes = useStyles();
 
-    const [top3Records, setTop3Records] = useState([]);
-    const [wildcardRecords, setWildcardRecords] = useState([]);
+    const [records, setRecords] = useState([]);
 
     const { order } = props.match.params;
 
     useEffect(() => {
         
-        API.getRecords("division")
-            .then(res => {
-                if (res.data === "error") {
-                    console.log("there's been a db error");
-                }
-
-                setTop3Records(res.data);
-                
-            })
-            .catch(error => {
-                console.log(error);
-                console.log("there's been an error retrieving the standings");
-            })
-
         API.getRecords("conference")
             .then(res => {
                 if (res.data === "error") {
                     console.log("there's been a db error");
                 }
 
-                setWildcardRecords(res.data);
+                setRecords(res.data)
                 
             })
             .catch(error => {
                 console.log(error);
                 console.log("there's been an error retrieving the standings");
             })
+
     }, [order]);
 
-    const renderCategoryRow = (title, linkBool) => {
+    const renderCategoryRow = (title) => {
         return (
              <Grid 
                  item  
@@ -74,17 +60,13 @@ const WildcardTable = (props) => {
                  className="pt-4 standings-page-divider-row"
              >
                  <Card className="border-bottom border-dark standings-page-category-row">
-                     <CardContent className="py-0 px-1 px-sm-3">
+                     <CardContent className="py-0 px-2 px-sm-3">
                          <Grid container alignItems="center" >
                              <Grid item xs={3} sm={7}>
                                  <Typography variant="h6" gutterBottom={false} className="standings-category-row-mobile">
-                                    {linkBool ? 
-                                        <Link to={`/multiple/division/completed/${title !== "Metro" ? title : "Metropolitan"}/3/all/all/false/false/desc`} className="standings-page-division-link">
-                                            {title}
-                                        </Link>
-                                    :
-                                        title
-                                    }
+                                    <Link to={`/multiple/conference/completed/${title.length > 8 ? title.slice(0, 7) : title}/3/all/all/false/false/desc`} className="conference-standings-conference-link">
+                                        {title}
+                                    </Link>
                                  </Typography>
                              </Grid>
                              <Grid item xs={2} sm={1}>
@@ -119,21 +101,19 @@ const WildcardTable = (props) => {
         ) 
      }
 
-    const renderConferenceRow = (title, bool) => {
-        return (
-             <Grid 
-                 item  
-                 xs={12} 
-                 className={bool ? "mt-5 py-2 py-sm-3 wildcard-page-conference-row px-1 px-sm-3" : "mt-2 py-2 py-sm-3 wildcard-page-conference-row px-1 px-sm-3"}
-             >
-                <Typography variant="h6" gutterBottom={false} className="mobile-conference-row-text">
-                    <Link to={`/multiple/conference/completed/${title.length > 8 ? title.slice(0, 7) : title}/3/all/all/false/false/desc`} className="standings-page-conference-link">
-                        {title}
-                    </Link>
-                </Typography> 
-            </Grid> 
-        ) 
-     }
+    // const renderConferenceRow = (title, bool) => {
+    //     return (
+    //          <Grid 
+    //              item  
+    //              xs={12} 
+    //              className={bool ? "mt-5 py-3 wildcard-page-conference-row pl-3" : "mt-2 py-3 wildcard-page-conference-row pl-3"}
+    //          >
+    //             <Typography variant="h6" gutterBottom={false}>
+    //                 {title}
+    //             </Typography> 
+    //         </Grid> 
+    //     ) 
+    //  }
 
     const renderTeamRow = (entry, index, bool) => {
         return (
@@ -144,7 +124,7 @@ const WildcardTable = (props) => {
                 className="standings-page-team-row"
             >
                 <Card className={index === 1 && bool ? "standings-page-team-row wildcard-end-row" : "border-bottom border-dark standings-page-team-row"}>
-                    <CardContent className="py-0 px-1 px-sm-3">
+                    <CardContent className="py-0 px-2 px-sm-3">
                         <Grid container alignItems="center">
                             <Grid item xs={3} sm={7}>
                                 <Typography variant="h6" gutterBottom={false} className="standings-team-row-mobile">
@@ -196,36 +176,19 @@ const WildcardTable = (props) => {
     return (
         <Container className={classes.cardGrid + " px-1 px-sm-3"} maxWidth="md">
             <Grid container spacing={0} direction="column">
-                {top3Records.length > 0 && renderConferenceRow("Eastern Conference", false)}
-                {top3Records.length > 0 && renderCategoryRow("Atlantic", true)}
-                {top3Records.slice(0, 3).map((entry, index) => (
+                {window.innerWidth < 600 && records.length > 0 && renderCategoryRow("Eastern")}
+                {window.innerWidth > 600 && records.length > 0 && renderCategoryRow("Eastern Conference")}
+                {records.slice(0, 16).map((entry, index) => (
                     renderTeamRow(entry, index, false)
                 ))}
-                {window.innerWidth < 600 && top3Records.length > 0 && renderCategoryRow("Metro")}
-                {window.innerWidth > 600 && top3Records.length > 0 && renderCategoryRow("Metropolitan")}
-                {top3Records.slice(8, 11).map((entry, index) => (
+                {window.innerWidth < 600 && records.length > 0 && renderCategoryRow("Western")}
+                {window.innerWidth > 600 && records.length > 0 && renderCategoryRow("Western Conference")}
+                {records.slice(16).map((entry, index) => (
                     renderTeamRow(entry, index, false)
-                ))}
-                {wildcardRecords.length > 0 && renderCategoryRow("Wildcard", false)}
-                {wildcardRecords.slice(6, 16).map((entry, index) => (
-                    renderTeamRow(entry, index, true)
-                ))}
-                {top3Records.length > 0 && renderConferenceRow("Western Conference", true)}
-                {top3Records.length > 0 && renderCategoryRow("Central", true)} 
-                {top3Records.slice(16, 19).map((entry, index) => (
-                    renderTeamRow(entry, index, false)
-                ))}
-                {top3Records.length > 0 && renderCategoryRow("Pacific", true)}
-                {top3Records.slice(23, 26).map((entry, index) => (
-                    renderTeamRow(entry, index, false)
-                ))}
-                {wildcardRecords.length > 0 && renderCategoryRow("Wildcard", false)}
-                {wildcardRecords.slice(22).map((entry, index) => (
-                    renderTeamRow(entry, index, true)
                 ))}
             </Grid>
         </Container>
     );
 }
 
-export default WildcardTable;
+export default ConferenceTable;

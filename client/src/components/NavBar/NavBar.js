@@ -13,6 +13,7 @@ import { ConferenceDropdown } from "./ConferenceDropdown";
 import { Member } from "./Member";
 import { NewMemberMessage } from "./NewMemberMessage";
 import { Link } from "react-router-dom";
+import { StandingsDropdown } from "./StandingsDropdown";
 
 const NavBar = (props) => {
   
@@ -34,6 +35,8 @@ const NavBar = (props) => {
             <DivisionDropdown {...props} />
 
             <ConferenceDropdown {...props} />
+
+            <StandingsDropdown {...props} />
 
           </Nav>
           {!props.match.params.type && !props.match.params.email &&
