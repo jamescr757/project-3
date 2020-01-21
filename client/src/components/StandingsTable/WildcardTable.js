@@ -35,6 +35,43 @@ const WildcardTable = (props) => {
 
     const { order } = props.match.params;
 
+    const playoffTeams = {};
+    let playoffHashDone = false;
+
+    const playoffHash = (entries) => {
+
+        entries.slice(0, 3).forEach(entry => {
+            playoffTeams[entry.team] = true;
+        });
+
+        entries.slice(8, 11).forEach(entry => {
+            playoffTeams[entry.team] = true;
+        });
+
+        entries.slice(16, 19).forEach(entry => {
+            playoffTeams[entry.team] = true;
+        });
+
+        entries.slice(23, 26).forEach(entry => {
+            playoffTeams[entry.team] = true;
+        });
+        
+        playoffHashDone = true;
+    }
+
+    const wildcardLogic = (conferenceEntries) => {
+
+        const wildcardEntries = [];
+
+        conferenceEntries.forEach((conferenceEntry, index) => {
+            if (conferenceEntry.team in playoffTeams === false) {
+                wildcardEntries.push(conferenceEntry);
+            }
+        })
+        
+        setWildcardRecords(wildcardEntries);
+    }
+
     useEffect(() => {
         
         API.getRecords("division")
@@ -44,6 +81,7 @@ const WildcardTable = (props) => {
                 }
 
                 setTop3Records(res.data);
+                playoffHash(res.data);
                 
             })
             .catch(error => {
@@ -57,14 +95,17 @@ const WildcardTable = (props) => {
                     console.log("there's been a db error");
                 }
 
-                setWildcardRecords(res.data);
+                if (playoffHashDone) wildcardLogic(res.data);
+
+                else setTimeout(wildcardLogic, 100, res.data);
+                
                 
             })
             .catch(error => {
                 console.log(error);
                 console.log("there's been an error retrieving the standings");
             })
-    }, [order]);
+    }, []);
 
     const renderCategoryRow = (title, linkBool) => {
         return (
@@ -207,7 +248,7 @@ const WildcardTable = (props) => {
                     renderTeamRow(entry, index, false)
                 ))}
                 {wildcardRecords.length > 0 && renderCategoryRow("Wildcard", false)}
-                {wildcardRecords.slice(6, 16).map((entry, index) => (
+                {wildcardRecords.slice(0, 10).map((entry, index) => (
                     renderTeamRow(entry, index, true)
                 ))}
                 {top3Records.length > 0 && renderConferenceRow("Western Conference", true)}
@@ -220,7 +261,7 @@ const WildcardTable = (props) => {
                     renderTeamRow(entry, index, false)
                 ))}
                 {wildcardRecords.length > 0 && renderCategoryRow("Wildcard", false)}
-                {wildcardRecords.slice(22).map((entry, index) => (
+                {wildcardRecords.slice(10).map((entry, index) => (
                     renderTeamRow(entry, index, true)
                 ))}
             </Grid>
