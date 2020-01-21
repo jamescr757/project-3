@@ -42,10 +42,6 @@ const DivisionTable = (props) => {
                     console.log("there's been a db error");
                 }
 
-                // setAtlanticRecords(res.data.slice(0, 8));
-                // setMetroRecords(res.data.slice(8, 16));
-                // setCentralRecords(res.data.slice(16, 23));
-                // setPacificRecords(res.data.slice(23));
                 setRecords(res.data);
                 
             })
@@ -110,7 +106,7 @@ const DivisionTable = (props) => {
              <Grid 
                  item  
                  xs={12} 
-                 className={bool ? "mt-5 py-3 wildcard-page-conference-row pl-3" : "mt-2 py-3 wildcard-page-conference-row pl-3"}
+                 className={bool ? "mt-5 py-2 py-sm-3 wildcard-page-conference-row px-1 px-sm-3" : "mt-2 py-2 py-sm-3 wildcard-page-conference-row px-1 px-sm-3"}
              >
                 <Typography variant="h6" gutterBottom={false} className="mobile-conference-row-text">
                     <Link to={`/multiple/conference/completed/${title.length > 8 ? title.slice(0, 7) : title}/3/all/all/false/false/desc`} className="standings-page-conference-link">
