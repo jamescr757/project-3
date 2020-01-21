@@ -5,6 +5,7 @@ import WildcardTable from "../components/StandingsTable/WildcardTable";
 import DivisionTable from "../components/StandingsTable/DivisionTable";
 import ConferenceTable from "../components/StandingsTable/ConferenceTable";
 import LeagueTable from "../components/StandingsTable/LeagueTable";
+import PlayoffTable from "../components/StandingsTable/PlayoffTable";
 
 
 const Standings = (props) => { 
@@ -18,6 +19,7 @@ const Standings = (props) => {
       {props.match.params.order === "conference" && <ConferenceTable {...props} />}
       {props.match.params.order === "division" && <DivisionTable {...props} />}
       {props.match.params.order === "wildcard" && <WildcardTable {...props} />}
+      {props.match.params.order === "playoffs" && <PlayoffTable {...props} />}
     </React.Fragment>
   );
 }

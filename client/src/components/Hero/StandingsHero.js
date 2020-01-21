@@ -16,11 +16,13 @@ const useStyles = makeStyles(theme => ({
 export const StandingsHero = (props) => {
     const classes = useStyles();
 
+    const { order } = props.match.params;
+
     return (
         <div className={classes.heroContent}>
             <Container maxWidth="lg">
                 <CustomTitle 
-                    identifier={props.match.params.order + " Standings"}
+                    identifier={order !== "playoffs" ? order + " Standings" : "Playoff Matchups"}
                 />
 
                 <StandingsTabs {...props.match.params} />
