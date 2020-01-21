@@ -30,36 +30,27 @@ const WildcardTable = (props) => {
     
     const classes = useStyles();
 
-    const [top3Records, setTop3Records] = useState([]);
-    const [wildcardRecords, setWildcardRecords] = useState([]);
+    const [records, setRecords] = useState({ top3: [], wildcard: [] })
 
-    const { order } = props.match.params;
+    const wildcardLogic = (divisionEntries, conferenceEntries) => {
 
-    const playoffTeams = {};
-    let playoffHashDone = false;
+        const playoffTeams = {};
 
-    const playoffHash = (entries) => {
-
-        entries.slice(0, 3).forEach(entry => {
+        divisionEntries.slice(0, 3).forEach(entry => {
             playoffTeams[entry.team] = true;
         });
 
-        entries.slice(8, 11).forEach(entry => {
+        divisionEntries.slice(8, 11).forEach(entry => {
             playoffTeams[entry.team] = true;
         });
 
-        entries.slice(16, 19).forEach(entry => {
+        divisionEntries.slice(16, 19).forEach(entry => {
             playoffTeams[entry.team] = true;
         });
 
-        entries.slice(23, 26).forEach(entry => {
+        divisionEntries.slice(23, 26).forEach(entry => {
             playoffTeams[entry.team] = true;
         });
-        
-        playoffHashDone = true;
-    }
-
-    const wildcardLogic = (conferenceEntries) => {
 
         const wildcardEntries = [];
 
@@ -69,19 +60,33 @@ const WildcardTable = (props) => {
             }
         })
         
-        setWildcardRecords(wildcardEntries);
+        setRecords({
+            top3: divisionEntries,
+            wildcard: wildcardEntries
+        })
     }
 
     useEffect(() => {
         
         API.getRecords("division")
-            .then(res => {
-                if (res.data === "error") {
+            .then(division => {
+                if (division.data === "error") {
                     console.log("there's been a db error");
                 }
 
-                setTop3Records(res.data);
-                playoffHash(res.data);
+                API.getRecords("conference")
+                    .then(conference => {
+                        if (conference.data === "error") {
+                            console.log("there's been a db error");
+                        }
+
+                        wildcardLogic(division.data, conference.data);
+                        
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        console.log("there's been an error retrieving the standings");
+                    })
                 
             })
             .catch(error => {
@@ -89,22 +94,6 @@ const WildcardTable = (props) => {
                 console.log("there's been an error retrieving the standings");
             })
 
-        API.getRecords("conference")
-            .then(res => {
-                if (res.data === "error") {
-                    console.log("there's been a db error");
-                }
-
-                if (playoffHashDone) wildcardLogic(res.data);
-
-                else setTimeout(wildcardLogic, 100, res.data);
-                
-                
-            })
-            .catch(error => {
-                console.log(error);
-                console.log("there's been an error retrieving the standings");
-            })
     }, []);
 
     const renderCategoryRow = (title, linkBool) => {
@@ -237,31 +226,31 @@ const WildcardTable = (props) => {
     return (
         <Container className={classes.cardGrid + " px-1 px-sm-3"} maxWidth="md">
             <Grid container spacing={0} direction="column">
-                {top3Records.length > 0 && renderConferenceRow("Eastern Conference", false)}
-                {top3Records.length > 0 && renderCategoryRow("Atlantic", true)}
-                {top3Records.slice(0, 3).map((entry, index) => (
+                {records.top3.length > 0 && renderConferenceRow("Eastern Conference", false)}
+                {records.top3.length > 0 && renderCategoryRow("Atlantic", true)}
+                {records.top3.slice(0, 3).map((entry, index) => (
                     renderTeamRow(entry, index, false)
                 ))}
-                {window.innerWidth < 600 && top3Records.length > 0 && renderCategoryRow("Metro")}
-                {window.innerWidth > 600 && top3Records.length > 0 && renderCategoryRow("Metropolitan")}
-                {top3Records.slice(8, 11).map((entry, index) => (
+                {window.innerWidth < 600 && records.top3.length > 0 && renderCategoryRow("Metro")}
+                {window.innerWidth > 600 && records.top3.length > 0 && renderCategoryRow("Metropolitan")}
+                {records.top3.slice(8, 11).map((entry, index) => (
                     renderTeamRow(entry, index, false)
                 ))}
-                {wildcardRecords.length > 0 && renderCategoryRow("Wildcard", false)}
-                {wildcardRecords.slice(0, 10).map((entry, index) => (
+                {records.wildcard.length > 0 && renderCategoryRow("Wildcard", false)}
+                {records.wildcard.slice(0, 10).map((entry, index) => (
                     renderTeamRow(entry, index, true)
                 ))}
-                {top3Records.length > 0 && renderConferenceRow("Western Conference", true)}
-                {top3Records.length > 0 && renderCategoryRow("Central", true)} 
-                {top3Records.slice(16, 19).map((entry, index) => (
+                {records.top3.length > 0 && renderConferenceRow("Western Conference", true)}
+                {records.top3.length > 0 && renderCategoryRow("Central", true)} 
+                {records.top3.slice(16, 19).map((entry, index) => (
                     renderTeamRow(entry, index, false)
                 ))}
-                {top3Records.length > 0 && renderCategoryRow("Pacific", true)}
-                {top3Records.slice(23, 26).map((entry, index) => (
+                {records.top3.length > 0 && renderCategoryRow("Pacific", true)}
+                {records.top3.slice(23, 26).map((entry, index) => (
                     renderTeamRow(entry, index, false)
                 ))}
-                {wildcardRecords.length > 0 && renderCategoryRow("Wildcard", false)}
-                {wildcardRecords.slice(10).map((entry, index) => (
+                {records.wildcard.length > 0 && renderCategoryRow("Wildcard", false)}
+                {records.wildcard.slice(10).map((entry, index) => (
                     renderTeamRow(entry, index, true)
                 ))}
             </Grid>
