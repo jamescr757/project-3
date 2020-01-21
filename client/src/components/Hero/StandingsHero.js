@@ -1,10 +1,8 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from '@material-ui/core/styles';
-import CustomPastFuture from "./Filters/CustomPastFuture";
-import CustomHeroNav from "./HeroNav/CustomHeroNav";
-import { CustomFilterRow } from "./Filters/CustomFilterRow";
 import { CustomTitle } from "./Title/CustomTitle";
+import StandingsTabs from "./Filters/StandingsTabs";
 
 const useStyles = makeStyles(theme => ({
 
@@ -22,10 +20,10 @@ export const StandingsHero = (props) => {
         <div className={classes.heroContent}>
             <Container maxWidth="lg">
                 <CustomTitle 
-                    identifier={"Standings"}
+                    identifier={props.match.params.order + " Standings"}
                 />
 
-                {/* <StandingsTabs {...props.match.params} /> */}
+                <StandingsTabs {...props.match.params} />
             </Container>
         </div>
     );

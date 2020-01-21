@@ -6,6 +6,12 @@
     border: solid 1px black !important;
 }
 
+.standings-btn-link-active {
+    border: solid 1px black !important;
+    background-color: black !important;
+    color: white !important;
+}
+
 .btn-border-1 {
     border: solid 1px black !important;
 }

@@ -10,6 +10,18 @@
     outline: none;
 }
 
+button.standings-btn-link {
+    border-radius: 0;
+}
+
+.standings-btn-link:hover {
+    text-decoration: none;
+}
+
+.standings-btn-link:focus {
+    outline: none;
+}
+
 .team-dropdown-item:active {
     background-color: lightgray !important;
     color: black !important;
