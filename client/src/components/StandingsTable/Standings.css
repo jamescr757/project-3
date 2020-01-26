@@ -9,6 +9,30 @@
     border-radius: 0 !important;
 }
 
+.playoff-page-team-row-odd {
+    max-height: 33px;
+    border-radius: 0 !important;
+    /* margin-bottom: 0.5rem; */
+}
+
+.playoff-page-team-row-even {
+    max-height: 37px;
+    border-radius: 0 !important;
+    border-bottom: black solid 1px;
+    margin-top: 0rem;
+}
+
+.playoff-page-team-row-2seed {
+    max-height: 53px;
+    border-radius: 0 !important;
+    border-bottom: black solid 1px;
+    margin-top: 1.25rem;
+}
+
+.conference-playoff-container {
+    padding-bottom: 2.5rem;
+}
+
 .standings-page-divider-row {
     max-height: 57px;
 }
@@ -23,6 +47,11 @@
     color: white !important;
     background-color: rgb(5, 21, 109) !important;
     margin-bottom: -1.5rem !important; 
+}
+
+.playoff-page-conference-row {
+    color: white !important;
+    background-color: rgb(5, 21, 109) !important;
 }
 
 .wildcard-end-row {
