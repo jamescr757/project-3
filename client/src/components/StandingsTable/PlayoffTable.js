@@ -145,7 +145,7 @@ const PlayoffTable = (props) => {
                  <Card className="border-bottom border-dark standings-page-category-row">
                      <CardContent className="py-0 px-1 px-sm-3">
                          <Grid container alignItems="center" >
-                             <Grid item xs={3} sm={7}>
+                             <Grid item xs={12}>
                                  <Typography variant="h6" gutterBottom={false} className="standings-category-row-mobile">
                                     {linkBool ? 
                                         <Link to={`/multiple/division/completed/${title !== "Metro" ? title : "Metropolitan"}/3/all/all/false/false/desc`} className="standings-page-division-link">
@@ -154,31 +154,6 @@ const PlayoffTable = (props) => {
                                     :
                                         title
                                     }
-                                 </Typography>
-                             </Grid>
-                             <Grid item xs={2} sm={1}>
-                                 <Typography variant="h6" gutterBottom={false} className="standings-category-row-mobile">
-                                     GP
-                                 </Typography>
-                             </Grid>
-                             <Grid item xs={2} sm={1}>
-                                 <Typography variant="h6" gutterBottom={false} className="standings-category-row-mobile">
-                                     PTS
-                                 </Typography>
-                             </Grid>
-                             <Grid item xs={2} sm={1}>
-                                 <Typography variant="h6" gutterBottom={false} className="standings-category-row-mobile">
-                                     W
-                                 </Typography>
-                             </Grid>
-                             <Grid item xs={2} sm={1}>
-                                 <Typography variant="h6" gutterBottom={false} className="standings-category-row-mobile">
-                                     L
-                                 </Typography>
-                             </Grid>
-                             <Grid item xs={1}>
-                                 <Typography variant="h6" gutterBottom={false} className="standings-category-row-mobile">
-                                     OT
                                  </Typography>
                              </Grid>
                          </Grid>
@@ -193,7 +168,7 @@ const PlayoffTable = (props) => {
              <Grid 
                  item  
                  xs={12} 
-                 className={bool ? "mt-5 py-2 py-sm-3 wildcard-page-conference-row px-1 px-sm-3" : "mt-2 py-2 py-sm-3 wildcard-page-conference-row px-1 px-sm-3"}
+                 className={bool ? "mt-3 py-2 py-sm-3 playoff-page-conference-row px-1 px-sm-3" : "mt-2 py-2 py-sm-3 playoff-page-conference-row px-1 px-sm-3"}
              >
                 <Typography variant="h6" gutterBottom={false} className="mobile-conference-row-text">
                     <Link to={`/multiple/conference/completed/${title.length > 8 ? title.slice(0, 7) : title}/3/all/all/false/false/desc`} className="standings-page-conference-link">
@@ -216,87 +191,92 @@ const PlayoffTable = (props) => {
         }
     }
 
-    const renderTeamRow = (entry, index, bool) => {
+    const teamClassNameLogic = (index) => {
+
+        if (index === 2) {
+            return "playoff-page-team-row-2seed";
+        } else if (index % 2 === 1) {
+            return "playoff-page-team-row-odd";
+        } else {
+            return "playoff-page-team-row-even";
+        }
+    }
+
+    const renderTeamRow = (entry, index, side) => {
         return (
-            <Grid 
-                item 
-                key={index} 
-                xs={12} 
-                className="standings-page-team-row"
-            >
-                <Card className={index === 1 && bool ? "standings-page-team-row wildcard-end-row" : "border-bottom border-dark standings-page-team-row"}>
-                    <CardContent className="py-0 px-1 px-sm-3">
-                        <Grid container alignItems="center">
-                            <Grid item xs={3} sm={7}>
-                                <Typography variant="h6" gutterBottom={false} className="standings-team-row-mobile">
-                                    {seedLogic(index)}
-                                    {`  `}
-                                    <img 
-                                        className="standings-page-logo"
-                                        src={`${process.env.PUBLIC_URL}/images/${teamInfo.teamNameConverter(entry.team)}.png`}
-                                        alt={teamInfo.teamFullName(entry.team)}  
-                                    />
-                                    {`  `}
-                                    <Link to={`/multiple/team/completed/${teamInfo.teamNameConverter(entry.team)}/7/all/all/false/false/desc`} className="standings-page-team-link"> 
-                                        {window.innerWidth < 600 ? teamInfo.teamName3Letters(entry.team) : teamInfo.teamFullNameCaptilized(entry.team)}
-                                    </Link>
-                                </Typography>
+            <React.Fragment>
+                <Grid 
+                    item 
+                    key={index} 
+                    xs={side === "left" ? 8 : 12} 
+                    className={teamClassNameLogic(index)}
+                >
+                    <Card className={teamClassNameLogic(index)}>
+                        <CardContent className="py-0 px-1 px-sm-3">
+                            <Grid container alignItems="center">
+                                <Grid item xs={12}>
+                                    <Typography variant="h6" gutterBottom={false} className="standings-team-row-mobile">
+                                        {seedLogic(index)}
+                                        {`  `}
+                                        <img 
+                                            className="standings-page-logo"
+                                            src={`${process.env.PUBLIC_URL}/images/${teamInfo.teamNameConverter(entry.team)}.png`}
+                                            alt={teamInfo.teamFullName(entry.team)}  
+                                        />
+                                        {`  `}
+                                        <Link to={`/multiple/team/completed/${teamInfo.teamNameConverter(entry.team)}/7/all/all/false/false/desc`} className="standings-page-team-link"> 
+                                            {window.innerWidth < 600 ? teamInfo.teamName3Letters(entry.team) : teamInfo.teamFullNameCaptilized(entry.team)}
+                                        </Link>
+                                    </Typography>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={2} sm={1}>
-                                <Typography variant="h6" gutterBottom={false} className="standings-team-row-mobile">
-                                    {entry.gamesPlayed}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={2} sm={1}>
-                                <Typography variant="h6" gutterBottom={false} className="standings-team-row-mobile">
-                                    {entry.points}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={2} sm={1}>
-                                <Typography variant="h6" gutterBottom={false} className="standings-team-row-mobile">
-                                    {entry.wins}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={2} sm={1}>
-                                <Typography variant="h6" gutterBottom={false} className="standings-team-row-mobile">
-                                    {entry.losses}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={1}>
-                                <Typography variant="h6" gutterBottom={false} className="standings-team-row-mobile">
-                                    {entry.ot}
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </CardContent>
-                </Card>   
-            </Grid>
+                        </CardContent>
+                    </Card>   
+                </Grid>
+            </React.Fragment>
         ) 
      }
 
     return (
-        <Container className={classes.cardGrid + " px-1 px-sm-3"} maxWidth="md">
-            <Grid container spacing={0} direction="column">
-                {records.atlantic.length > 0 && renderConferenceRow("Eastern Conference", false)}
-                {records.atlantic.length > 0 && renderCategoryRow("Atlantic", true)}
-                {records.atlantic.map((entry, index) => (
-                    renderTeamRow(entry, index, false)
-                ))}
-                {window.innerWidth < 600 && records.metro.length > 0 && renderCategoryRow("Metro")}
-                {window.innerWidth > 600 && records.metro.length > 0 && renderCategoryRow("Metropolitan")}
-                {records.metro.map((entry, index) => (
-                    renderTeamRow(entry, index, false)
-                ))}
-                {records.central.length > 0 && renderConferenceRow("Western Conference", true)}
-                {records.central.length > 0 && renderCategoryRow("Central", true)} 
-                {records.central.map((entry, index) => (
-                    renderTeamRow(entry, index, false)
-                ))}
-                {records.pacific.length > 0 && renderCategoryRow("Pacific", true)}
-                {records.pacific.map((entry, index) => (
-                    renderTeamRow(entry, index, false)
-                ))}
-            </Grid>
+        <Container className={classes.cardGrid + " px-1 px-sm-3 mb-5"} maxWidth="md">
+            {records.atlantic.length > 0 && renderConferenceRow("Eastern Conference", true)}
+            <Grid 
+                 container
+                 item  
+                 xs={12} 
+                 className="conference-playoff-container"
+             >
+                <Grid item xs={7} container spacing={0} wrap="nowrap" direction="column">
+                    {records.atlantic.map((entry, index) => (
+                        renderTeamRow(entry, index, "left")
+                    ))}
+                </Grid>
+                <Grid item xs={5} container spacing={0} wrap="nowrap" direction="column" alignContent="flex-end">
+                    {records.metro.map((entry, index) => (
+                        renderTeamRow(entry, index, "right")
+                    ))}
+                </Grid>
+            </Grid> 
+
+            {records.central.length > 0 && renderConferenceRow("Western Conference", true)}
+            <Grid 
+                 container
+                 item  
+                 xs={12} 
+                 className="conference-playoff-container"
+             >
+                <Grid item xs={7} container spacing={0} wrap="nowrap" direction="column">
+                    {records.central.map((entry, index) => (
+                        renderTeamRow(entry, index, "left")
+                        ))}
+                </Grid>
+                <Grid item xs={5} container spacing={0} wrap="nowrap" direction="column">
+                    {records.pacific.map((entry, index) => (
+                        renderTeamRow(entry, index, "right")
+                        ))}
+                </Grid>
+            </Grid> 
+                
         </Container>
     );
 }
