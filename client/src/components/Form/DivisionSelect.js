@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Label, Input } from 'reactstrap';
+import React from "react";
+import { Input } from 'reactstrap';
 
 export const DivisionSelect = (props) => {
 
@@ -7,7 +7,6 @@ export const DivisionSelect = (props) => {
 
     return (
         <React.Fragment>
-            {/* <Label for="divisionSelect">Division</Label> */}
             <Input type="select" name="divisionSelect" id="divisionSelect" onChange={e => props.identifierChange(e.target.value)} >
                 {divisions.map((division, index) => {
                     return (

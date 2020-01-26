@@ -4,8 +4,11 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import "./Filters.css"
 import "./Button.css";
+import { ParamsContext } from "../../../utils/ParamsContext";
 
-const StandingsTabs = ({ order }) => {
+const StandingsTabs = () => {
+
+    const { order } = React.useContext(ParamsContext);
 
     return (
         <Grid container spacing={0} justify="center" className="mb-2">

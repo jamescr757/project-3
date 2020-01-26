@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { UncontrolledDropdown, DropdownToggle, DropdownMenu, NavItem, DropdownItem } from "reactstrap";
+import React from "react";
+import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import "../Hero/Filters/Button.css"
-
-// const classNames = require("classnames");
 
 export const Member = (props) => {
 

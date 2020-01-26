@@ -1,19 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import NavBar from "../components/NavBar";
 import SignInForm from "../components/Form/SignInForm";
+import { ParamsContext } from "../utils/ParamsContext";
 
 
 const Member = (props) => { 
 
   return (
-    <React.Fragment>
-      <NavBar {...props} />
-      {/* <MemberHero 
-        
-      /> */}
-      <SignInForm {...props} />
-      
-    </React.Fragment>
+    <ParamsContext.Provider value={props.match.params}>
+      <NavBar />
+      <SignInForm />
+    </ParamsContext.Provider>
   );
 }
 

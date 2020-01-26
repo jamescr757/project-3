@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from '@material-ui/core/styles';
 import teamInfo from "../../../utils/teamInfo";
 import { DropdownItem } from "reactstrap";
 import { Link } from "react-router-dom";
+import { ParamsContext } from "../../../utils/ParamsContext";
 import "./Button.css"
 
 const useStyles = makeStyles(theme => ({
@@ -20,6 +21,8 @@ const useStyles = makeStyles(theme => ({
 const TeamBtns = (props) => {
     const classes = useStyles();
 
+    const params = useContext(ParamsContext);
+
     const atlanticTeams = teamInfo.teamsArray.slice(0, 8);
     const metroTeams = teamInfo.teamsArray.slice(8, 16);
     const centralTeams = teamInfo.teamsArray.slice(16, 23);
@@ -27,10 +30,10 @@ const TeamBtns = (props) => {
 
     const toLogic = (team) => {
         
-        if (props.category && props.match.params.table === "completed") {
-            return `/multiple/team/completed/${teamInfo.teamNameConverter(team)}/${props.match.params.days}/${props.match.params.location}/${props.match.params.outcome}/${props.match.params.rival}/${props.match.params.ot}/desc`;
-        } else if (props.category && props.match.params.table === "future") {
-            return `/multiple/team/future/${teamInfo.teamNameConverter(team)}/${props.match.params.days}/${props.match.params.location}/${props.match.params.outcome}/${props.match.params.rival}/${props.match.params.ot}/asc`;
+        if (props.category && params.table === "completed") {
+            return `/multiple/team/completed/${teamInfo.teamNameConverter(team)}/${params.days}/${params.location}/${params.outcome}/${params.rival}/${params.ot}/desc`;
+        } else if (props.category && params.table === "future") {
+            return `/multiple/team/future/${teamInfo.teamNameConverter(team)}/${params.days}/${params.location}/${params.outcome}/${params.rival}/${params.ot}/asc`;
         } else {
             return `/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`;
         }

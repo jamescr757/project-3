@@ -14,7 +14,7 @@ const styles = {
     }
 }
 
-const NewUserForm = (props) => {
+const NewUserForm = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -118,6 +118,7 @@ const NewUserForm = (props) => {
                         className="mb-5 mx-3 border"
                         style={ styles.emailImage }
                         src={`${process.env.PUBLIC_URL}/images/completed-email.png`}
+                        alt="sample email screenshot"
                     />
                 </Grid>
                 <Grid item>
@@ -125,6 +126,7 @@ const NewUserForm = (props) => {
                         className="mb-5 mx-3 border"
                         style={ styles.emailImage }
                         src={`${process.env.PUBLIC_URL}/images/future-email.png`}
+                        alt="sample email screenshot"
                     />
                 </Grid>
             </Grid>

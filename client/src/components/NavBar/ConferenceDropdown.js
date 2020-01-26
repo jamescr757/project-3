@@ -2,7 +2,7 @@ import React from "react";
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import ConferenceBtns from "../Hero/Filters/ConferenceBtns";
 
-export const ConferenceDropdown = (props) => {
+export const ConferenceDropdown = () => {
 
     return (
         <UncontrolledDropdown nav inNavbar>
@@ -12,7 +12,7 @@ export const ConferenceDropdown = (props) => {
             </DropdownToggle>
 
             <DropdownMenu className="conference-dropdown">
-                <ConferenceBtns {...props} />
+                <ConferenceBtns />
             </DropdownMenu>
 
         </UncontrolledDropdown>

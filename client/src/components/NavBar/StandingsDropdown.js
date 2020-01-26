@@ -2,7 +2,7 @@ import React from "react";
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import StandingsLinks from "../Hero/Filters/StandingsLinks";
 
-export const StandingsDropdown = (props) => {
+export const StandingsDropdown = () => {
 
     return (
         <UncontrolledDropdown nav inNavbar>
@@ -12,7 +12,7 @@ export const StandingsDropdown = (props) => {
             </DropdownToggle>
 
             <DropdownMenu className="division-dropdown">
-                <StandingsLinks {...props} />
+                <StandingsLinks />
             </DropdownMenu>
 
         </UncontrolledDropdown>

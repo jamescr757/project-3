@@ -24,14 +24,13 @@ const CustomHeroNav = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
 
-            <DurationDropdown {...props} />
+            <DurationDropdown />
 
             <div className="hero-nav-container">
-              <SortDropdown {...props} />
+              <SortDropdown />
             </div>
 
           </Nav>
-          {/* <NavbarText>Simple Text</NavbarText> */}
         </Collapse>
       </Navbar>
     </div>

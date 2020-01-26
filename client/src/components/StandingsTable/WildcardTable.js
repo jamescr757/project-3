@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const WildcardTable = (props) => {
+const WildcardTable = () => {
     
     const classes = useStyles();
 

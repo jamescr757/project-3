@@ -2,7 +2,7 @@ import React from "react";
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import WinLoss from "../Filters/CategoryExtra/WinLoss";
 
-export const ResultDropdown = (props) => {
+export const ResultDropdown = () => {
 
     return (
         <UncontrolledDropdown nav inNavbar>
@@ -12,7 +12,7 @@ export const ResultDropdown = (props) => {
             </DropdownToggle>
 
             <DropdownMenu>
-                <WinLoss {...props} />
+                <WinLoss />
             </DropdownMenu>
 
         </UncontrolledDropdown>

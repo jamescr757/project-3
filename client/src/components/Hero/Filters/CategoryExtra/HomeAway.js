@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import "../Filters.css"
 import { DropdownItem } from 'reactstrap';
 import { Link } from "react-router-dom";
+import { ParamsContext } from '../../../../utils/ParamsContext';
 
 const classNames = require("classnames");
 
 export default function HomeAway(props) {
+
+  const { category, table, identifier, location, days, outcome, rival, ot, sort } = useContext(ParamsContext);
 
   const btnArray = ["Home", "Away", "All"];
 
@@ -15,11 +18,11 @@ export default function HomeAway(props) {
             return (
                 <Link 
                     key={index}
-                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${label.toLowerCase()}/${props.outcome}/${props.rival}/${props.ot}/${props.sort}`}
+                    to={`/multiple/${category}/${table}/${identifier}/${days}/${label.toLowerCase()}/${outcome}/${rival}/${ot}/${sort}`}
                     className="hero-nav-dropdown-item"    
                 >
                     <DropdownItem 
-                        className={classNames({ "hero-nav-dropdown-active": props.location === label.toLowerCase(), "hero-nav-dropdown-item": props.location })}
+                        className={classNames({ "hero-nav-dropdown-active": location === label.toLowerCase(), "hero-nav-dropdown-item": location })}
                     >
                         {label}
                     </DropdownItem>

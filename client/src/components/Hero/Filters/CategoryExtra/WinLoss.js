@@ -2,10 +2,13 @@ import React from 'react';
 import "../Filters.css"
 import { DropdownItem } from 'reactstrap';
 import { Link } from "react-router-dom";
+import { ParamsContext } from '../../../../utils/ParamsContext';
 
 const classNames = require("classnames");
 
-export default function WinLoss(props) {
+export default function WinLoss() {
+
+  const { category, table, identifier, days, location, outcome, rival, ot, sort } = React.useContext(ParamsContext);
 
   const btnArray = ["Wins", "Losses", "All"];
   const btnValues = ["win", "loss", "all"];
@@ -16,11 +19,11 @@ export default function WinLoss(props) {
             return (
                 <Link
                     key={index}
-                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${props.location}/${btnValues[index]}/${props.rival}/${props.ot}/${props.sort}`}
+                    to={`/multiple/${category}/${table}/${identifier}/${days}/${location}/${btnValues[index]}/${rival}/${ot}/${sort}`}
                     className="hero-nav-dropdown-item" 
                 >
                     <DropdownItem
-                        className={classNames({ "hero-nav-dropdown-active": props.outcome === btnValues[index], "hero-nav-dropdown-item": props.outcome })}
+                        className={classNames({ "hero-nav-dropdown-active": outcome === btnValues[index], "hero-nav-dropdown-item": outcome })}
                     >
                         {label}
                     </DropdownItem>

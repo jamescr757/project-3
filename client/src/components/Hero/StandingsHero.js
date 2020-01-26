@@ -3,6 +3,7 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from '@material-ui/core/styles';
 import { CustomTitle } from "./Title/CustomTitle";
 import StandingsTabs from "./Filters/StandingsTabs";
+import { ParamsContext } from "../../utils/ParamsContext";
 
 const useStyles = makeStyles(theme => ({
 
@@ -16,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 export const StandingsHero = (props) => {
     const classes = useStyles();
 
-    const { order } = props.match.params;
+    const { order } = React.useContext(ParamsContext);
 
     return (
         <div className={classes.heroContent}>
@@ -25,7 +26,7 @@ export const StandingsHero = (props) => {
                     identifier={order !== "playoffs" ? order + " Standings" : "Playoff Matchups"}
                 />
 
-                <StandingsTabs {...props.match.params} />
+                <StandingsTabs />
             </Container>
         </div>
     );

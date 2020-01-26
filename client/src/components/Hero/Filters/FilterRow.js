@@ -3,9 +3,12 @@ import { Typography, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import CancelIcon from '@material-ui/icons/Cancel';
 import "./Button.css";
+import { ParamsContext } from "../../../utils/ParamsContext";
 
 
-export const FilterRow = ({ table, days, category, ot, rival, identifier, location, outcome, sort }) => {
+export const FilterRow = () => {
+
+    const { table, days, category, ot, rival, identifier, location, outcome, sort } = React.useContext(ParamsContext);
 
     const rivalBool = rival === "true" ? true : false;
     const otBool = ot === "true" ? true : false;
@@ -36,7 +39,7 @@ export const FilterRow = ({ table, days, category, ot, rival, identifier, locati
                 return "2 weeks";
             case "30":
                 return "1 month";
-            case "300":
+            default:
                 return "All games";
         }
     }

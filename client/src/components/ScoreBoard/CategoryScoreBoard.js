@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
 import { Typography } from "@material-ui/core";
 import Box from '@material-ui/core/Box';
+import { ParamsContext } from "../../utils/ParamsContext";
 
 const useStyles = makeStyles(theme => ({
 
@@ -37,11 +38,12 @@ const CategoryScoreBoard = (props) => {
     const [gameInfo, setGameInfo] = useState([]);
     const [noData, setNoData] = useState(false);
 
-    const { category, table, identifier, days, location, outcome, rival, ot, sort } = props.match.params
+    const params = React.useContext(ParamsContext);
+    const { category, table, identifier, days, location, outcome, rival, ot, sort } = params
 
     useEffect(() => {
 
-        APIcall(table, props.match.params)
+        APIcall(table, params)
             .then(response => {
                 if (response.data.length === 0) {
                     setNoData(true);

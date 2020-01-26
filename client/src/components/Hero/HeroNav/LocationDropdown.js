@@ -2,7 +2,7 @@ import React from "react";
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import HomeAway from "../Filters/CategoryExtra/HomeAway";
 
-export const LocationDropdown = (props) => {
+export const LocationDropdown = () => {
 
     return (
         <UncontrolledDropdown nav inNavbar>
@@ -12,7 +12,7 @@ export const LocationDropdown = (props) => {
             </DropdownToggle>
 
             <DropdownMenu>
-                <HomeAway {...props} />
+                <HomeAway />
             </DropdownMenu>
 
         </UncontrolledDropdown>

@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import LoginForm from "./LoginForm";
 import NewUserForm from "./NewUserForm";
-import NewSettingsForm from "./NewSettingsForm";
 import { UserDashboard } from "../Dashboard/UserDashboard";
+import { ParamsContext } from "../../utils/ParamsContext";
 
-const SignInForm = (props) => {
+const SignInForm = () => {
+
+    const params = useContext(ParamsContext);
 
     return (
         <React.Fragment>
-            {sessionStorage.getItem("userEmail") && props.match.params.type === "sign-in" && <UserDashboard userEmail= {sessionStorage.getItem("userEmail")} {...props} />}
+            {sessionStorage.getItem("userEmail") && params.type === "sign-in" && <UserDashboard userEmail= {sessionStorage.getItem("userEmail")} />}
 
-            {!sessionStorage.getItem("userEmail") && props.match.params.type === "sign-in" && <LoginForm {...props} />} 
+            {!sessionStorage.getItem("userEmail") && params.type === "sign-in" && <LoginForm />} 
 
-            {props.match.params.type === "new" && <NewUserForm {...props} />}
+            {params.type === "new" && <NewUserForm />}
         </React.Fragment>
     );
 }

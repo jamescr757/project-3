@@ -2,9 +2,6 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-import { useState, useEffect } from "react";
-import { Typography } from "@material-ui/core";
-import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
 
@@ -30,6 +27,7 @@ const HighlightVideo = (props) => {
             <Grid container spacing={4} direction="column" alignItems="center" justify="center" className="mt-1">
                 <Grid item>
                     <iframe
+                        title={props.gameHighlight5}
                         width="355.5"
                         height="200"
                         src={`https://www.youtube.com/embed/${props.gameHighlight5}`}
@@ -40,6 +38,7 @@ const HighlightVideo = (props) => {
                 </Grid>
                 <Grid item className="mb-3">
                     <iframe
+                        title={props.gameHighlight9}
                         width="355.5"
                         height="200"
                         src={`https://www.youtube.com/embed/${props.gameHighlight9}`}

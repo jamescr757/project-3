@@ -8,6 +8,7 @@ import { Typography, Card, CardContent } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import teamInfo from "../../utils/teamInfo";
 import "./Standings.css"
+import { ParamsContext } from "../../utils/ParamsContext";
 
 
 const useStyles = makeStyles(theme => ({
@@ -32,7 +33,7 @@ const DivisionTable = (props) => {
 
     const [records, setRecords] = useState([]);
 
-    const { order } = props.match.params;
+    const { order } = React.useContext(ParamsContext);
 
     useEffect(() => {
         

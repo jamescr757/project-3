@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./NavBar.css";
 import {
   Collapse,
@@ -14,8 +14,11 @@ import { Member } from "./Member";
 import { NewMemberMessage } from "./NewMemberMessage";
 import { Link } from "react-router-dom";
 import { StandingsDropdown } from "./StandingsDropdown";
+import { ParamsContext } from "../../utils/ParamsContext";
 
 const NavBar = (props) => {
+
+  const params = useContext(ParamsContext);
   
   const [isOpen, setIsOpen] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
@@ -30,28 +33,28 @@ const NavBar = (props) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <TeamDropdown {...props} />
+            <TeamDropdown />
 
-            <DivisionDropdown {...props} />
+            <DivisionDropdown />
 
-            <ConferenceDropdown {...props} />
+            <ConferenceDropdown />
 
-            <StandingsDropdown {...props} />
+            <StandingsDropdown />
 
           </Nav>
-          {!props.match.params.type && !props.match.params.email &&
+          {!params.type && !params.email &&
             <Nav navbar style={{ marginRight: "1rem"}}>
               <Member revealMessage={revealMessage} hideMessage={hideMessage} />
               {showMessage && <NewMemberMessage />}
             </Nav>
           }
-          {props.match.params.type === "scoreboard" &&
+          {params.type === "scoreboard" &&
             <Nav navbar style={{ marginRight: "1rem"}}>
               <Member revealMessage={revealMessage} hideMessage={hideMessage} />
               {showMessage && <NewMemberMessage />}
             </Nav>
           }
-          {props.match.params.type === "sign-in" && sessionStorage.getItem("userEmail") &&
+          {params.type === "sign-in" && sessionStorage.getItem("userEmail") &&
             <Nav navbar style={{ marginRight: "1rem"}}>
               <Link
                   onClick={()=>sessionStorage.clear()}
@@ -64,7 +67,7 @@ const NavBar = (props) => {
               </Link>
             </Nav>
           }
-          {props.match.params.type === "dashboard" &&
+          {params.type === "dashboard" &&
             <Nav navbar style={{ marginRight: "1rem"}}>
               <Link
                   onClick={()=>sessionStorage.clear()}

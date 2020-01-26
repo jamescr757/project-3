@@ -3,9 +3,12 @@ import { Typography, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import CancelIcon from '@material-ui/icons/Cancel';
 import "./Button.css";
+import { ParamsContext } from "../../../utils/ParamsContext";
 
 
-export const CustomFilterRow = ({ email, table, days, sort }) => {
+export const CustomFilterRow = () => {
+
+    const { email, table, days, sort } = React.useContext(ParamsContext);
 
     let message;
     if (days === "7" && table === "completed" && sort === "desc") {
@@ -29,8 +32,9 @@ export const CustomFilterRow = ({ email, table, days, sort }) => {
                 return "2 weeks";
             case "30":
                 return "1 month";
-            case "300":
+            default:
                 return "All games";
+            
         }
     }
 

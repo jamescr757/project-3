@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Collapse,
   Navbar,
@@ -12,9 +12,12 @@ import { ResultDropdown } from "./ResultDropdown";
 import { RivalDropdown } from "./RivalDropdown";
 import { OvertimeDropdown } from "./OvertimeDropdown";
 import { SortDropdown } from "./SortDropdown";
+import { ParamsContext } from "../../../utils/ParamsContext";
 import "./HeroNav.css";
 
-const HeroNav = (props) => {
+const HeroNav = () => {
+
+  const { category, table } = useContext(ParamsContext);
   
   const [isOpen, setIsOpen] = useState(false);
 
@@ -28,18 +31,18 @@ const HeroNav = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
 
-            <DurationDropdown {...props} />
+            <DurationDropdown />
 
-            {props.category === "team" && <LocationDropdown {...props} />}
+            {category === "team" && <LocationDropdown />}
 
-            {props.category === "team" && props.table === "completed" && <ResultDropdown {...props} />}
+            {category === "team" && table === "completed" && <ResultDropdown />}
 
             <div className="hero-nav-container">
-              {props.table === "completed" && <OvertimeDropdown {...props} />}
+              {table === "completed" && <OvertimeDropdown />}
 
-              {props.category === "conference" || <RivalDropdown {...props} />}
+              {category === "conference" || <RivalDropdown />}
 
-              <SortDropdown {...props} />
+              <SortDropdown />
             </div>
 
           </Nav>

@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const PlayoffTable = (props) => {
+const PlayoffTable = () => {
     
     const classes = useStyles();
 
@@ -134,34 +134,6 @@ const PlayoffTable = (props) => {
             })
 
     }, []);
-
-    const renderCategoryRow = (title, linkBool) => {
-        return (
-             <Grid 
-                 item  
-                 xs={12} 
-                 className="pt-4 standings-page-divider-row"
-             >
-                 <Card className="border-bottom border-dark standings-page-category-row">
-                     <CardContent className="py-0 px-1 px-sm-3">
-                         <Grid container alignItems="center" >
-                             <Grid item xs={12}>
-                                 <Typography variant="h6" gutterBottom={false} className="standings-category-row-mobile">
-                                    {linkBool ? 
-                                        <Link to={`/multiple/division/completed/${title !== "Metro" ? title : "Metropolitan"}/3/all/all/false/false/desc`} className="standings-page-division-link">
-                                            {title}
-                                        </Link>
-                                    :
-                                        title
-                                    }
-                                 </Typography>
-                             </Grid>
-                         </Grid>
-                     </CardContent>
-                 </Card>   
-             </Grid>
-        ) 
-     }
 
     const renderConferenceRow = (title, bool) => {
         return (

@@ -8,7 +8,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import "./Form.css"
 
-const LoginForm = (props) => {
+const LoginForm = () => {
 
     const [email, setEmail] = useState("a");
     const [password, setPassword] = useState("");

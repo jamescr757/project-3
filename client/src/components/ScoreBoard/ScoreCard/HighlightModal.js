@@ -73,6 +73,7 @@ const HighlightModal = ({ gameHighlight, open, onClose, awayTeam, homeTeam }) =>
                 </h2>
                 <iframe
                     className={iFrameClass}
+                    title={gameHighlight}
                     width="392"
                     height="220.5"
                     src={`https://www.youtube.com/embed/${gameHighlight}`}

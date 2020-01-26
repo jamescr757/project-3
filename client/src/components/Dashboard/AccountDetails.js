@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import API from "../../utils/API";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Card, CardContent, List, ListItem, ListItemText, ListItemIcon, Button as SaveButton } from "@material-ui/core";
+import { Card, CardContent, List, ListItem, ListItemText, ListItemIcon } from "@material-ui/core";
 import { Button } from "reactstrap";
 import "./Dashboard.css";
 import { AccountHero } from "../Hero/AccountHero";
@@ -11,9 +11,8 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { EmailUpdate } from "../Form/EmailUpdate";
 import { Link } from "react-router-dom";
 import { PasswordUpdate } from "../Form/PasswordUpdate";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
-const classNames = require("classnames");
+import { Modal, ModalHeader, ModalFooter } from 'reactstrap';
+import { ParamsContext } from "../../utils/ParamsContext";
 
 const useStyles = makeStyles(theme => ({
 
@@ -39,7 +38,9 @@ const useStyles = makeStyles(theme => ({
 export const AccountDetails = (props) => {
     const classes = useStyles();
 
-    const userEmail = props.match.params.email || props.userEmail;
+    const { type, email } = React.useContext(ParamsContext);
+
+    const userEmail = email || props.userEmail;
     sessionStorage.setItem("userEmail", userEmail);
 
     const [modal, setModal] = useState(false);
@@ -82,12 +83,11 @@ export const AccountDetails = (props) => {
                     item 
                     xs={12}
                 >
-                    { props.match.params.type === "my-account" &&
+                    { type === "my-account" &&
                     <Card className={classes.card}>
                         <Grid container direction="column">
                         <CardContent className={classes.cardContent + " pb-0 px-2"}>
                             <Grid item xs={12} >
-                                {/* <CardTitle category={email.category} identifier={email.identifier} /> */}
                                 <List className="pb-0">
                                     <ListItem>
                                         <ListItemIcon style={{ minWidth: 36 }}>
@@ -96,7 +96,7 @@ export const AccountDetails = (props) => {
                                             </Link>
                                         </ListItemIcon>
                                         <ListItemText
-                                            primary={"Email:" + " " + userEmail}
+                                            primary={"Email: " + userEmail}
                                         />
                                     </ListItem>
                                     <ListItem>
@@ -122,7 +122,7 @@ export const AccountDetails = (props) => {
                         </Grid>
                     </Card>
                     }
-                    { props.match.params.type === "update-email" &&   
+                    { type === "update-email" &&   
                     <Card className={classes.card}>
                         <Grid container direction="column">
                         <CardContent className={classes.cardContent + " pb-0 px-2"}>
@@ -133,7 +133,7 @@ export const AccountDetails = (props) => {
                         </Grid>
                     </Card>
                     }
-                    { props.match.params.type === "update-password" &&   
+                    { type === "update-password" &&   
                     <Card className={classes.card}>
                         <Grid container direction="column">
                         <CardContent className={classes.cardContent + " pb-0 px-2"}>

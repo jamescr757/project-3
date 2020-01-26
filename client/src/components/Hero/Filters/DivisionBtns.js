@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { DropdownItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./Button.css";
+import { ParamsContext } from "../../../utils/ParamsContext";
 
 
 const DivisionBtns = (props) => {
+
+    const { table, days, location, outcome, rival, ot } = useContext(ParamsContext);
 
     const divisions = ["Atlantic", "Metropolitan", "Central", "Pacific"];
 
     const toLogic = (division) => {
         
-        if (props.category && props.match.params.table === "completed") {
-            return `/multiple/division/completed/${division}/${props.match.params.days}/${props.match.params.location}/${props.match.params.outcome}/${props.match.params.rival}/${props.match.params.ot}/desc`;
-        } else if (props.category && props.match.params.table === "future") {
-            return `/multiple/division/future/${division}/${props.match.params.days}/${props.match.params.location}/${props.match.params.outcome}/${props.match.params.rival}/${props.match.params.ot}/asc`;
+        if (props.category && table === "completed") {
+            return `/multiple/division/completed/${division}/${days}/${location}/${outcome}/${rival}/${ot}/desc`;
+        } else if (props.category && table === "future") {
+            return `/multiple/division/future/${division}/${days}/${location}/${outcome}/${rival}/${ot}/asc`;
         } else {
             return `/multiple/division/completed/${division}/3/all/all/false/false/desc`;
         }

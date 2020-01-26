@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { DropdownItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./Button.css";
+import { ParamsContext } from "../../../utils/ParamsContext";
 
 
 const ConferenceBtns = (props) => {
+
+    const { table, days, location, outcome, rival, ot } = useContext(ParamsContext);
 
     const conferences = ["Eastern", "Western", "All Teams"];
 
     const toLogic = (conference) => {
         
-        if (props.category && props.match.params.table === "completed") {
-            return `/multiple/conference/completed/${conference}/${props.match.params.days}/${props.match.params.location}/${props.match.params.outcome}/${props.match.params.rival}/${props.match.params.ot}/desc`;
-        } else if (props.category && props.match.params.table === "future") {
-            return `/multiple/conference/future/${conference}/${props.match.params.days}/${props.match.params.location}/${props.match.params.outcome}/${props.match.params.rival}/${props.match.params.ot}/asc`;
+        if (props.category && table === "completed") {
+            return `/multiple/conference/completed/${conference}/${days}/${location}/${outcome}/${rival}/${ot}/desc`;
+        } else if (props.category && table === "future") {
+            return `/multiple/conference/future/${conference}/${days}/${location}/${outcome}/${rival}/${ot}/asc`;
         } else {
             return `/multiple/conference/completed/${conference}/3/all/all/false/false/desc`;
         }

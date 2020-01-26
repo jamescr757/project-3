@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export const CustomHero = (props) => {
+export const CustomHero = () => {
     const classes = useStyles();
 
     return (
@@ -25,10 +25,10 @@ export const CustomHero = (props) => {
                     identifier={"Custom Scoreboard"}
                 />
 
-                <CustomPastFuture {...props.match.params} />
-                <CustomHeroNav {...props.match.params} />
+                <CustomPastFuture />
+                <CustomHeroNav />
 
-                <CustomFilterRow {...props.match.params} />
+                <CustomFilterRow />
             </Container>
         </div>
     );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import API from "../../utils/API";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -15,6 +15,7 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import "./Dashboard.css";
 import { DashboardHero } from "../Hero/DashboardHero";
 import moment from "moment";
+import { ParamsContext } from "../../utils/ParamsContext";
 
 const classNames = require("classnames");
 
@@ -42,11 +43,13 @@ const useStyles = makeStyles(theme => ({
 export const UserDashboard = (props) => {
     const classes = useStyles();
 
-    const userEmail = props.match.params.email || props.userEmail;
+    const params = useContext(ParamsContext);
+
+    const userEmail = params.email || props.userEmail;
     sessionStorage.setItem("userEmail", userEmail);
 
     const [userData, setUserData] = useState([]);
-    const [errorMessage, setErrorMessage] = useState();
+    // const [errorMessage, setErrorMessage] = useState();
     const [reRender, setReRender] = useState(false);
     const [showFrequency, showFrequencyArrows] = useState(false);
     const [showEmail, showEmailArrows] = useState(false);
@@ -60,7 +63,7 @@ export const UserDashboard = (props) => {
         API.findUserData(userEmail)
             .then((res) => {
                 if (res.data === "error") {
-                    setErrorMessage("There's been an error.");
+                    // setErrorMessage("There's been an error.");
                 } else {
                     if (res.data.length === 0) {
                         setNoData(true);

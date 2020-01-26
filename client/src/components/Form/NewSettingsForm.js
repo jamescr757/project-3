@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { TeamSelect } from "./TeamSelect";
 import { DivisionSelect } from "./DivisionSelect";
@@ -8,8 +8,11 @@ import { Link } from "react-router-dom";
 import { Button as MaterialBtn, Grid, Container } from "@material-ui/core";
 import { NewSettingHero } from "../Hero/NewSettingHero";
 import "../Hero/Filters/Button.css"
+import { ParamsContext } from "../../utils/ParamsContext";
 
 const NewSettingsForm = (props) => {
+
+    const params = useContext(ParamsContext);
 
     const [category, setCategory] = useState("Team");
     const [identifier, setIdentifier] = useState("ducks");
@@ -36,7 +39,7 @@ const NewSettingsForm = (props) => {
             setErrorMessage("Please change something to add another notification");
         } else {
 
-            API.addEmail(data, props.match.params.email || props.userEmail)
+            API.addEmail(data, params.email || props.userEmail)
             .then(() => {
                 setEntrySuccess(false);
                 setErrorMessage("");
@@ -187,7 +190,7 @@ const NewSettingsForm = (props) => {
                             :
                             <MaterialBtn className="my-3 border border-success bg-success text-white new-settings-add-btn" onClick={handleSubmit}>Add</MaterialBtn>
                         }
-                        <Link to={`/member/dashboard/${props.match.params.email || props.userEmail}`} className="account-btn-link">
+                        <Link to={`/member/dashboard/${params.email || props.userEmail}`} className="account-btn-link">
                             <MaterialBtn color="primary" className="my-3 border">
                                 My Account
                             </MaterialBtn>

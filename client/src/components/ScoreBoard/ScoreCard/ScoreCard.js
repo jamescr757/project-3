@@ -39,7 +39,6 @@ const ScoreCard = (props) => {
 
         API.getHighlight(teams, date, type)
             .then((res) => {
-                console.log(res.data[0]);
                 setGameHighlight(res.data[0].id.videoId)
             })
             .catch(error => console.log(error));

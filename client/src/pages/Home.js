@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import { DateHero } from "../components/Hero";
 import ScoreBoard from "../components/ScoreBoard";
 import moment from "moment";
+import { ParamsContext } from "../utils/ParamsContext";
 
 
 const Home = (props) => { 
@@ -27,8 +28,8 @@ const Home = (props) => {
   };
 
   return (
-    <React.Fragment>
-      <NavBar {...props} category={false} />
+    <ParamsContext.Provider value={props.match.params}>
+      <NavBar category={false} />
       <DateHero 
         date={moment(date).format("MM/DD/YYYY")} 
         dateDay={moment(date).format("ddd")} 
@@ -42,7 +43,7 @@ const Home = (props) => {
         noData={noData}
         setNoData={setNoData}
       />
-    </React.Fragment>
+    </ParamsContext.Provider >
   );
 }
 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./Button.css";
 
 
-const StandingsLinks = (props) => {
+const StandingsLinks = () => {
 
     const standingsPages = ["Wildcard", "Division", "Playoffs", "Conference", "League"];
 

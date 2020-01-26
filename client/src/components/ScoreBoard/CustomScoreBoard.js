@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
 import { Typography } from "@material-ui/core";
 import Box from '@material-ui/core/Box';
+import { ParamsContext } from "../../utils/ParamsContext";
 
 const useStyles = makeStyles(theme => ({
 
@@ -21,15 +22,6 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-// const APIcall = (table, inputObj) => {
-
-//     if (table === "completed") {
-//         return API.getScoresByCategory(inputObj)
-//     } else {
-//         return API.getFutureGamesByCategory(inputObj)
-//     }
-// }
-
 const CustomScoreBoard = (props) => {
     
     const classes = useStyles();
@@ -37,9 +29,9 @@ const CustomScoreBoard = (props) => {
     const [gameInfo, setGameInfo] = useState([]);
     const [userData, setUserData] = useState([]);
     const [noData, setNoData] = useState(false);
-    const [dbError, setDbError] = useState(false);
+    // const [dbError, setDbError] = useState(false);
 
-    const { email, table, days, sort } = props.match.params;
+    const { email, table, days, sort } = React.useContext(ParamsContext);
 
     useEffect(() => {
 
@@ -47,8 +39,7 @@ const CustomScoreBoard = (props) => {
             API.findUserData(email)
             .then(response => {
                 if (response.data === "error") {
-                    setDbError(true);
-                    // setErrorMessage("There's been an error.");
+                    // setDbError(true);
                 } else {
 
                     const identifierArr = [];

@@ -5,44 +5,47 @@ import NavBar from "../components/NavBar";
 import API from "../utils/API";
 import moment from "moment";
 import teamInfo from "../utils/teamInfo";
+import { ParamsContext } from "../utils/ParamsContext";
 
 
 const Highlight = (props) => { 
 
+    const { homeTeam, awayTeam, date } = props.match.params;
+
     const [gameHighlight5, setGameHighlight5] = useState();
     const [gameHighlight9, setGameHighlight9] = useState();
     const [highlightDescription, setHighlightDescription] = useState();
-    const [date, setDate] = useState();
+    const [heroDate, setHeroDate] = useState();
 
     useEffect(() => {
-        API.getEmailHighlight(props.match.params.homeTeam, props.match.params.awayTeam, props.match.params.date, "5")
+        API.getEmailHighlight(homeTeam, awayTeam, date, "5")
             .then((res) => {
                 setGameHighlight5(res.data[0].id.videoId)
-                setDate(moment(props.match.params.date, "YYYYMMDD").format("dddd M/D"));
+                setHeroDate(moment(date, "YYYYMMDD").format("dddd M/D"));
             })
             .catch(error => console.log(error));
 
-        API.getEmailHighlight(props.match.params.homeTeam, props.match.params.awayTeam, props.match.params.date, "9")
+        API.getEmailHighlight(homeTeam, awayTeam, date, "9")
             .then((res) => {
                 setGameHighlight9(res.data[0].id.videoId)
             })
             .catch(error => console.log(error));
 
-        const awayTeamFullName = teamInfo.teamFullNameCaptilized(teamInfo.teamNameDehyphenator(props.match.params.awayTeam));
-        const homeTeamFullName = teamInfo.teamFullNameCaptilized(teamInfo.teamNameDehyphenator(props.match.params.homeTeam));
+        const awayTeamFullName = teamInfo.teamFullNameCaptilized(teamInfo.teamNameDehyphenator(awayTeam));
+        const homeTeamFullName = teamInfo.teamFullNameCaptilized(teamInfo.teamNameDehyphenator(homeTeam));
         setHighlightDescription(`${awayTeamFullName} vs. ${homeTeamFullName}`);
 
     }, [])
 
     return (
-      <React.Fragment>
-        <NavBar {...props} />
-        <HighlightHero date={date} description={highlightDescription} />
+      <ParamsContext.Provider value={props.match.params}>
+        <NavBar />
+        <HighlightHero date={heroDate} description={highlightDescription} />
         <HighlightVideo 
           gameHighlight5={gameHighlight5} 
           gameHighlight9={gameHighlight9} 
         />
-      </React.Fragment>
+      </ParamsContext.Provider >
     );
 }
 

@@ -12,7 +12,7 @@ export const TeamDropdown = (props) => {
             </DropdownToggle>
 
             <DropdownMenu className="team-dropdown">
-                <TeamBtns {...props} />
+                <TeamBtns />
             </DropdownMenu>
 
         </UncontrolledDropdown>

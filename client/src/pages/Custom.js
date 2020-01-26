@@ -2,16 +2,17 @@ import React from "react";
 import { CustomHero } from "../components/Hero";
 import CustomScoreBoard from "../components/ScoreBoard/CustomScoreBoard";
 import NavBar from "../components/NavBar";
+import { ParamsContext } from "../utils/ParamsContext";
 
 
 const Custom = (props) => { 
 
   return (
-    <React.Fragment>
-      <NavBar {...props} category={false} />
-      <CustomHero {...props} />
-      <CustomScoreBoard {...props} />
-    </React.Fragment>
+    <ParamsContext.Provider value={props.match.params}>
+      <NavBar category={false} />
+      <CustomHero />
+      <CustomScoreBoard />
+    </ParamsContext.Provider >
   );
 }
 

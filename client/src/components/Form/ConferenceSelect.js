@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Label, Input } from 'reactstrap';
+import React from "react";
+import { Input } from 'reactstrap';
 
 export const ConferenceSelect = (props) => {
 
@@ -7,7 +7,6 @@ export const ConferenceSelect = (props) => {
 
     return (
         <React.Fragment>
-            {/* <Label for="conferenceSelect">Conference</Label> */}
             <Input type="select" name="conferenceSelect" id="conferenceSelect" onChange={e => props.identifierChange(e.target.value)} >
                 {conferences.map((conference, index) => {
                     return (

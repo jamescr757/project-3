@@ -6,21 +6,24 @@ import DivisionTable from "../components/StandingsTable/DivisionTable";
 import ConferenceTable from "../components/StandingsTable/ConferenceTable";
 import LeagueTable from "../components/StandingsTable/LeagueTable";
 import PlayoffTable from "../components/StandingsTable/PlayoffTable";
+import { ParamsContext } from "../utils/ParamsContext";
 
 
 const Standings = (props) => { 
 
-  return (
-    <React.Fragment>
-      <NavBar {...props} category={false} />
-      <StandingsHero {...props} />
+  const { order } = props.match.params;
 
-      {props.match.params.order === "league" && <LeagueTable {...props} />}
-      {props.match.params.order === "conference" && <ConferenceTable {...props} />}
-      {props.match.params.order === "division" && <DivisionTable {...props} />}
-      {props.match.params.order === "wildcard" && <WildcardTable {...props} />}
-      {props.match.params.order === "playoffs" && <PlayoffTable {...props} />}
-    </React.Fragment>
+  return (
+    <ParamsContext.Provider value={props.match.params}>
+      <NavBar category={false} />
+      <StandingsHero />
+
+      {order === "league" && <LeagueTable />}
+      {order === "conference" && <ConferenceTable />}
+      {order === "division" && <DivisionTable />}
+      {order === "wildcard" && <WildcardTable />}
+      {order === "playoffs" && <PlayoffTable />}
+    </ParamsContext.Provider>
   );
 }
 

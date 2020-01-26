@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Input, FormText } from 'reactstrap';
 import { Grid } from "@material-ui/core";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";

@@ -7,9 +7,9 @@ import Category from "./pages/Category";
 import Member from "./pages/Member";
 import Custom from "./pages/Custom";
 import Standings from "./pages/Standings";
-import NewMemberPreferences from "./pages/NewMemberPreferences";
 import { CssBaseline } from "@material-ui/core";
 import Footer from "./components/Footer";
+import MemberPreferences from "./pages/MemberPreferences";
 
 const App = () => {
 
@@ -22,8 +22,7 @@ const App = () => {
             <Route exact path="/" component={Home} />
             <Route exact path="/highlight/:homeTeam/:awayTeam/date/:date" component={Highlight} />
             <Route exact path="/member/:type" component={Member} />
-            {/* <Route exact path="/member/:email" component={MemberPreferences} /> */}
-            <Route exact path="/member/:type/:email" component={NewMemberPreferences} />
+            <Route exact path="/member/:type/:email" component={MemberPreferences} />
             <Route exact path="/multiple/:category/:table/:identifier/:days/:location/:outcome/:rival/:ot/:sort" component={Category} />
             <Route exact path="/member/:type/:email/:table/:days/:sort" component={Custom} />
             <Route exact path="/standings/:order" component={Standings} />

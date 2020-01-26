@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from '@material-ui/core/styles';
-import Title from "./Title/Title";
 import PastFutureBtns from "./Filters/PastFutureBtns";
 import teamInfo from "../../utils/teamInfo";
 import { TeamTitle } from "./Title/TeamTitle";
@@ -9,6 +8,7 @@ import { ConferenceTitle } from "./Title/ConferenceTitle";
 import HeroNav from "./HeroNav/HeroNav";
 import { FilterRow } from "./Filters/FilterRow";
 import { DivisionTitle } from "./Title/DivisionTitle";
+import { ParamsContext } from "../../utils/ParamsContext";
 
 const useStyles = makeStyles(theme => ({
 
@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 export const CategoryHero = (props) => {
     const classes = useStyles();
 
-    const { category, identifier } = props.match.params;
+    const { category, identifier } = useContext(ParamsContext);
 
     const fullTeamName = teamInfo.teamFullName(teamInfo.teamNameDehyphenator(identifier));
 
@@ -49,10 +49,10 @@ export const CategoryHero = (props) => {
                 }
 
 
-                <PastFutureBtns {...props.match.params} />
-                <HeroNav {...props.match.params} />
+                <PastFutureBtns />
+                <HeroNav />
 
-                <FilterRow {...props.match.params} />
+                <FilterRow />
             </Container>
         </div>
     );

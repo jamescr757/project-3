@@ -2,7 +2,6 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from '@material-ui/core/styles';
 import Title from "./Title/Title";
-import SubHeading from "./SubHeading";
 import AccountButtons from "./AccountButtons";
 
 const useStyles = makeStyles(theme => ({
@@ -23,9 +22,6 @@ export const AccountHero = (props) => {
                 <Title responsive={true}>
                     Account Details
                 </Title>
-                {/* <SubHeading>
-                    One email - only the content you want!
-                </SubHeading> */}
                 <AccountButtons {...props}/>
             </Container>
         </div>

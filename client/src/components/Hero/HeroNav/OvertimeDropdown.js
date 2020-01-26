@@ -1,22 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./HeroNav.css"
+import { ParamsContext } from "../../../utils/ParamsContext";
 
 const classNames = require("classnames");
 
 export const OvertimeDropdown = (props) => {
 
+    const { category, table, identifier, days, location, outcome, rival, ot, sort } = useContext(ParamsContext);
+
     return (
-        // <div style={{ display: "flex", alignItems: "center", marginLeft: 12 }}>
-            <NavItem className="mx-md-3 hero-nav-switch-li">
-                <Link 
-                    to={`/multiple/${props.category}/${props.table}/${props.identifier}/${props.days}/${props.location}/${props.outcome}/${props.rival}/${props.ot === "true" ? "false" : "true"}/${props.sort}`} 
-                    className={classNames({ "hero-nav-item-switch": props.ot })}
-                >
-                    Overtime
-                </Link>
-            </NavItem>
-        // </div>
+        <NavItem className="mx-md-3 hero-nav-switch-li">
+            <Link 
+                to={`/multiple/${category}/${table}/${identifier}/${days}/${location}/${outcome}/${rival}/${ot === "true" ? "false" : "true"}/${sort}`} 
+                className={classNames({ "hero-nav-item-switch": ot })}
+            >
+                Overtime
+            </Link>
+        </NavItem>
     );
 }

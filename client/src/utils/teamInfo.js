@@ -118,6 +118,8 @@ export default {
                 return "san jose sharks"
             case "canucks":
                 return "vancouver canucks"
+            default:
+                return;
             
         }
     },
@@ -187,6 +189,8 @@ export default {
                 return "San Jose Sharks"
             case "canucks":
                 return "Vancouver Canucks"
+            default:
+                return;
             
         }
     },
@@ -256,6 +260,8 @@ export default {
                 return "San Jose"
             case "canucks":
                 return "Vancouver"
+            default:
+                return;
             
         }
     },
@@ -325,6 +331,8 @@ export default {
                 return "SJS"
             case "canucks":
                 return "VAN"
+            default:
+                return;
             
         }
     },
@@ -394,6 +402,8 @@ export default {
                 return "sharks"
             case "vancouver canucks":
                 return "canucks"
+            default:
+                return;
             
         }
     }

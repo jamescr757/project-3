@@ -33,6 +33,7 @@ function GameAction({ homeTeamScore, homeTeam, awayTeam, date, ticketLink, handl
                     <a 
                         href={`${ticketLink}`} 
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="scorecard-btn-link"
                         >
                         <Button
@@ -47,6 +48,7 @@ function GameAction({ homeTeamScore, homeTeam, awayTeam, date, ticketLink, handl
                     <a 
                         href={`https://seatgeek.com/${teamInfo.teamFullName(homeTeam)}-tickets`} 
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="scorecard-btn-link"
                         >
                         <Button

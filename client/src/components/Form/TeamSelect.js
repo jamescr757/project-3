@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Label, Input } from 'reactstrap';
+import React from "react";
+import { Input } from 'reactstrap';
 import teamInfo from "../../utils/teamInfo";
 
 export const TeamSelect = (props) => {
@@ -10,7 +10,6 @@ export const TeamSelect = (props) => {
 
     return (
         <React.Fragment>
-            {/* <Label for="teamSelect">Favorite</Label> */}
             <Input style={{ textTransform: "capitalize" }} type="select" name="teamSelect" id="teamSelect" onChange={(e) => props.identifierChange(e.target.value)} >
                 {teamsFullNameArray.sort().map((team, index) => {
                     return (

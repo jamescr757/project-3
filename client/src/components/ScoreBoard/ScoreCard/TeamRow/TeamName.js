@@ -3,12 +3,14 @@ import Typography from "@material-ui/core/Typography";
 import "../ScoreCard.css";
 import teamInfo from "../../../../utils/teamInfo";
 import { Link } from "react-router-dom";
+import { ParamsContext } from "../../../../utils/ParamsContext";
 
 const classNames = require("classnames");
 
 function TeamName(props) {
 
     const { team, loser, winner, category } = props;
+    const { table, days, location, outcome, rival, ot } = React.useContext(ParamsContext);
 
     const teamClass = classNames({
         "future": !winner,
@@ -18,10 +20,10 @@ function TeamName(props) {
 
     const toLogic = () => {
         
-        if (category && props.match.params.table === "completed") {
-            return `/multiple/team/completed/${teamInfo.teamNameConverter(team)}/${props.match.params.days}/${props.match.params.location}/${props.match.params.outcome}/${props.match.params.rival}/${props.match.params.ot}/desc`;
-        } else if (category && props.match.params.table === "future") {
-            return `/multiple/team/future/${teamInfo.teamNameConverter(team)}/${props.match.params.days}/${props.match.params.location}/${props.match.params.outcome}/${props.match.params.rival}/${props.match.params.ot}/asc`;
+        if (category && table === "completed") {
+            return `/multiple/team/completed/${teamInfo.teamNameConverter(team)}/${days}/${location}/${outcome}/${rival}/${ot}/desc`;
+        } else if (category && table === "future") {
+            return `/multiple/team/future/${teamInfo.teamNameConverter(team)}/${days}/${location}/${outcome}/${rival}/${ot}/asc`;
         } else {
             return `/multiple/team/completed/${teamInfo.teamNameConverter(team)}/7/all/all/false/false/desc`;
         }
