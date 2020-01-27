@@ -195,7 +195,7 @@ export const UserDashboard = (props) => {
                                         }
                                         { showFrequency && email.frequency < 30 && showFrequencyIndex === index &&
                                             <ListItemIcon className={classNames({ "arrow-padding": email.frequency < 2 })}
-                                            style={{ minWidth: 34 }}
+                                            style={{ minWidth: 24 }}
                                             >
                                                 <ArrowDropUpIcon
                                                   style={{ cursor: "pointer" }}
@@ -204,7 +204,7 @@ export const UserDashboard = (props) => {
                                             </ListItemIcon>
                                         }
                                         { showFrequency && showFrequencyIndex === index &&
-                                            <SaveButton className="py-1" onClick={handleFrequencySave}>Done</SaveButton>
+                                            <SaveButton className="py-1 ml-1" onClick={handleFrequencySave}>Done</SaveButton>
                                         }
                                     </ListItem>
                                     <ListItem>
@@ -225,7 +225,7 @@ export const UserDashboard = (props) => {
                                         }
                                         { showEmail && showEmailIndex === index &&
                                             <ListItemIcon className={classNames({ "arrow-padding": email.nextEmail < moment().utcOffset(-7).add(2, "days").format("YYYYMMDD") })}
-                                            style={{ minWidth: 34 }}
+                                            style={{ minWidth: 24 }}
                                             >
                                                 <ArrowDropUpIcon
                                                   style={{ cursor: "pointer" }}
@@ -234,7 +234,7 @@ export const UserDashboard = (props) => {
                                             </ListItemIcon>
                                         }
                                         { showEmail && showEmailIndex === index &&
-                                            <SaveButton className="py-1" onClick={handleEmailSave}>Done</SaveButton>
+                                            <SaveButton className="py-1 ml-1" onClick={handleEmailSave}>Done</SaveButton>
                                         }
                                     </ListItem>
                                     <ListItem>
