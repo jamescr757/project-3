@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 import NewSettingsForm from "../components/Form/NewSettingsForm";
-import { UserDashboard } from "../components/Dashboard/UserDashboard";
+import { UserDashboard } from "../components/Dashboard/UserDashboard/UserDashboard";
 import { AccountDetails } from "../components/Dashboard/AccountDetails";
 import { ForgotPassword } from "../components/Form/ForgotPassword";
 import { ParamsContext } from "../utils/ParamsContext";

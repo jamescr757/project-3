@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import LoginForm from "./LoginForm";
 import NewUserForm from "./NewUserForm";
-import { UserDashboard } from "../Dashboard/UserDashboard";
+import { UserDashboard } from "../Dashboard/UserDashboard/UserDashboard";
 import { ParamsContext } from "../../utils/ParamsContext";
 
 const SignInForm = () => {

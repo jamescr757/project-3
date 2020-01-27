@@ -1,21 +1,20 @@
 import React, { useEffect, useState, useContext } from "react";
-import API from "../../utils/API";
+import API from "../../../utils/API";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Card, CardContent, List, ListItem, ListItemText, ListItemIcon, Button as SaveButton } from "@material-ui/core";
 import Box from '@material-ui/core/Box';
-import ScheduleIcon from '@material-ui/icons/Schedule';
 import { Button } from "reactstrap";
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import CardTitle from "./CardTitle";
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import "./Dashboard.css";
-import { DashboardHero } from "../Hero/DashboardHero";
+import CardTitle from "../CardTitle";
+import "../Dashboard.css";
+import { DashboardHero } from "../../Hero/DashboardHero";
 import moment from "moment";
-import { ParamsContext } from "../../utils/ParamsContext";
+import { ParamsContext } from "../../../utils/ParamsContext";
+import { EmailFreq } from "./EmailFreq";
+import { NextEmail } from "./NextEmail";
 
 const classNames = require("classnames");
 
@@ -93,15 +92,15 @@ export const UserDashboard = (props) => {
         );
     }
 
-    const handleScheduleClick = (index) => {
-        setShowFrequencyIndex(index);
-        showFrequencyArrows(true)
-    }
+    // const handleScheduleClick = (index) => {
+    //     setShowFrequencyIndex(index);
+    //     showFrequencyArrows(true)
+    // }
 
-    const handleNextEmailClick = (index) => {
-        setShowEmailIndex(index);
-        showEmailArrows(true)
-    }
+    // const handleNextEmailClick = (index) => {
+    //     setShowEmailIndex(index);
+    //     showEmailArrows(true)
+    // }
 
     const handleEditClick = (id, colName, newValue) => {
 
@@ -118,13 +117,13 @@ export const UserDashboard = (props) => {
             });
     } 
 
-    const handleFrequencySave = () => {
-        showFrequencyArrows(false);
-    }
+    // const handleFrequencySave = () => {
+    //     showFrequencyArrows(false);
+    // }
 
-    const handleEmailSave = () => {
-        showEmailArrows(false);
-    }
+    // const handleEmailSave = () => {
+    //     showEmailArrows(false);
+    // }
 
     const handleDelete = (id) => {
 
@@ -177,7 +176,9 @@ export const UserDashboard = (props) => {
                             <Grid item xs={12} >
                                 <CardTitle category={email.category} identifier={email.identifier} />
                                 <List className="pb-0">
-                                    <ListItem>
+                                    <EmailFreq email={email} index={index} editClick={handleEditClick} />
+                                    <NextEmail email={email} index={index} editClick={handleEditClick} />
+                                    {/* <ListItem>
                                         <ListItemIcon>
                                             <ScheduleIcon style={{ cursor: "pointer" }}
                                             onClick={()=>handleScheduleClick(index)}  />
@@ -206,8 +207,8 @@ export const UserDashboard = (props) => {
                                         { showFrequency && showFrequencyIndex === index &&
                                             <SaveButton className="py-1" onClick={handleFrequencySave}>Done</SaveButton>
                                         }
-                                    </ListItem>
-                                    <ListItem>
+                                    </ListItem> */}
+                                    {/* <ListItem>
                                         <ListItemIcon>
                                             <ScheduleIcon style={{ cursor: "pointer" }}
                                             onClick={()=>handleNextEmailClick(index)}  />
@@ -236,7 +237,7 @@ export const UserDashboard = (props) => {
                                         { showEmail && showEmailIndex === index &&
                                             <SaveButton className="py-1" onClick={handleEmailSave}>Done</SaveButton>
                                         }
-                                    </ListItem>
+                                    </ListItem> */}
                                     <ListItem>
                                         <ListItemIcon>
                                             {email.completedTable ?  
