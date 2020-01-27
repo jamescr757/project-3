@@ -3,20 +3,17 @@ import API from "../../../utils/API";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Card, CardContent, List, ListItem, ListItemText, ListItemIcon, Button as SaveButton } from "@material-ui/core";
+import { Typography, Card, CardContent, List } from "@material-ui/core";
 import Box from '@material-ui/core/Box';
-import { Button } from "reactstrap";
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import CardTitle from "../CardTitle";
 import "../Dashboard.css";
 import { DashboardHero } from "../../Hero/DashboardHero";
-import moment from "moment";
 import { ParamsContext } from "../../../utils/ParamsContext";
 import { EmailFreq } from "./EmailFreq";
 import { NextEmail } from "./NextEmail";
-
-const classNames = require("classnames");
+import { GamesCircleCheck } from "./GamesCircleCheck";
+import { SendEmailNow } from "./SendEmailNow";
+import { DeleteNotification } from "./DeleteNotification";
 
 const useStyles = makeStyles(theme => ({
 
@@ -50,11 +47,6 @@ export const UserDashboard = (props) => {
     const [userData, setUserData] = useState([]);
     // const [errorMessage, setErrorMessage] = useState();
     const [reRender, setReRender] = useState(false);
-    const [showFrequency, showFrequencyArrows] = useState(false);
-    const [showEmail, showEmailArrows] = useState(false);
-    const [showFrequencyIndex, setShowFrequencyIndex] = useState();
-    const [showEmailIndex, setShowEmailIndex] = useState();
-    const [emailNowSuccess, setEmailNowSuccess] = useState(false);
     const [noData, setNoData] = useState(false);
 
     useEffect(() => {
@@ -66,8 +58,7 @@ export const UserDashboard = (props) => {
                 } else {
                     if (res.data.length === 0) {
                         setNoData(true);
-
-                    } else setNoData(false);
+                    }
                     
                     setUserData(res.data);
                 }
@@ -92,16 +83,6 @@ export const UserDashboard = (props) => {
         );
     }
 
-    // const handleScheduleClick = (index) => {
-    //     setShowFrequencyIndex(index);
-    //     showFrequencyArrows(true)
-    // }
-
-    // const handleNextEmailClick = (index) => {
-    //     setShowEmailIndex(index);
-    //     showEmailArrows(true)
-    // }
-
     const handleEditClick = (id, colName, newValue) => {
 
         API.updateUserData(id, colName, newValue)
@@ -116,14 +97,6 @@ export const UserDashboard = (props) => {
                 console.log(err);
             });
     } 
-
-    // const handleFrequencySave = () => {
-    //     showFrequencyArrows(false);
-    // }
-
-    // const handleEmailSave = () => {
-    //     showEmailArrows(false);
-    // }
 
     const handleDelete = (id) => {
 
@@ -140,22 +113,9 @@ export const UserDashboard = (props) => {
             })
     }
 
-    const sendEmailNow = () => {
-        API.sendEmailNow(userEmail)
-        .then((res) => {
-            if (res.data === "error") {
-                console.log("there's been an error sending email");
-            } else {
-                setEmailNowSuccess(true);
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }
-
     return (
         <React.Fragment>
+            {console.log("render")}
         <DashboardHero 
             userEmail={userEmail} 
             noData={noData}
@@ -172,142 +132,48 @@ export const UserDashboard = (props) => {
                 >
                     <Card className={classes.card}>
                         <Grid container direction="column">
-                        <CardContent className={classes.cardContent + " pb-0 px-2"}>
-                            <Grid item xs={12} >
-                                <CardTitle category={email.category} identifier={email.identifier} />
-                                <List className="pb-0">
-                                    <EmailFreq email={email} index={index} editClick={handleEditClick} />
-                                    <NextEmail email={email} index={index} editClick={handleEditClick} />
-                                    {/* <ListItem>
-                                        <ListItemIcon>
-                                            <ScheduleIcon style={{ cursor: "pointer" }}
-                                            onClick={()=>handleScheduleClick(index)}  />
-                                        </ListItemIcon>
-                                        <ListItemText style={{ maxWidth: 110 }}
-                                            primary={email.frequency === "1" ? "Everyday" : `Every ${email.frequency} days`}
-                                        />
-                                        { showFrequency && email.frequency > 1 && showFrequencyIndex === index &&
-                                            <ListItemIcon style={{ minWidth: 30 }}>
-                                                <ArrowDropDownIcon
-                                                  style={{ cursor: "pointer" }}
-                                                  onClick={()=>handleEditClick(email.id, "frequency", parseInt(email.frequency) - 1)}
-                                                />
-                                            </ListItemIcon>
-                                        }
-                                        { showFrequency && email.frequency < 30 && showFrequencyIndex === index &&
-                                            <ListItemIcon className={classNames({ "arrow-padding": email.frequency < 2 })}
-                                            style={{ minWidth: 34 }}
-                                            >
-                                                <ArrowDropUpIcon
-                                                  style={{ cursor: "pointer" }}
-                                                  onClick={()=>handleEditClick(email.id, "frequency", parseInt(email.frequency) + 1)}
-                                                />
-                                            </ListItemIcon>
-                                        }
-                                        { showFrequency && showFrequencyIndex === index &&
-                                            <SaveButton className="py-1" onClick={handleFrequencySave}>Done</SaveButton>
-                                        }
-                                    </ListItem> */}
-                                    {/* <ListItem>
-                                        <ListItemIcon>
-                                            <ScheduleIcon style={{ cursor: "pointer" }}
-                                            onClick={()=>handleNextEmailClick(index)}  />
-                                        </ListItemIcon>
-                                        <ListItemText style={{ maxWidth: 170 }}
-                                            primary={`Next email - ${moment(email.nextEmail, "YYYYMMDD").format("ddd M/D")}`}
-                                        />
-                                        { showEmail && email.nextEmail > moment().utcOffset(-7).add(1, "days").format("YYYYMMDD") && showEmailIndex === index &&
-                                            <ListItemIcon style={{ minWidth: 30 }}>
-                                                <ArrowDropDownIcon
-                                                  style={{ cursor: "pointer" }}
-                                                  onClick={()=>handleEditClick(email.id, "nextEmail", moment(email.nextEmail).subtract(1, "days").format("YYYYMMDD"))}
-                                                />
-                                            </ListItemIcon>
-                                        }
-                                        { showEmail && showEmailIndex === index &&
-                                            <ListItemIcon className={classNames({ "arrow-padding": email.nextEmail < moment().utcOffset(-7).add(2, "days").format("YYYYMMDD") })}
-                                            style={{ minWidth: 34 }}
-                                            >
-                                                <ArrowDropUpIcon
-                                                  style={{ cursor: "pointer" }}
-                                                  onClick={()=>handleEditClick(email.id, "nextEmail", moment(email.nextEmail).add(1, "days").format("YYYYMMDD"))}
-                                                />
-                                            </ListItemIcon>
-                                        }
-                                        { showEmail && showEmailIndex === index &&
-                                            <SaveButton className="py-1" onClick={handleEmailSave}>Done</SaveButton>
-                                        }
-                                    </ListItem> */}
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            {email.completedTable ?  
-                                            <CheckCircleIcon 
-                                                style={{ cursor: "pointer" }}
-                                                htmlColor="rgb(74,173,84)" onClick={()=>handleEditClick(email.id, "completed", false)} />
-                                            :
-                                            <RadioButtonUncheckedIcon 
-                                                style={{ cursor: "pointer" }}
-                                                onClick={()=>handleEditClick(email.id, "completed", true)}
-                                            />
-                                        }
-                                        </ListItemIcon>
-                                        <ListItemText 
-                                            primary="Completed Games"
-                                        />
-                                    </ListItem>
-                                    <ListItem className="pb-0">
-                                            <ListItemIcon>
-                                             {email.futureTable ?  
-                                                <CheckCircleIcon 
-                                                  style={{ cursor: "pointer" }}
-                                                  htmlColor="rgb(74,173,84)" 
-                                                  onClick={()=>handleEditClick(email.id, "future", false)}  
-                                                />
-                                                :
-                                                <RadioButtonUncheckedIcon
-                                                  style={{ cursor: "pointer" }}
-                                                  onClick={()=>handleEditClick(email.id, "future", true)}
-                                                />
-                                            }
-                                            </ListItemIcon>
-                                            <ListItemText 
-                                                primary="Future Games"
-                                            />
-                                    </ListItem>
-                                </List>
-                            </Grid>
-                        </CardContent>
-                        </Grid>
-                        <Grid container justify="flex-end">
-                            {/* <Grid item> */}
-                                <Button color="danger" className="m-3" onClick={()=>handleDelete(email.id)}>
-                                    Delete
-                                </Button>
-                            {/* </Grid> */}
-                        </Grid>
-                    </Card>
-                </Grid>
-                ))}
-                {userData.length > 0 && <Grid 
-                    item  
-                    xs={12}
-                    sm={12}
-                    md={6}
-                >
-                    <Card className={classes.card}>
-                        <Grid container direction="column" alignItems="center">
-                            <CardContent className="p-4">
+                            <CardContent 
+                                className={classes.cardContent + " pb-0 px-2"}
+                            >
                                 <Grid item xs={12} >
-                                    { !emailNowSuccess ? 
-                                    <Button color="success" onClick={sendEmailNow}>Send Email Now</Button>
-                                    :
-                                    <Typography variant="h4" className="text-success">Email sent!</Typography>
-                                    }
+                                    <CardTitle category={email.category} identifier={email.identifier} />
+                                    <List className="pb-0">
+                                        <EmailFreq 
+                                            email={email} 
+                                            index={index} 
+                                            editClick={handleEditClick} 
+                                        />
+                                        <NextEmail 
+                                            email={email} 
+                                            index={index} 
+                                            editClick={handleEditClick} 
+                                        />
+                                        <GamesCircleCheck
+                                            email={email}
+                                            iconSwitch={email.completedTable}
+                                            table="completed"
+                                            text="Completed Games"
+                                            editClick={handleEditClick}
+                                        />
+                                        <GamesCircleCheck
+                                            email={email}
+                                            iconSwitch={email.futureTable}
+                                            table="future"
+                                            text="Future Games"
+                                            editClick={handleEditClick}
+                                        />
+                                    </List>
                                 </Grid>
                             </CardContent>
                         </Grid>
+                        <DeleteNotification 
+                          email={email} 
+                          handleDelete={handleDelete}
+                        />
                     </Card>
-                </Grid>}
+                </Grid>
+                ))}
+                {userData.length > 0 && <SendEmailNow userEmail={userEmail} /> }
                 {noData && renderNoData()}
             </Grid>
         </Container>

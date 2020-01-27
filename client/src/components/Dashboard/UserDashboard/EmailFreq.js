@@ -41,7 +41,7 @@ export const EmailFreq = ({ email, index, editClick }) => {
             }
             { showArrows && email.frequency < 30 && showIndex === index &&
                 <ListItemIcon className={classNames({ "arrow-padding": email.frequency < 2 })}
-                style={{ minWidth: 34 }}
+                style={{ minWidth: 24 }}
                 >
                     <ArrowDropUpIcon
                         style={{ cursor: "pointer" }}

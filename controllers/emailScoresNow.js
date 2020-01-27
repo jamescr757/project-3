@@ -80,8 +80,10 @@ module.exports = function emailScoresNow(req, res) {
             setTimeout(() => {
                 if (userGameInfo.length) {
                     res.send("success");
+                } else {
+                    res.send("no games")
                 }
-            }, 1 * 1000);
+            }, 3 * 1000);
 
             setTimeout(() => {
                 if (userGameInfo.length) {

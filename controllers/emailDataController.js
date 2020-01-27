@@ -60,7 +60,7 @@ module.exports = {
           id: req.params.id
         }
       })
-      .then(() => res.send("update successful"))
+      .then((data) => res.send("update successful"))
       .catch(err => {
         console.log(err);
         res.send("error");
