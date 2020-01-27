@@ -116,6 +116,11 @@ module.exports = function deleteFuture(gameInfo, userEmail) {
             <mjml>
                 <mj-body>
                     ${emailHTML(gameInfo)}
+                    <mj-section padding="40px 0 0 0">
+                        <mj-column>
+                            <mj-button font-size="14px" background-color="white" color="blue" padding="0 0 -5px 0" text-decoration="underline" border-radius="8px" href="https://nhl-scores-757.herokuapp.com/member/unsubscribe/${userEmail}">Unsubscribe</mj-button>
+                        </mj-column>
+                    </mj-section>
                 </mj-body>
             </mjml>
     `)

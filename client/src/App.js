@@ -36,5 +36,3 @@ const App = () => {
 }
 
 export default App;
-
-// TODO: change new member prefs to just member prefs

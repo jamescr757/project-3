@@ -5,6 +5,7 @@ import { UserDashboard } from "../components/Dashboard/UserDashboard";
 import { AccountDetails } from "../components/Dashboard/AccountDetails";
 import { ForgotPassword } from "../components/Form/ForgotPassword";
 import { ParamsContext } from "../utils/ParamsContext";
+import { Unsubscribe } from "../components/Unsubscribe/Unsubscribe";
 
 
 const MemberPreferences = (props) => { 
@@ -21,6 +22,7 @@ const MemberPreferences = (props) => {
       { type === "update-email" && <AccountDetails /> }
       { type === "update-password" && <AccountDetails /> }
       { type === "forgot-password" && <ForgotPassword userEmail={email} /> }
+      { type === "unsubscribe" && <Unsubscribe /> }
       
     </ParamsContext.Provider >
   );
